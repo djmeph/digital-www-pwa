@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 export interface LinkProps {
   to: string;
-  current: boolean | undefined;
-  children: React.ReactNode;
+  className: string;
+  children: ReactNode;
 }
