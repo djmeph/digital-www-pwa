@@ -21,12 +21,12 @@ const user = {
 };
 const navigation = [
   { name: 'Events', href: '/events/Wednesday', current: false },
-  { name: 'Favorites', href: '#', current: false },
-  { name: 'Agenda', href: '#', current: false },
-  { name: 'Art', href: '#', current: false },
-  { name: 'Camps', href: '#', current: false },
-  { name: 'Radio', href: '#', current: false },
-  { name: 'Vehicles', href: '#', current: false },
+  { name: 'Favorites', href: '/favorites/Wednesday', current: false },
+  { name: 'Agenda', href: '/week-view', current: false },
+  { name: 'Art', href: '/art', current: false },
+  { name: 'Camps', href: '/camps', current: false },
+  { name: 'Radio', href: '/radio', current: false },
+  { name: 'Vehicles', href: '/vehicles', current: false },
 ];
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
