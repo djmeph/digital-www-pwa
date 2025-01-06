@@ -45,13 +45,15 @@ export function TopNavComponent() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="shrink-0">
-              <Image
-                alt="Lakes Of Fire"
-                src="https://2024.lakesoffire.org/android-chrome-512x512.png"
-                className="size-8"
-                width="512"
-                height="512"
-              />
+              <Link to="/">
+                <Image
+                  alt="Lakes Of Fire"
+                  src="https://2024.lakesoffire.org/android-chrome-512x512.png"
+                  className="size-8"
+                  width="512"
+                  height="512"
+                />
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
