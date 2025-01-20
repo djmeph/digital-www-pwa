@@ -4,16 +4,6 @@
   "sourceRoot": "libs/event/types/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/event/types",
-        "main": "libs/event/types/src/index.ts",
-        "tsConfig": "libs/event/types/tsconfig.lib.json",
-        "assets": ["libs/event/types/*.md"]
-      }
-    }
-  }
+  "// targets": "to see all targets run: nx show project event-types --web",
+  "targets": {}
 }
