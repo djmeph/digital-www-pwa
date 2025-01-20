@@ -4,16 +4,6 @@
   "sourceRoot": "libs/feed/types/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/feed/types",
-        "main": "libs/feed/types/src/index.ts",
-        "tsConfig": "libs/feed/types/tsconfig.lib.json",
-        "assets": ["libs/feed/types/*.md"]
-      }
-    }
-  }
+  "// targets": "to see all targets run: nx show project feed-types --web",
+  "targets": {}
 }
