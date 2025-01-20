@@ -1,38 +1,27 @@
-# DigitalWwwPwa
+# Digital WWW PWA
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+<a href="https://lakesoffire.org/" target="_blank" rel="noreferrer"><img alt="Lakes of Fire: Great Lakes Regional Burn" src="https://lakesoffire.org/wp-content/uploads/2024/01/LoF_Logo.png" width="452" height="417"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+Lakes of Fire Digital What Where When Guide
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/next?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/next?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `yarn run nx graph` to visually explore what was created. Now, let's get you up to speed!
 
-## Finish your CI setup
+## Development Environment Quick Start
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/3DGXv3QlZ0)
+1. [Install NVM on your development machine](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+2. In your project directory, run `nvm install`. This will install the node version specified in .nvmrc to ensure we're all on the same version.
+3. Install the yarn package manager: `npm install --global yarn`
+4. Get the latest project dependencies by running `yarn install`
 
-## Run tasks
+## Run the development server
 
-To run the dev server for your app, use:
-
-```sh
-npx nx dev digital-www-pwa
-```
-
-To create a production bundle:
+To run the dev server for your app, run:
 
 ```sh
-npx nx build digital-www-pwa
+yarn run nx dev digital-www-pwa
 ```
 
-To see all available targets to run for a project, run:
-
-```sh
-npx nx show project digital-www-pwa
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+If everything runs correctly, you should be able to view the development app at [http://localhost:3000](http://localhost:3000).
 
 ## Add new projects
 
@@ -43,16 +32,16 @@ Use the plugin's generator to create new projects.
 To generate a new application, use:
 
 ```sh
-npx nx g @nx/next:app demo
+yarn run nx g @nx/next:app demo
 ```
 
 To generate a new library, use:
 
 ```sh
-npx nx g @nx/react:lib mylib
+yarn run nx g @nx/react:lib mylib
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+You can use `yarn run nx list` to get a list of installed plugins. Then, run `yarn run nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
 
 [Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
