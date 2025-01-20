@@ -77,5 +77,10 @@
         "unitTestRunner": "jest"
       }
     }
+  },
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
   }
 }

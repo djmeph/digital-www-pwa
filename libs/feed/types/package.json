@@ -2,7 +2,8 @@
   "name": "@digital-www-pwa/feed-types",
   "version": "0.0.1",
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@digital-www/event-types": "0.0.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",
