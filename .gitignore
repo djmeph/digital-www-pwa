@@ -49,3 +49,4 @@ out
 .yarn/*
 !.yarn/releases
 yarn-error.log
+.pnp.*
