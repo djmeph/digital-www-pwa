@@ -1,0 +1,93 @@
+name: Build and Deploy App
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and push image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: djmeph
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Yarn Cache
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-${{ runner.arch }}-yarn-cache-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-yarn-cache-
+
+      - run: yarn install
+      - uses: nrwl/nx-set-shas@v4
+
+      - name: Build app
+        shell: bash
+        run: yarn nx run digital-www-pwa:build
+
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/digital-www-pwa/Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: ghcr.io/djmeph/digital-www-pwa
+          cache-from: type=registry,ref=ghcr.io/djmeph/digital-www-pwa:buildcache
+          cache-to: type=registry,ref=ghcr.io/djmeph/digital-www-pwa:buildcache,mode=max
+          provenance: false
+
+      - name: Store build hash as artifact
+        shell: bash
+        run: echo "digest=${{ steps.build.outputs.digest }}" > hash.txt
+
+      - name: Archive build hash
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-hash
+          path: hash.txt
+          retention-days: 90
+
+  deploy:
+    name: Deploy
+    runs-on: arc-runner-set
+    environment: production
+    needs: [build]
+
+    steps:
+      - name: Retrieve build hash
+        uses: actions/download-artifact@v4
+        with:
+          name: build-hash
+
+      - name: Extract build hash to output
+        id: build-hash
+        shell: bash
+        run: cat hash.txt >> $GITHUB_OUTPUT
+
+      - name: Deploy to Kubernetes
+        uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBECONFIG }}
+        with:
+          args: patch deployment staging-digital-www-2024 -n lakes-of-fire -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"digital-www-pwa\",\"image\":\"ghcr.io/djmeph/digital-www-pwa:latest@${{ steps.build-hash.outputs.digest }}\"}]}}}}"
