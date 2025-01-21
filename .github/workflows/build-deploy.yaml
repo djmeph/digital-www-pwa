@@ -75,7 +75,7 @@ jobs:
 
   deploy:
     name: Deploy
-    runs-on: arc-runner-set
+    runs-on: ubuntu-latest
     environment: production
     needs: [build]
 
