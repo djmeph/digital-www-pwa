@@ -95,4 +95,4 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.KUBECONFIG }}
         with:
-          args: patch deployment staging-digital-www-2024 -n lakes-of-fire -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"digital-www-pwa\",\"image\":\"ghcr.io/djmeph/digital-www-pwa:latest@${{ steps.build-hash.outputs.digest }}\"}]}}}}"
+          args: patch deployment staging-digital-www-2025 -n lakes-of-fire -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"digital-www-pwa\",\"image\":\"ghcr.io/djmeph/digital-www-pwa:latest@${{ steps.build-hash.outputs.digest }}\"}]}}}}"
