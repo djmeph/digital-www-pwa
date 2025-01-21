@@ -20,15 +20,6 @@
   "nxCloudId": "675e06ffc3352b05d1f3d160",
   "plugins": [
     {
-      "plugin": "@nx/next/plugin",
-      "options": {
-        "startTargetName": "start",
-        "buildTargetName": "build",
-        "devTargetName": "dev",
-        "serveStaticTargetName": "serve-static"
-      }
-    },
-    {
       "plugin": "@nx/cypress/plugin",
       "options": {
         "targetName": "e2e",
