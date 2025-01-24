@@ -312,7 +312,7 @@ export function AgendaView(props: Props) {
                 ],
               )}
             >
-              {date}
+              {dayjs(date).format('dddd')}
             </div>
           );
         })}
