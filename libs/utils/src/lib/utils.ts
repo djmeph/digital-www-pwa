@@ -1,11 +1,11 @@
-import type { Event, EventTime } from '@digital-www-pwa/types';
+import type { EventItem, EventTime } from '@digital-www-pwa/types';
 
 /**
  * For multi-day all-day events, the API returns contiguous event times, one
  * for each day. This function merges contiguous event times, to show them
  * properly on the calendar
  */
-export function getMergedEventTimes(feedEvent: Event) {
+export function getMergedEventTimes(feedEvent: EventItem) {
   return feedEvent.event_times.reduce(
     (collectedTimes: EventTime[], eventTime: EventTime) => {
       if (collectedTimes.length === 0) {
@@ -43,22 +43,3 @@ export function getMergedEventTimes(feedEvent: Event) {
     []
   );
 }
-
-export const tidyAlphaSort = (a: any, b: any, propName: string) => {
-  const sortA = a[propName]
-    .trim()
-    .replace(/^[Tt]he ?/i, '')
-    .toUpperCase();
-  const sortB = b[propName]
-    .trim()
-    .replace(/^[Tt]he ?/i, '')
-    .toUpperCase();
-
-  if (sortA < sortB) {
-    return -1;
-  }
-  if (sortA > sortB) {
-    return 1;
-  }
-  return 0;
-};

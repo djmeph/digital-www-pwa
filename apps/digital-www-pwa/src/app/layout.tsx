@@ -1,7 +1,24 @@
 'use client';
-import { TopNavComponent } from '@digital-www-pwa/components';
-import './global.css';
-import { FeedProvider, TopNavProvider } from '@digital-www-pwa/providers';
+import { ThemeProvider } from '@mui/material';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { Roboto } from 'next/font/google';
+
+import { AppBar, BackToTopButton } from '@digital-www-pwa/components';
+import {
+  FavoritesProvider,
+  FeedProvider,
+  ProcessedDataProvider,
+} from '@digital-www-pwa/providers';
+import { theme } from '@digital-www-pwa/utils';
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
 
 export default function RootLayout({
   children,
@@ -9,16 +26,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full bg-gray-100">
-      <body className="h-full">
-        <FeedProvider>
-          <TopNavProvider>
-            <div className="min-h-full">
-              <TopNavComponent />
-              {children}
-            </div>
-          </TopNavProvider>
-        </FeedProvider>
+    <html lang="en">
+      <body className={roboto.variable}>
+        <AppRouterCacheProvider>
+          <CssBaseline />
+          <ThemeProvider theme={theme}>
+            <FeedProvider>
+              <FavoritesProvider>
+                <ProcessedDataProvider>
+                  <AppBar />
+                  <Container sx={{ paddingTop: 2, paddingBottom: 2 }}>
+                    {children}
+                  </Container>
+                  <BackToTopButton />
+                </ProcessedDataProvider>
+              </FavoritesProvider>
+            </FeedProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

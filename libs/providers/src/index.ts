@@ -2,3 +2,5 @@
 
 export * from './lib/FeedProvider';
 export * from './lib/TopNavProvider';
+export * from './lib/FavoritesProvider';
+export * from './lib/ProcessedDataProvider';

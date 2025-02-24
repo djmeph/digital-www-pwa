@@ -1,7 +1,11 @@
 'use client';
 import { AgendaView } from '@digital-www-pwa/components';
 import { useFeedContext } from '@digital-www-pwa/providers';
-import type { CalendarEvent, Event, EventTime } from '@digital-www-pwa/types';
+import type {
+  CalendarEvent,
+  EventItem,
+  EventTime,
+} from '@digital-www-pwa/types';
 import { getMergedEventTimes } from '@digital-www-pwa/utils';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
@@ -9,8 +13,8 @@ import { useMemo } from 'react';
 export function WeekViewPage() {
   const feed = useFeedContext();
   const calendarEvents = useMemo(() => {
-    return feed.coalesce.reduce(
-      (calendarEvents: CalendarEvent[], feedEvent: Event) => {
+    return feed.events.reduce(
+      (calendarEvents: CalendarEvent[], feedEvent: EventItem) => {
         const newEvents = getMergedEventTimes(feedEvent).map(
           (eventTime: EventTime) => ({
             id: eventTime.event_time_id,

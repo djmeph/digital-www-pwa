@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 export enum EventRecurrance {
   SINGLE = 'single',
   MULTIPLE = 'multiple',
@@ -13,7 +15,7 @@ export enum DayOfWeek {
   SUNDAY = 'Sunday',
 }
 
-export type Event = {
+export type EventItem = {
   event_id: number;
   title: string;
   event_description: string;
@@ -28,6 +30,7 @@ export type Event = {
   crafting: boolean;
   food: boolean;
   sober: boolean;
+  locations: string[];
   event_times: EventTime[];
 };
 
@@ -37,4 +40,18 @@ export interface EventTime {
   ending: string;
   day_of_week: DayOfWeek;
   all_day: boolean;
+}
+
+export interface ProcessedEventTime
+  extends Omit<EventTime, 'starting' | 'ending'> {
+  starting: Dayjs;
+  ending: Dayjs;
+}
+
+export interface ProcessedEventItem extends Omit<EventItem, 'event_times'> {
+  event_times: ProcessedEventTime[];
+}
+
+export interface ParsedEventTime extends ProcessedEventTime {
+  event: ProcessedEventItem;
 }

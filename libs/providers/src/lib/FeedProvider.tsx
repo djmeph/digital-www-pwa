@@ -8,16 +8,21 @@ import {
   useState,
 } from 'react';
 
-export const FeedContext = createContext<Feed>({
-  coalesce: [],
-});
+const INITIAL_DATA = {
+  events: [],
+  art: [],
+  camps: [],
+  radios: [],
+  vehicles: [],
+  locations: {},
+};
+
+export const FeedContext = createContext<Feed>(INITIAL_DATA);
 
 export const useFeedContext = () => useContext(FeedContext);
 
 export const FeedProvider = ({ children }: { children: ReactNode }) => {
-  const [feed, setFeed] = useState<Feed>({
-    coalesce: [],
-  });
+  const [feed, setFeed] = useState<Feed>(INITIAL_DATA);
 
   useEffect(() => {
     async function fetchFeed() {
