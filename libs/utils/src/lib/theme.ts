@@ -1,6 +1,40 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+  interface Palette {
+    alcohol: Palette['primary'];
+    crafting: Palette['primary'];
+    fire_art: Palette['primary'];
+    food: Palette['primary'];
+    red_light: Palette['primary'];
+    sober: Palette['primary'];
+    spectacle: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    alcohol?: PaletteOptions['primary'];
+    crafting?: PaletteOptions['primary'];
+    fire_art?: PaletteOptions['primary'];
+    food?: PaletteOptions['primary'];
+    red_light?: PaletteOptions['primary'];
+    sober?: PaletteOptions['primary'];
+    spectacle?: PaletteOptions['primary'];
+  }
+}
+
+declare module '@mui/material/Chip' {
+  interface ChipPropsColorOverrides {
+    alcohol: true;
+    crafting: true;
+    fire_art: true;
+    food: true;
+    red_light: true;
+    sober: true;
+    spectacle: true;
+  }
+}
+
 const base = createTheme({
   typography: {
     fontFamily: 'var(--font-roboto)',
