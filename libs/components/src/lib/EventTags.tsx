@@ -1,5 +1,5 @@
 'use client';
-import { ProcessedEventItem } from '@digital-www-pwa/types';
+import type { ProcessedEventItem } from '@digital-www-pwa/types';
 import { TAGS } from '@digital-www-pwa/utils';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid2';
