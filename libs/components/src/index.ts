@@ -10,6 +10,8 @@ export * from './lib/CampCard';
 export * from './lib/EventsView';
 export * from './lib/EventTags';
 export * from './lib/FavoriteButton';
+export * from './lib/SearchBar';
+export * from './lib/SearchResults';
 export * from './lib/SelectDayTabBar';
 export * from './lib/RadioCard';
 export * from './lib/VehicleCard';

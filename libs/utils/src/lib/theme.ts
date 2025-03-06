@@ -18,6 +18,8 @@ const base = createTheme({
 export const theme = createTheme(base, {
   cssVariables: true,
   palette: {
+    primary: base.palette.augmentColor({ color: base.palette.primary }),
+    secondary: base.palette.augmentColor({ color: base.palette.secondary }),
     alcohol: base.palette.augmentColor({
       color: {
         main: '#95A5A6',

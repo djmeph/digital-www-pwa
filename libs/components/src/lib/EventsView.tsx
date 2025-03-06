@@ -33,13 +33,13 @@ export function EventsView({ favoritesOnly }: { favoritesOnly: boolean }) {
         return getDefaultFilters();
       }
       const storedFilters = JSON.parse(
-        localStorage.getItem('lastFilters') || '[]'
+        localStorage.getItem('lastFilters') || '[]',
       );
       if (storedFilters === null) {
         return getDefaultFilters();
       }
       return Object.fromEntries(
-        TAGS.map((tag) => [tag.slug, !!storedFilters[tag.slug]])
+        TAGS.map((tag) => [tag.slug, !!storedFilters[tag.slug]]),
       );
     } catch (err) {
       console.error(err);
@@ -72,16 +72,16 @@ export function EventsView({ favoritesOnly }: { favoritesOnly: boolean }) {
         (a, b) =>
           a.starting.unix() - b.starting.unix() || // Sort first by start time
           a.ending.unix() - b.ending.unix() || // Then by earliest end time
-          a.event.title.localeCompare(b.event.title) // Then alphabetically
+          a.event.title.localeCompare(b.event.title), // Then alphabetically
       ),
-    [eventTimes]
+    [eventTimes],
   );
 
   const filteredEventTimes = useMemo(() => {
     const preFilteredEventTimes = sortedEventTimes?.filter(
       (eventTime) =>
         eventTime.day_of_week === selectedDay &&
-        (!favoritesOnly || favoriteEventTimeIds.has(eventTime.event_time_id))
+        (!favoritesOnly || favoriteEventTimeIds.has(eventTime.event_time_id)),
     );
     const selectedTagSlugs = TAGS.reduce((acc, tag) => {
       if (filters[tag.slug]) {
@@ -93,7 +93,7 @@ export function EventsView({ favoritesOnly }: { favoritesOnly: boolean }) {
       return preFilteredEventTimes;
     }
     return preFilteredEventTimes?.filter((eventTime: any) =>
-      [...selectedTagSlugs].some((slug) => eventTime.event[slug])
+      [...selectedTagSlugs].some((slug) => eventTime.event[slug]),
     );
   }, [
     sortedEventTimes,

@@ -19,7 +19,7 @@ function formatEventTime(eventTime: ProcessedEventTime) {
   return eventTime.all_day
     ? `${eventTime.starting.format('dddd')} All Day`
     : `${eventTime.starting.format('ddd LT')} - ${eventTime.ending.format(
-        'LT'
+        'LT',
       )}`;
 }
 
@@ -32,7 +32,7 @@ export function EventsItemPage({ id }: { id: string }) {
     }
 
     return eventTime.event.event_times.filter(
-      (et) => et.event_time_id !== eventTime.event_time_id
+      (et) => et.event_time_id !== eventTime.event_time_id,
     );
   }, [eventTime]);
 
@@ -92,7 +92,11 @@ export function EventsItemPage({ id }: { id: string }) {
           : eventTime.event.event_description}
       </Typography>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <FavoriteButton variant="large" eventTime={eventTime} />
+        {eventTime === null ? (
+          <Skeleton variant="rectangular" />
+        ) : (
+          <FavoriteButton variant="large" eventTime={eventTime} />
+        )}
       </Box>
 
       {renderOtherTimesList()}

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 export function ArtItemPage({ id }: { id: string }) {
   const art = useArt(id);
-  const location = useLocation(art.location);
+  const location = useLocation(art?.location);
 
   function renderFunding() {
     if (art === null) {

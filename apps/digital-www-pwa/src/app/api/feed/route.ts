@@ -1,12 +1,19 @@
 export async function GET(request: Request) {
-  const response = await fetch('https://2024.lakesoffire.org/events.json');
-  const data = await response.json();
+  const eventsResponse = await fetch(
+    'https://2024.lakesoffire.org/events.json',
+  );
+  const eventsData = await eventsResponse.json();
+  const wwwResponse = await fetch(
+    'https://2024.lakesoffire.org/digital-www.json',
+  );
+  const wwwData = await wwwResponse.json();
+
   return Response.json({
-    events: data.coalesce,
-    art: [],
-    camps: [],
-    radios: [],
-    vehicles: [],
+    events: eventsData.coalesce,
+    art: wwwData.art,
+    camps: wwwData.camps,
+    radios: wwwData.radio,
+    vehicles: wwwData.vehicles,
     locations: {},
   });
 }
