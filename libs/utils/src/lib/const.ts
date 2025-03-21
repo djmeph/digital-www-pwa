@@ -58,39 +58,49 @@ export const EVENT_DAYS = [
 
 export const EVENT_TIMEZONE = 'America/Detroit';
 
+export enum Slugs {
+  ALCOHOL = 'alcohol',
+  CRAFTING = 'crafting',
+  FIRE_ART = 'fire_art',
+  FOOD = 'food',
+  RED_LIGHT = 'red_light',
+  SOBER = 'sober',
+  SPECTACLE = 'spectacle',
+}
+
 export const TAGS: TagItem[] = [
   {
-    slug: 'alcohol',
+    slug: Slugs.ALCOHOL,
     name: 'Alcohol',
     icon: LocalBarIcon,
   },
   {
-    slug: 'crafting',
+    slug: Slugs.CRAFTING,
     name: 'Crafting',
     icon: BrushIcon,
   },
   {
-    slug: 'fire_art',
+    slug: Slugs.FIRE_ART,
     name: 'Fire Art',
     icon: LocalFireDepartmentIcon,
   },
   {
-    slug: 'food',
+    slug: Slugs.FOOD,
     name: 'Food',
     icon: LocalDiningIcon,
   },
   {
-    slug: 'red_light',
+    slug: Slugs.RED_LIGHT,
     name: 'Red Light',
     icon: LightbulbIcon,
   },
   {
-    slug: 'sober',
+    slug: Slugs.SOBER,
     name: 'Sober',
     icon: NoDrinksIcon,
   },
   {
-    slug: 'spectacle',
+    slug: Slugs.SPECTACLE,
     name: 'Spectacle',
     icon: TheaterComedyIcon,
   },

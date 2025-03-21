@@ -1,9 +1,10 @@
 'use client';
+import type { ProcessedEventItem } from '@digital-www-pwa/types';
 import { TAGS } from '@digital-www-pwa/utils';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid2';
 
-export function EventTags({ event }: { event: any }) {
+export function EventTags({ event }: { event: ProcessedEventItem }) {
   if (!event) {
     return null;
   }
