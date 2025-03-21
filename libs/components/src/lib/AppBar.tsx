@@ -19,6 +19,8 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+import { SearchBar } from '@digital-www-pwa/components';
+
 export function AppBar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -69,7 +71,7 @@ export function AppBar() {
           background: 'linear-gradient(90deg, #eb3a52 0%, #e05855 100%)',
         }}
       >
-        <Container>
+        <Container sx={{ padding: 0 }}>
           <Toolbar id="app-bar">
             {renderButton()}
             <Typography
@@ -84,6 +86,7 @@ export function AppBar() {
             >
               Lakes of Fire
             </Typography>
+            <SearchBar />
           </Toolbar>
         </Container>
       </MuiAppBar>

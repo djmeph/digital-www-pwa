@@ -6,11 +6,11 @@ import { ProcessedRadioItem } from './radio';
 import { VehicleItem } from './vehicle';
 
 export interface ProcessedDataContextProps {
-  arts: Record<string, ArtItem>;
-  events: Record<string, ProcessedEventItem>;
-  eventTimes: Record<string, ParsedEventTime>;
-  camps: Record<string, CampItem>;
-  radios: Record<string, ProcessedRadioItem>;
-  vehicles: Record<string, VehicleItem>;
-  locations: Record<string, LocationItem>;
+  arts: Record<string, ArtItem> | null;
+  events: Record<string, ProcessedEventItem> | null;
+  eventTimes: Record<string, ParsedEventTime> | null;
+  camps: Record<string, CampItem> | null;
+  radios: Record<string, ProcessedRadioItem> | null;
+  vehicles: Record<string, VehicleItem> | null;
+  locations: Record<string, LocationItem> | null;
 }

@@ -1,4 +1,4 @@
-export default {
+const jestConfig = {
   displayName: 'digital-www-pwa',
   preset: '../../jest.preset.js',
   transform: {
@@ -8,3 +8,4 @@ export default {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/digital-www-pwa',
 };
+export default jestConfig;

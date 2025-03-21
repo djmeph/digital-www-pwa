@@ -10,6 +10,7 @@ import {
   FavoritesProvider,
   FeedProvider,
   ProcessedDataProvider,
+  SearchIndexProvider,
 } from '@digital-www-pwa/providers';
 import { theme } from '@digital-www-pwa/utils';
 
@@ -34,11 +35,13 @@ export default function RootLayout({
             <FeedProvider>
               <FavoritesProvider>
                 <ProcessedDataProvider>
-                  <AppBar />
-                  <Container sx={{ paddingTop: 2, paddingBottom: 2 }}>
-                    {children}
-                  </Container>
-                  <BackToTopButton />
+                  <SearchIndexProvider>
+                    <AppBar />
+                    <Container sx={{ paddingTop: 2, paddingBottom: 2 }}>
+                      {children}
+                    </Container>
+                    <BackToTopButton />
+                  </SearchIndexProvider>
                 </ProcessedDataProvider>
               </FavoritesProvider>
             </FeedProvider>

@@ -3,8 +3,8 @@ import {
   useEventTimes,
   useFavoriteEventTimeIds,
 } from '@digital-www-pwa/providers';
-import type { ParsedEventTime } from '@digital-www-pwa/types';
-import { EVENT_DAYS, TAGS } from '@digital-www-pwa/utils';
+import type { ParsedEventTime, SlugFilters } from '@digital-www-pwa/types';
+import { EVENT_DAYS, Slugs, TAGS } from '@digital-www-pwa/utils';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
@@ -21,26 +21,28 @@ import { EventCard } from './EventCard';
 import { Header } from './Header';
 import { SelectDayTabBar } from './SelectDayTabBar';
 
-function getDefaultFilters() {
-  return Object.fromEntries(TAGS.map((tag) => [tag.slug, false]));
+function getDefaultFilters(): SlugFilters {
+  return Object.fromEntries(
+    TAGS.map((tag) => [tag.slug, false])
+  ) as SlugFilters;
 }
 
 export function EventsView({ favoritesOnly }: { favoritesOnly: boolean }) {
   const eventTimes = useEventTimes();
-  const [filters, setFilters] = useState(() => {
+  const [filters, setFilters] = useState<SlugFilters>(() => {
     try {
       if (typeof localStorage === 'undefined') {
         return getDefaultFilters();
       }
       const storedFilters = JSON.parse(
-        localStorage.getItem('lastFilters') || '[]',
-      );
+        localStorage.getItem('lastFilters') || '[]'
+      ) as SlugFilters;
       if (storedFilters === null) {
         return getDefaultFilters();
       }
       return Object.fromEntries(
-        TAGS.map((tag) => [tag.slug, !!storedFilters[tag.slug]]),
-      );
+        TAGS.map((tag) => [tag.slug, !!storedFilters[tag.slug]])
+      ) as SlugFilters;
     } catch (err) {
       console.error(err);
       return getDefaultFilters();
@@ -72,28 +74,28 @@ export function EventsView({ favoritesOnly }: { favoritesOnly: boolean }) {
         (a, b) =>
           a.starting.unix() - b.starting.unix() || // Sort first by start time
           a.ending.unix() - b.ending.unix() || // Then by earliest end time
-          a.event.title.localeCompare(b.event.title), // Then alphabetically
+          a.event.title.localeCompare(b.event.title) // Then alphabetically
       ),
-    [eventTimes],
+    [eventTimes]
   );
 
   const filteredEventTimes = useMemo(() => {
     const preFilteredEventTimes = sortedEventTimes?.filter(
       (eventTime) =>
         eventTime.day_of_week === selectedDay &&
-        (!favoritesOnly || favoriteEventTimeIds.has(eventTime.event_time_id)),
+        (!favoritesOnly || favoriteEventTimeIds.has(eventTime.event_time_id))
     );
     const selectedTagSlugs = TAGS.reduce((acc, tag) => {
       if (filters[tag.slug]) {
         acc.add(tag.slug);
       }
       return acc;
-    }, new Set<string>());
+    }, new Set<Slugs>());
     if (selectedTagSlugs.size === 0) {
       return preFilteredEventTimes;
     }
-    return preFilteredEventTimes?.filter((eventTime: any) =>
-      [...selectedTagSlugs].some((slug) => eventTime.event[slug]),
+    return preFilteredEventTimes?.filter((eventTime: ParsedEventTime) =>
+      [...selectedTagSlugs].some((slug) => eventTime.event[slug])
     );
   }, [
     sortedEventTimes,
@@ -126,7 +128,7 @@ export function EventsView({ favoritesOnly }: { favoritesOnly: boolean }) {
     localStorage.setItem('lastFilters', JSON.stringify(filters));
   }, [filters]);
 
-  function handleFilterToggle(slug: string) {
+  function handleFilterToggle(slug: Slugs) {
     setFilters((oldFilters) => ({
       ...oldFilters,
       [slug]: !filters[slug],

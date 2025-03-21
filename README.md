@@ -13,6 +13,15 @@ Lakes of Fire Digital What Where When Guide
 3. Install the yarn package manager: `npm install --global yarn`
 4. Get the latest project dependencies by running `yarn install`
 
+## VSCode Quick Start
+
+1. Install [VSCode](https://code.visualstudio.com/Download)
+2. Install [Docker Desktop](https://www.docker.com/get-started/)
+3. Install the Dev Containers plugin for VSCode `ms-vscode-remote.remote-containers`
+4. In VSCode open **Dev Containers: Reopen in Container**
+
+VSCode will load a dev container with the correct version of Node.js, the standard plugins, and run `yarn install` on startup.
+
 ## Run the development server
 
 To run the dev server for your app, run:
