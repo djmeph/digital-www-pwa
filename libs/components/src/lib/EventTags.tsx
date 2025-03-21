@@ -4,7 +4,7 @@ import { TAGS } from '@digital-www-pwa/utils';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid2';
 
-export function EventTags({ event }: { event: ProcessedEventItem }) {
+export function EventTags({ event }: { event?: ProcessedEventItem }) {
   if (!event) {
     return null;
   }
