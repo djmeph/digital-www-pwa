@@ -10,6 +10,7 @@ import { AppBar, BackToTopButton } from '@digital-www-pwa/components';
 import {
   FavoritesProvider,
   FeedProvider,
+  GeolocationProvider,
   ProcessedDataProvider,
   SearchIndexProvider,
 } from '@digital-www-pwa/providers';
@@ -37,13 +38,13 @@ export default function RootLayout({
               <FavoritesProvider>
                 <ProcessedDataProvider>
                   <SearchIndexProvider>
-                    <Box id="root">
+                    <GeolocationProvider>
                       <AppBar />
-                      <Container id="content" sx={{ paddingTop: 2, paddingBottom: 2}}>
+                      <Container sx={{ paddingTop: 2, paddingBottom: 2}}>
                         {children}
                         <BackToTopButton />
                       </Container>
-                    </Box>
+                    </GeolocationProvider>
                   </SearchIndexProvider>
                 </ProcessedDataProvider>
               </FavoritesProvider>

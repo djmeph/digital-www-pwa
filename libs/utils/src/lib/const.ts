@@ -111,3 +111,22 @@ export const TAGS: TagItem[] = [
     icon: TheaterComedyIcon,
   },
 ];
+
+export const MAP_LOCATION_ANCHORS = [
+  {
+    latitude: 43.51506239647294,
+    longitude: -86.37410569015964,
+    top: 4.4,
+    left: 19.2,
+  },
+  {
+    latitude: 43.511679315636805,
+    longitude: -86.36456949817166,
+    top: 43.8,
+    left: 84.3,
+  },
+];
+
+export const MAP_ACCURACY_SIZE_FACTOR = 0.30; // %/m
+
+export const POSITION_STALE_TIME = 90; // seconds

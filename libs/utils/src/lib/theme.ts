@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
+    currentPosition: Palette['primary'];
     alcohol: Palette['primary'];
     crafting: Palette['primary'];
     fire_art: Palette['primary'];
@@ -13,6 +14,7 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
+    currentPosition?: PaletteOptions['primary'];
     alcohol?: PaletteOptions['primary'];
     crafting?: PaletteOptions['primary'];
     fire_art?: PaletteOptions['primary'];
@@ -84,6 +86,11 @@ export const theme = createTheme(base, {
   palette: {
     primary: base.palette.augmentColor({ color: base.palette.primary }),
     secondary: base.palette.augmentColor({ color: base.palette.secondary }),
+    currentPosition: base.palette.augmentColor({
+      color: {
+        main: '#0288d1',
+      },
+    }),
     alcohol: base.palette.augmentColor({
       color: {
         main: '#95A5A6',
