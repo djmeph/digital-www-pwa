@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export function VehicleCard({ vehicle }: { vehicle: VehicleItem }) {
   return (
-    <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+    <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <ButtonBase component={Link} href={`/vehicles/${vehicle.id}`}>
         <Paper sx={{ padding: 2 }}>
           <Typography variant="h5">{vehicle.title}</Typography>

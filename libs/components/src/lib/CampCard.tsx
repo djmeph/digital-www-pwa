@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export function CampCard({ camp }: { camp: CampItem }) {
   return (
-    <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+    <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
         <CardActionArea component={Link} href={`/camps/${camp.id}`}>
           <CardHeader

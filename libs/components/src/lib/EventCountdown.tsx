@@ -6,15 +6,19 @@ import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault(EVENT_TIMEZONE);
 
 export function EventCountdown() {
+  const theme = useTheme();
+  const tinyScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const [currentTime, setCurrentTime] = useState(dayjs());
 
-  const updateTime = () => setCurrentTime(dayjs()); 
+  const updateTime = () => setCurrentTime(dayjs());
 
   useEffect(() => {
     const interval = setInterval(updateTime, 1000)
@@ -33,11 +37,11 @@ export function EventCountdown() {
   const seconds = difference;
 
   return (
-    <Stack direction="row" justifyContent="space-around">
+    <Stack direction="row" justifyContent="space-around" spacing={2}>
       <Typography variant="h5">{days} days</Typography>
       <Typography variant="h5">{hours} hours</Typography>
-      <Typography variant="h5">{minutes} minutes</Typography>
-      <Typography variant="h5">{seconds} seconds</Typography>
+      <Typography variant="h5">{minutes} {tinyScreen ? 'min' : 'minutes'}</Typography>
+      <Typography variant="h5">{seconds} {tinyScreen ? 'sec' : 'seconds'}</Typography>
     </Stack>
   );
 }

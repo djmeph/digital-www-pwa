@@ -23,6 +23,11 @@ declare module '@mui/material/styles' {
     sober?: PaletteOptions['primary'];
     spectacle?: PaletteOptions['primary'];
   }
+
+  interface BreakpointOverrides
+  {
+    xxs: true;
+  }
 }
 
 declare module '@mui/material/Chip' {
@@ -38,6 +43,16 @@ declare module '@mui/material/Chip' {
 }
 
 const base = createTheme({
+  breakpoints: {
+    values: {
+      xxs: 0,
+      xs: 420,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   typography: {
     fontFamily: 'var(--font-roboto)',
   },

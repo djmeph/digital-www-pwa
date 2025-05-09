@@ -19,7 +19,7 @@ export function ArtPage() {
       return Array(12)
         .fill(null)
         .map((_, index) => (
-          <Grid key={index} size={{ xs: 12, md: 6, lg: 4 }}>
+          <Grid key={index} size={{ xxs: 12, md: 6, lg: 4 }}>
             <Skeleton variant="rectangular" width="100%" height={240} />
           </Grid>
         ));

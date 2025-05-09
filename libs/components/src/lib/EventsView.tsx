@@ -249,7 +249,7 @@ export function EventsView({
           }}
         >
           <Typography sx={{
-            typography: { sm: 'h2', xs: 'h4' },
+            typography: { sm: 'h2', xxs: 'h4' },
             display: 'none',
             "@media print": {
               display: 'initial',

@@ -12,7 +12,7 @@ export function Header({ children, button, ...props }: HeaderProps) {
     <Stack direction="row">
       <Typography
         sx={{
-          typography: { sm: 'h1', xs: 'h3' },
+          typography: { sm: 'h1', xxs: 'h3' },
           flexGrow: 1,
           "@media print": {
             display: 'none',

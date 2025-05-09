@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export function ArtCard({ art }: { art: ArtItem }) {
   return (
-    <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+    <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
         <CardActionArea component={Link} href={`/art/${art.id}`}>
           <CardHeader title={art.title} subheader={art.artist} />

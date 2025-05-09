@@ -110,7 +110,7 @@ export function SearchBar() {
           marginLeft: 0,
           paddingRight: theme.spacing(4),
           width: {
-            xs: '17ch',
+            xxs: '17ch',
             sm: '30ch',
           },
         }}

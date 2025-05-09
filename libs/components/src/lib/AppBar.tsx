@@ -29,6 +29,7 @@ export function AppBar() {
   const pathname = usePathname();
   const theme = useTheme();
   const largeScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const tinyScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
   function renderMenuButton() {
     return (
@@ -91,7 +92,7 @@ export function AppBar() {
                 textDecoration: 'none',
               }}
             >
-              Lakes of Fire 2025{largeScreen ? ' - Doorways in Time' : ''}
+              {tinyScreen ? 'LoF' : 'Lakes of Fire'} 2025{largeScreen ? ' - Doorways in Time' : ''}
             </Typography>
             <SearchBar />
           </Toolbar>

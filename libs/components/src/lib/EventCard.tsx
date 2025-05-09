@@ -15,7 +15,7 @@ import { FavoriteButton } from './FavoriteButton';
 
 export function EventCard({ eventTime }: { eventTime: ParsedEventTime }) {
   return (
-    <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+    <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
         <CardActionArea
           component={Link}
