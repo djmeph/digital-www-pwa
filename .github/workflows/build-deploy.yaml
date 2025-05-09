@@ -47,7 +47,9 @@ jobs:
 
       - name: Build app
         shell: bash
-        run: yarn nx run digital-www-pwa:build
+        run: |
+          yarn nx run digital-www-pwa:build
+          sed -i 's/SERVICE_WORKER_CACHE_ID/${{ github.sha }}/g' dist/apps/digital-www-pwa/public/sw.js
 
       - name: Build and push
         id: build

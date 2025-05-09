@@ -15,6 +15,7 @@ import {
   SearchIndexProvider,
 } from '@digital-www-pwa/providers';
 import { theme } from '@digital-www-pwa/utils';
+import { useEffect } from 'react';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -28,6 +29,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => console.log('scope is: ', registration.scope));
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -43,7 +52,7 @@ export default function RootLayout({
                   <SearchIndexProvider>
                     <GeolocationProvider>
                       <AppBar />
-                      <Container sx={{ paddingTop: 2, paddingBottom: 2}}>
+                      <Container sx={{ paddingTop: 2, paddingBottom: 2 }}>
                         {children}
                         <BackToTopButton />
                       </Container>
