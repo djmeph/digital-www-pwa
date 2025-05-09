@@ -17,3 +17,4 @@ export * from './lib/SearchBar';
 export * from './lib/SearchResults';
 export * from './lib/SelectDayTabBar';
 export * from './lib/VehicleCard';
+export * from './lib/Head';
