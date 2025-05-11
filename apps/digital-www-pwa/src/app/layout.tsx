@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Roboto } from 'next/font/google';
+import { useEffect } from 'react';
 
 import {
   AppBar,
@@ -18,7 +19,6 @@ import {
   SearchIndexProvider,
 } from '@digital-www-pwa/providers';
 import { theme } from '@digital-www-pwa/utils';
-import { useEffect } from 'react';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],

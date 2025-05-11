@@ -1,8 +1,6 @@
-import Head from 'next/head';
-
 export function HeadComponent() {
   return (
-    <Head>
+    <head>
       <title>Lakes of Fire 2025 - Doorways in Time</title>
       <link rel="icon" type="image/x-icon" href="favicon.ico" />
       <link rel="shortcut icon" href="favicon.ico" />
@@ -30,7 +28,7 @@ export function HeadComponent() {
       <meta name="theme-color" content="#ffffff" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="white" />
-    </Head>
+    </head>
   );
 }
 
