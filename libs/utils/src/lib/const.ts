@@ -32,11 +32,13 @@ export const EVENT_END = dayjs('2025-07-20 15:00:00').tz(EVENT_TIMEZONE, true)
 export const MAX_DESCRIPTION_LENGTH = 200;
 
 export const NAVIGATION_LINKS = [
+  /*
   {
     title: 'Map',
     path: '/map',
     icon: MapIcon,
   },
+  */
   dayjs().isBetween(EVENT_START, EVENT_END) ? {
     title: 'Happening Now',
     path: '/now',
@@ -52,16 +54,19 @@ export const NAVIGATION_LINKS = [
     path: '/favorites',
     icon: FavoriteIcon,
   },
+  /*
   {
     title: 'Art',
     path: '/art',
     icon: PaletteIcon,
   },
+  */
   {
     title: 'Camps',
     path: '/camps',
     icon: FestivalIcon,
   },
+  /*
   {
     title: 'Radio SGC',
     path: '/radio',
@@ -72,6 +77,7 @@ export const NAVIGATION_LINKS = [
     path: '/vehicles',
     icon: DriveEtaIcon,
   },
+  */
 ].filter((link) => link !== null);
 
 export const EVENT_DAYS = [

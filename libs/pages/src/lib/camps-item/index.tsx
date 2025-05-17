@@ -4,8 +4,17 @@ import { useCamp } from '@digital-www-pwa/providers';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 
+import { EventsView } from '@digital-www-pwa/components';
+
 export function CampsItemPage({ id }: { id: string }) {
   const camp = useCamp(id);
+
+  const renderCampEvents = () => {
+    if (!camp?.event_count) return null;
+
+    return <EventsView whereType="camp" whereName={camp.name} />;
+  };
+
   return (
     <>
       <Header>{camp === null ? <Skeleton /> : camp.name}</Header>
@@ -13,7 +22,7 @@ export function CampsItemPage({ id }: { id: string }) {
         {camp === null ? (
           <Skeleton />
         ) : (
-          `${camp.neighborhood} - Site ${camp.site}`
+          camp.location_name
         )}
       </Typography>
       <Typography variant="body1">
@@ -21,7 +30,7 @@ export function CampsItemPage({ id }: { id: string }) {
           ? Array(4)
               .fill(null)
               .map((_, index) => <Skeleton key={index} />)
-          : camp.description}
+          : renderCampEvents()}
       </Typography>
     </>
   );
