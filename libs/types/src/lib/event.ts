@@ -20,7 +20,8 @@ export type EventItem = {
   title: string;
   event_description: string;
   site_id: null;
-  hosting_location: string;
+  where_type: string;
+  where_name: string;
   event_recurrence: EventRecurrance;
   heart_count: number;
   alcohol: boolean;
@@ -30,7 +31,6 @@ export type EventItem = {
   crafting: boolean;
   food: boolean;
   sober: boolean;
-  locations: string[];
   event_times: EventTime[];
 };
 

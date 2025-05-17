@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction } from 'react';
 interface SelectDayTabBarProps {
   selectedDay: string;
   setSelectedDay: Dispatch<SetStateAction<string>>;
+  availableDays: Array<string>;
   id?: string;
   sx?: object;
 }
@@ -15,6 +16,7 @@ interface SelectDayTabBarProps {
 export function SelectDayTabBar({
   selectedDay,
   setSelectedDay,
+  availableDays,
   ...props
 }: SelectDayTabBarProps) {
   return (
@@ -33,7 +35,7 @@ export function SelectDayTabBar({
         allowScrollButtonsMobile
         {...props}
       >
-        {EVENT_DAYS.map((day) => (
+        {(availableDays || EVENT_DAYS).map((day) => (
           <Tab key={day} label={day} value={day} />
         ))}
       </Tabs>

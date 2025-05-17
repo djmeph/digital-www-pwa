@@ -77,11 +77,7 @@ export function EventsItemPage({ id }: { id: string }) {
       <Typography variant="h6">
         {eventTime === null ? (
           <Skeleton />
-        ) : eventTime.event.site_id ? (
-          `${eventTime.event.hosting_location} - Site ${eventTime.event.site_id}`
-        ) : (
-          eventTime.event.hosting_location
-        )}
+        ) : eventTime.event.where_name}
       </Typography>
       <EventTags event={eventTime?.event} />
       <Typography variant="body1">

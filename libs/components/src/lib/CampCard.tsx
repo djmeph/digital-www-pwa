@@ -16,13 +16,11 @@ export function CampCard({ camp }: { camp: CampItem }) {
         <CardActionArea component={Link} href={`/camps/${camp.id}`}>
           <CardHeader
             title={camp.name}
-            subheader={`${camp.neighborhood} - Site ${camp.site}`}
+            subheader={camp.location_name}
           />
           <CardContent>
             <Typography variant="subtitle1">
-              {camp.description.length > MAX_DESCRIPTION_LENGTH
-                ? `${camp.description.substring(0, MAX_DESCRIPTION_LENGTH)}…`
-                : camp.description}
+              {camp.event_count} {camp.event_count === 1 ? 'event' : 'events'}
             </Typography>
           </CardContent>
         </CardActionArea>

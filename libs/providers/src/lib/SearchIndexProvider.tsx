@@ -64,8 +64,6 @@ export function SearchIndexProvider({
         this.ref('event_id');
         this.field('title');
         this.field('event_description');
-        this.field('hosting_location');
-        this.field('site_id');
 
         this.metadataWhitelist = ['position'];
 
@@ -106,8 +104,6 @@ export function SearchIndexProvider({
       camps: lunr(function () {
         this.ref('id');
         this.field('name');
-        this.field('neighborhood');
-        this.field('description');
 
         this.metadataWhitelist = ['position'];
 

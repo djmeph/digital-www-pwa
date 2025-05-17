@@ -4,6 +4,7 @@ import {
   RadioCard,
   SelectDayTabBar,
 } from '@digital-www-pwa/components';
+import { EVENT_DAYS } from '@digital-www-pwa/utils';
 import { useRadios } from '@digital-www-pwa/providers';
 import type { ProcessedRadioItem } from '@digital-www-pwa/types';
 import Grid from '@mui/material/Grid2';
@@ -47,6 +48,7 @@ export function RadioPage() {
     <>
       <Header>Radio SGC</Header>
       <SelectDayTabBar
+        availableDays={EVENT_DAYS}
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
       />

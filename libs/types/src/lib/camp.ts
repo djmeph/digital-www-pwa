@@ -1,7 +1,8 @@
 export interface CampItem {
-  id: string;
+  id: number;
   name: string;
-  neighborhood: string;
-  description: string;
-  site: string;
+  location_name: string;
+  location_id: number;
+  event_count: number;
+  hosted_event_count: number;
 }

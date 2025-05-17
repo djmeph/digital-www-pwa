@@ -3,8 +3,8 @@ import {
   useEventTimes,
   useFavoriteEventTimeIds,
 } from '@digital-www-pwa/providers';
-import type { ParsedEventTime, SlugFilters } from '@digital-www-pwa/types';
-import { EVENT_DAYS, Slugs, TAGS } from '@digital-www-pwa/utils';
+import type { ParsedEventTime, SlugFilters, TagItem } from '@digital-www-pwa/types';
+import { Slugs, TAGS } from '@digital-www-pwa/utils';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
@@ -33,11 +33,15 @@ function getDefaultFilters(): SlugFilters {
 export function EventsView({
   favoritesOnly = false,
   happeningAt = null,
-  header = 'Events'
+  header = 'Events',
+  whereType = null,
+  whereName = null
 }: {
   favoritesOnly?: boolean,
   happeningAt?: Dayjs | null,
   header?: React.ReactNode,
+  whereType?: string | null,
+  whereName?: string | null,
 }) {
   const eventTimes = useEventTimes();
   const [filters, setFilters] = useState<SlugFilters>(() => {
@@ -67,18 +71,8 @@ export function EventsView({
     return localStorage.getItem('showAllDay') !== 'false';
   });
 
-  const [selectedDay, setSelectedDay] = useState<string>(() => {
-    if (typeof localStorage === 'undefined') {
-      return 'Wednesday';
-    }
-    return (
-      EVENT_DAYS.find((d) => d === localStorage.getItem('lastSelectedDay')) ||
-      'Wednesday'
-    );
-  });
-
   const favoriteEventTimeIds = useFavoriteEventTimeIds();
-  const sortedEventTimes = useMemo(
+  const sortedEventTimes = useMemo<Array<ParsedEventTime> | null>(
     () =>
       eventTimes &&
       Object.values(eventTimes).toSorted(
@@ -90,11 +84,14 @@ export function EventsView({
     [eventTimes]
   );
 
-  const filteredEventTimes = useMemo(() => {
-    const preFilteredEventTimes = sortedEventTimes?.filter(
+  const filteredEventTimes = useMemo<Array<ParsedEventTime> | null>(() => {
+    if (!sortedEventTimes) return null;
+    const preFilteredEventTimes = sortedEventTimes.filter(
       (eventTime) =>
         (!favoritesOnly || favoriteEventTimeIds.has(eventTime.event_time_id))
         && (!happeningAt || happeningAt.isBetween(eventTime.starting, eventTime.ending))
+        && (!whereType || eventTime.event.where_type === whereType)
+        && (!whereName || eventTime.event.where_name === whereName)
     );
     const selectedTagSlugs = TAGS.reduce((acc, tag) => {
       if (filters[tag.slug]) {
@@ -105,17 +102,55 @@ export function EventsView({
     if (selectedTagSlugs.size === 0) {
       return preFilteredEventTimes;
     }
-    return preFilteredEventTimes?.filter((eventTime: ParsedEventTime) =>
+    return preFilteredEventTimes.filter((eventTime: ParsedEventTime) =>
       [...selectedTagSlugs].some((slug) => eventTime.event[slug])
     );
   }, [
     sortedEventTimes,
     filters,
-    selectedDay,
     favoriteEventTimeIds,
     favoritesOnly,
     happeningAt,
+    whereType,
+    whereName,
   ]);
+
+  const availableEventDays = useMemo<Array<string> | null>(() => {
+    if (!filteredEventTimes) return null;
+
+    const availableDays = [...filteredEventTimes.reduce((eventDays, eventTime) => {
+      eventDays.add(eventTime.day_of_week);
+      return eventDays;
+    }, new Set<string>())];
+
+    return [...availableDays];
+  }, [filteredEventTimes]);
+
+  const [selectedDay, setSelectedDay] = useState<string>(() => {
+    if (!availableEventDays) return 'Wednesday';
+    if (typeof localStorage === 'undefined') {
+      return availableEventDays[0];
+    }
+    return (
+      availableEventDays.find((d) => d === localStorage.getItem('lastSelectedDay')) ||
+      availableEventDays[0]
+    );
+  });
+
+  const availableTags = useMemo<Array<TagItem> | null>(() => {
+    if (!filteredEventTimes) return null;
+
+    const availableTags = [...filteredEventTimes.reduce((tags, eventTime) => {
+      TAGS.forEach((t) => {
+        if (eventTime.event[t.slug]) {
+          tags.add(t);
+        }
+      });
+      return tags;
+    }, new Set<TagItem>())];
+
+    return [...availableTags];
+  }, [filteredEventTimes]);
 
   useEffect(() => {
     const weeklySelectionElement =
@@ -181,30 +216,23 @@ export function EventsView({
     });
   }
 
-  return (
-    <>
-      <Header
-        button={
-          !showAllDayEvents || Object.values(filters).some((f) => f) ? (
-            <IconButton
-              aria-label="Remove filters"
-              size="large"
-              onClick={handleRemoveFilters}
-              sx={{
-                "@media print": {
-                  display: 'none',
-                }
-              }}
-            >
-              <FilterAltOffIcon />
-            </IconButton>
-          ) : null
-        }
-      >
-        {header}
-      </Header>
+  function renderBody() {
+    if (!availableEventDays || availableEventDays.length === 0) {
+      return <Box sx={{
+        width: '100%',
+        height: '100%',
+        minHeight: '200px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <Typography variant="h3">Nothing Found</Typography>
+      </Box>
+    }
+
+    return <>
       <Grid container spacing={1}>
-        {TAGS.map((tag) => {
+        {availableTags?.map((tag) => {
           const IconComponent = tag.icon;
           return (
             <Grid key={tag.slug}>
@@ -227,6 +255,7 @@ export function EventsView({
       {happeningAt ? null : <SelectDayTabBar
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
+        availableDays={availableEventDays}
         id="select-day-tab-bar"
         sx={{
           "@media print": {
@@ -234,12 +263,8 @@ export function EventsView({
           }
         }}
       />}
-      {EVENT_DAYS.map((day) => {
-        const eventTimesForDay = filteredEventTimes?.filter((eventTime) => eventTime.day_of_week === day && (showAllDayEvents || !eventTime.all_day));
-        if (!eventTimesForDay?.length) {
-          return null;
-        }
-        return <Box
+      {availableEventDays.map((day) => {
+      return <Box
           key={day}
           sx={{
             display: happeningAt?.format('dddd') === day || day === selectedDay ? 'initial' : 'none',
@@ -290,6 +315,32 @@ export function EventsView({
           </Grid>
         </Box>
       })}
+    </>;
+  }
+
+  return (
+    <>
+      <Header
+        button={
+          !showAllDayEvents || Object.values(filters).some((f) => f) ? (
+            <IconButton
+              aria-label="Remove filters"
+              size="large"
+              onClick={handleRemoveFilters}
+              sx={{
+                "@media print": {
+                  display: 'none',
+                }
+              }}
+            >
+              <FilterAltOffIcon />
+            </IconButton>
+          ) : null
+        }
+      >
+        {header}
+      </Header>
+      {renderBody()}
     </>
   );
 }
