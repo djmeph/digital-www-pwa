@@ -8,6 +8,7 @@ import {
 } from '@digital-www-pwa/utils';
 import ClearIcon from '@mui/icons-material/Clear';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import NorthIcon from '@mui/icons-material/North';
 import GpsNotFixedIcon from '@mui/icons-material/GpsNotFixed';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
@@ -91,13 +92,24 @@ export function MapPage() {
     };
   }, [currentPosition]);
 
+  const isCloseToEvent = (() => {
+    if (!currentPositionStyle) {
+      return false;
+    }
+    const { left: leftStyle, top: topStyle } = currentPositionStyle;
+    const left = Number.parseFloat(leftStyle);
+    const top = Number.parseFloat(topStyle);
+
+    return left >= -10 && left <= 110 && top >= -10 && top <= 110;
+  })();
+
   const handleClickFindMyLocation = (
     instance: ReactZoomPanPinchContext,
     zoomToElement: ReactZoomPanPinchHandlers['zoomToElement']
   ) => {
     watchPosition();
 
-    if (currentPositionMarkerRef.current) {
+    if (isCloseToEvent && currentPositionMarkerRef.current) {
       // Zoom in at least a little bit
       const newScale = Math.max(instance.transformState.scale, 3);
 
@@ -105,7 +117,22 @@ export function MapPage() {
     }
   };
 
-  const LocationButtonIcon = currentPosition ? GpsFixedIcon : GpsNotFixedIcon;
+  const renderFindLocationButtonIcon = () => {
+    if (!currentPosition) {
+      return <GpsNotFixedIcon />;
+    }
+
+    const color = positionStale ? 'inherit' : 'currentPosition.main';
+
+    if (!isCloseToEvent) {
+      const angle = Math.atan2(
+        currentPosition.coords.longitude - MAP_LOCATION_ANCHORS[0].longitude,
+        currentPosition.coords.latitude - MAP_LOCATION_ANCHORS[0].latitude
+      );
+      return <NorthIcon sx={{ color, transform: `rotate(${angle}rad)` }} />;
+    }
+    return <GpsFixedIcon sx={{ color }} />;
+  };
 
   function renderCurrentPosition() {
     if (!currentPositionStyle) return null;
@@ -210,11 +237,7 @@ export function MapPage() {
                   bottom: theme.spacing(1),
                 }}
               >
-                <LocationButtonIcon
-                  sx={{
-                    color: positionStale ? 'inherit' : 'currentPosition.main',
-                  }}
-                />
+                {renderFindLocationButtonIcon()}
               </Fab>
             )}
           </>
