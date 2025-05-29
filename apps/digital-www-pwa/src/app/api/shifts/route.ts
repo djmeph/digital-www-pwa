@@ -30,7 +30,7 @@ export async function GET(): Promise<Response> {
       algorithms: ['HS256'],
     });
 
-    const response = await fetch(`${VPATE_BASE_URL}/shift_data`, {
+    const response = await fetch(`${VPATE_BASE_URL}/shift_data.json`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
