@@ -1,0 +1,75 @@
+import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
+import { NextRequest } from 'next/server';
+import { setTimeout } from 'timers/promises';
+
+const { BASE_URL, VPATE_JWT_SECRET } = process.env;
+
+type JwtPayload = {
+  iss: string;
+  aud: string;
+  iat: number;
+  nbf: number;
+  exp: number;
+  user_id: number;
+  email: string;
+};
+
+export async function GET(req: NextRequest): Promise<Response> {
+  if (!BASE_URL || !VPATE_JWT_SECRET) {
+    console.error('BASE_URL or VPATE_JWT_SECRET missing');
+    return Response.error();
+  }
+
+  const unauthorized = Response.json(
+    { message: 'UNAUTHORIZED' },
+    {
+      status: 401,
+      statusText: 'UNAUTHORIZED',
+    }
+  );
+
+  const token = req.nextUrl.searchParams.get('token');
+
+  if (!token) {
+    return unauthorized;
+  }
+
+  /**
+   * Workaround
+   *
+   * The token is returning an nbf that is 10 seconds ahead of iat.
+   * For now, parse the difference between the client's clock and
+   * the nbf. If it's greater than 10 seconds, throw a 401. If it's
+   * less than 10 seconds ahead, set a delay of the difference
+   * before validating the token.
+   */
+
+  const now = Date.now();
+  const decoded = jwt.decode(token) as JwtPayload;
+  const nbf = decoded.nbf * 1000;
+  const timeAhead = now - nbf;
+
+  if (timeAhead < -10000) {
+    return unauthorized;
+  } else if (timeAhead < 0) {
+    await setTimeout(Math.abs(timeAhead));
+  }
+
+  try {
+    jwt.verify(token, VPATE_JWT_SECRET, {
+      algorithms: ['HS256'],
+    });
+  } catch (err) {
+    console.error(err);
+    return unauthorized;
+  }
+
+  const cookieStore = cookies();
+  cookieStore.set('token', token, {
+    path: '/',
+    secure: true,
+  });
+
+  return Response.redirect(BASE_URL, 302);
+}

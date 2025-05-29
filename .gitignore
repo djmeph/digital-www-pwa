@@ -50,3 +50,6 @@ out
 !.yarn/releases
 yarn-error.log
 .pnp.*
+
+# Secrets ENV
+.env.local

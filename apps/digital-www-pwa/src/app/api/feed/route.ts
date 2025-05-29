@@ -6,7 +6,7 @@ async function fetchData(dataType: string) {
   const data = await response.json();
   return data.coalesce.coalesce;
 }
-export async function GET(request: Request) {
+export async function GET(): Promise<Response> {
   const [events, camps, locations, departments] = await Promise.all([
     fetchData('events'),
     fetchData('camps'),
