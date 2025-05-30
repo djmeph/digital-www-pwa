@@ -4,7 +4,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "psql": "psql -h postgres -U www_user -d digital_www_pwa"
+    "psql": "psql -h postgres -U www_user -d digital_www_pwa",
+    "g:migration": "yarn typeorm:local migration:generate -n",
+    "g:entity": "yarn typeorm:local entity:create -n",
+    "typeorm:local": "yarn local ./node_modules/typeorm/cli.js",
+    "local": "DOTENV_CONFIG_PATH=./.env ts-node -P ./tsconfig.base.json -r dotenv/config"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
