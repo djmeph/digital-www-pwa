@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "psql": "psql -h postgres -U www_user -d digital_www_pwa"
+  },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
@@ -20,13 +23,16 @@
     "lunr": "^2.3.9",
     "next": "14.2.16",
     "next-pwa": "^5.6.0",
+    "pg": "^8.16.0",
     "postcss": "8.5.3",
     "prop-types": "^15.8.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-split-flap-effect": "^1.0.0",
     "react-zoom-pan-pinch": "^3.7.0",
-    "tailwind-merge": "^2.6.0"
+    "reflect-metadata": "^0.2.2",
+    "tailwind-merge": "^2.6.0",
+    "typeorm": "^0.3.24"
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
