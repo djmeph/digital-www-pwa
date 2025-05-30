@@ -1,4 +1,3 @@
-import type { ShiftsFeed } from '@digital-www-pwa/types';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
@@ -19,12 +18,12 @@ export async function GET(): Promise<Response> {
 
   if (!tokenStore) {
     return NextResponse.json(
-    { message: 'UNAUTHORIZED' },
-    {
-      status: 401,
-      statusText: 'UNAUTHORIZED',
-    }
-  );
+      { message: 'UNAUTHORIZED' },
+      {
+        status: 401,
+        statusText: 'UNAUTHORIZED',
+      }
+    );
   }
 
   try {
@@ -71,11 +70,11 @@ export async function GET(): Promise<Response> {
     );
   } catch (_err) {
     return NextResponse.json(
-    { message: 'UNAUTHORIZED' },
-    {
-      status: 401,
-      statusText: 'UNAUTHORIZED',
-    }
-  ) ;
+      { message: 'UNAUTHORIZED' },
+      {
+        status: 401,
+        statusText: 'UNAUTHORIZED',
+      }
+    );
   }
 }

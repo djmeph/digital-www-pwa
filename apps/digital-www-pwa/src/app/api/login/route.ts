@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
- export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 const { VPATE_BASE_URL, BASE_URL, VPATE_JWT_SECRET } = process.env;
 
