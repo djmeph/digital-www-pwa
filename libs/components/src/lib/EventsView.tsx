@@ -78,51 +78,55 @@ export function EventsView({
   });
 
   const favoriteEventTimeIds = useFavoriteEventTimeIds();
-  const sortedEventTimes = useMemo<Array<ParsedEventTime> | null>(
-    () =>
-      eventTimes &&
-      Object.values(eventTimes).toSorted(
+  const eventTimesForPage = useMemo<Array<ParsedEventTime> | null>(() => {
+    if (!eventTimes) {
+      return null;
+    }
+    return Object.values(eventTimes)
+      .filter(
+        (eventTime) =>
+          (!favoritesOnly ||
+            favoriteEventTimeIds.has(eventTime.event_time_id)) &&
+          (!happeningAt ||
+            happeningAt.isBetween(eventTime.starting, eventTime.ending)) &&
+          (!whereType || eventTime.event.where_type === whereType) &&
+          (!whereName || eventTime.event.where_name === whereName)
+      )
+      .toSorted(
         (a, b) =>
           a.starting.unix() - b.starting.unix() || // Sort first by start time
           a.ending.unix() - b.ending.unix() || // Then by earliest end time
           a.event.title.localeCompare(b.event.title) // Then alphabetically
-      ),
-    [eventTimes]
-  );
-
-  const filteredEventTimes = useMemo<Array<ParsedEventTime> | null>(() => {
-    if (!sortedEventTimes) {
-      return null;
-    }
-    const preFilteredEventTimes = sortedEventTimes.filter(
-      (eventTime) =>
-        (!favoritesOnly || favoriteEventTimeIds.has(eventTime.event_time_id)) &&
-        (!happeningAt ||
-          happeningAt.isBetween(eventTime.starting, eventTime.ending)) &&
-        (!whereType || eventTime.event.where_type === whereType) &&
-        (!whereName || eventTime.event.where_name === whereName)
-    );
-    const selectedTagSlugs = TAGS.reduce((acc, tag) => {
-      if (filters[tag.slug]) {
-        acc.add(tag.slug);
-      }
-      return acc;
-    }, new Set<Slugs>());
-    if (selectedTagSlugs.size === 0) {
-      return preFilteredEventTimes;
-    }
-    return preFilteredEventTimes.filter((eventTime: ParsedEventTime) =>
-      [...selectedTagSlugs].some((slug) => eventTime.event[slug])
-    );
+      );
   }, [
-    sortedEventTimes,
-    filters,
+    eventTimes,
     favoriteEventTimeIds,
     favoritesOnly,
     happeningAt,
     whereType,
     whereName,
   ]);
+
+  const filteredEventTimes = useMemo<Array<ParsedEventTime> | null>(() => {
+    if (!eventTimesForPage) {
+      return null;
+    }
+
+    const selectedTagSlugs = [
+      ...TAGS.reduce((acc, tag) => {
+        if (filters[tag.slug]) {
+          acc.add(tag.slug);
+        }
+        return acc;
+      }, new Set<Slugs>()),
+    ];
+
+    return eventTimesForPage.filter(
+      (eventTime) =>
+        selectedTagSlugs.length === 0 ||
+        [...selectedTagSlugs].some((slug) => eventTime.event[slug])
+    );
+  }, [eventTimesForPage, filters]);
 
   const availableEventDays = useMemo<Array<string> | null>(() => {
     if (!filteredEventTimes) {
@@ -154,23 +158,21 @@ export function EventsView({
   });
 
   const availableTags = useMemo<Array<TagItem> | null>(() => {
-    if (!filteredEventTimes) {
+    if (!eventTimesForPage) {
       return null;
     }
 
     const availableTags = [
-      ...filteredEventTimes.reduce((tags, eventTime) => {
-        TAGS.forEach((t) => {
-          if (eventTime.event[t.slug]) {
-            tags.add(t);
-          }
-        });
+      ...TAGS.reduce((tags, tag) => {
+        if (eventTimesForPage.some((eventTime) => eventTime.event[tag.slug])) {
+          tags.add(tag);
+        }
         return tags;
       }, new Set<TagItem>()),
     ];
 
     return [...availableTags];
-  }, [filteredEventTimes]);
+  }, [eventTimesForPage]);
 
   useEffect(() => {
     const weeklySelectionElement =
