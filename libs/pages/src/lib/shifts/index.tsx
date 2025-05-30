@@ -7,9 +7,12 @@ import { useTheme } from '@mui/material/styles';
 
 export function ShiftsPage() {
   const theme = useTheme();
-  const auth = useAuthContext();
+  const authContext = useAuthContext();
+  const queryParams = new URLSearchParams({
+    redirect_target: '/volunteer-shifts',
+  });
 
-  if (auth.checking) {
+  if (authContext.checking) {
     return (
       <>
         <Header>{'Volunteer Shifts'}</Header>
@@ -18,7 +21,7 @@ export function ShiftsPage() {
     );
   }
 
-  if (auth.isAuthenticated) {
+  if (authContext.isAuthenticated) {
     return (
       <ShiftsProvider>
         <Header>{'Volunteer Shifts'}</Header>
@@ -30,7 +33,8 @@ export function ShiftsPage() {
     <>
       <Header>{'Volunteer Shifts'}</Header>
       <Button
-        href={'/api/login'}
+        href={`/api/login?${queryParams.toString()}`}
+        onClick={authContext.enableBackdrop}
         sx={{
           margin: 2,
           padding: 1,

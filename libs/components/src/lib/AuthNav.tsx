@@ -10,9 +10,14 @@ import {
   ListItemText,
 } from '@mui/material';
 import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function AuthNav({ setOpen }: { setOpen: (arg0: boolean) => void }) {
   const authContext = useAuthContext();
+  const pathname = usePathname();
+  const queryParams = new URLSearchParams({
+    redirect_target: pathname,
+  });
 
   if (authContext.isAuthenticated) {
     return (
@@ -48,7 +53,10 @@ export function AuthNav({ setOpen }: { setOpen: (arg0: boolean) => void }) {
 
   return (
     <ListItem>
-      <ListItemButton href={'/api/login'}>
+      <ListItemButton
+        href={`/api/login?${queryParams.toString()}`}
+        onClick={authContext.enableBackdrop}
+      >
         <ListItemIcon>
           <LoginIcon />
         </ListItemIcon>

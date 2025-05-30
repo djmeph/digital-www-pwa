@@ -15,9 +15,11 @@ import {
 const INITIAL_DATA: AuthState = {
   checking: true,
   isAuthenticated: false,
+  backdrop: false,
   jwtPayload: null,
   checkAuth: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
   logout: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
+  enableBackdrop: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
 };
 
 export const AuthContext = createContext<AuthState>(INITIAL_DATA);
@@ -27,6 +29,7 @@ export const useAuthContext = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [checking, setChecking] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [backdrop, setBackdrop] = useState<boolean>(false);
   const [jwtPayload, setJwtPayload] = useState<JwtPayload | null>(null);
 
   const checkAuth = useCallback(() => {
@@ -46,6 +49,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchAuth();
   }, []);
 
+  const enableBackdrop = useCallback(() => {
+    setBackdrop(true);
+  }, []);
+
   const logout = useCallback(() => {
     cookies.remove('token');
     setIsAuthenticated(false);
@@ -56,11 +63,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     () => ({
       checking,
       isAuthenticated,
+      backdrop,
       jwtPayload,
       checkAuth,
       logout,
+      enableBackdrop,
     }),
-    [checking, isAuthenticated, jwtPayload, checkAuth, logout]
+    [
+      checking,
+      isAuthenticated,
+      backdrop,
+      jwtPayload,
+      checkAuth,
+      logout,
+      enableBackdrop,
+    ]
   );
 
   useEffect(() => {

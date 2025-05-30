@@ -70,6 +70,12 @@ export async function GET(req: NextRequest): Promise<Response> {
     path: '/',
     secure: true,
   });
+  const redirectTargetStore = cookieStore.get('redirect_target');
+  let path = '/';
+  if (redirectTargetStore) {
+    path = redirectTargetStore.value;
+  }
+  cookieStore.delete('redirect_target');
 
-  return Response.redirect(BASE_URL, 302);
+  return Response.redirect(`${BASE_URL}${path}`, 302);
 }

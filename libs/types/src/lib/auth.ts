@@ -11,7 +11,9 @@ export type JwtPayload = {
 export interface AuthState {
   checking: boolean;
   isAuthenticated: boolean;
+  backdrop: boolean;
   jwtPayload: JwtPayload | null;
   logout: () => void;
   checkAuth: () => void;
+  enableBackdrop: () => void;
 }
