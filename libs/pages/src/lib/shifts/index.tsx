@@ -42,6 +42,8 @@ export function ShiftsPage() {
           top: theme.spacing(9),
           display: 'flex',
           backgroundColor: theme.palette.background.default,
+          textWrap: 'wrap',
+          textAlign: 'center',
           [theme.breakpoints.down('xs')]: {
             fontSize: '4.5vw',
           },
