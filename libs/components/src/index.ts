@@ -21,3 +21,4 @@ export * from './lib/SearchWindow';
 export * from './lib/SelectDayTabBar';
 export * from './lib/VehicleCard';
 export * from './lib/Head';
+export * from './lib/AuthNav';

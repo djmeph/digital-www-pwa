@@ -1,8 +1,7 @@
 'use client';
+import { AppBar, BackToTopButton } from '@digital-www-pwa/components';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-
-import { AppBar, BackToTopButton } from '@digital-www-pwa/components';
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (

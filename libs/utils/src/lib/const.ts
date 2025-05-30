@@ -1,6 +1,6 @@
 import type { TagItem } from '@digital-www-pwa/types';
 import BrushIcon from '@mui/icons-material/Brush';
-import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import CampaignIcon from '@mui/icons-material/Campaign';
 import EventIcon from '@mui/icons-material/Event';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FestivalIcon from '@mui/icons-material/Festival';
@@ -8,16 +8,12 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import LocalBarIcon from '@mui/icons-material/LocalBar';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import MapIcon from '@mui/icons-material/Map';
 import NoDrinksIcon from '@mui/icons-material/NoDrinks';
-import PaletteIcon from '@mui/icons-material/Palette';
-import RadioIcon from '@mui/icons-material/Radio';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
-import CampaignIcon from '@mui/icons-material/Campaign';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
-import isBetween from 'dayjs/plugin/isBetween';
+import * as dayjs from 'dayjs';
+import * as isBetween from 'dayjs/plugin/isBetween';
+import * as timezone from 'dayjs/plugin/timezone';
+import * as utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

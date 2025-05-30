@@ -1,15 +1,13 @@
 'use client';
+import { AuthNav, SearchButton } from '@digital-www-pwa/components';
 import { NAVIGATION_LINKS } from '@digital-www-pwa/utils';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import MuiAppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
@@ -17,23 +15,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import NextLink from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
-import { SearchButton } from '@digital-www-pwa/components';
 
 export function AppBar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const theme = useTheme();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('md'));
-  const tinyScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
   function renderMenuButton() {
     return (
@@ -118,6 +110,7 @@ export function AppBar() {
             </ListItemButton>
           </ListItem>
           <Divider />
+          <AuthNav />
           {NAVIGATION_LINKS.map((link) => {
             const IconComponent = link.icon;
             return (
