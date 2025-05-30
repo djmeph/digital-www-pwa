@@ -12,19 +12,17 @@ export async function GET(): Promise<Response> {
     return NextResponse.error();
   }
 
-  const unauthorized = Response.json(
+  const cookieStore = cookies();
+  const tokenStore = cookieStore.get('token');
+
+  if (!tokenStore) {
+    return NextResponse.json(
     { message: 'UNAUTHORIZED' },
     {
       status: 401,
       statusText: 'UNAUTHORIZED',
     }
   );
-
-  const cookieStore = cookies();
-  const tokenStore = cookieStore.get('token');
-
-  if (!tokenStore) {
-    return unauthorized;
   }
 
   try {
@@ -70,6 +68,12 @@ export async function GET(): Promise<Response> {
       }
     );
   } catch (_err) {
-    return unauthorized;
+    return NextResponse.json(
+    { message: 'UNAUTHORIZED' },
+    {
+      status: 401,
+      statusText: 'UNAUTHORIZED',
+    }
+  ) ;
   }
 }

@@ -21,18 +21,16 @@ export async function GET(req: NextRequest): Promise<Response> {
     return NextResponse.error();
   }
 
-  const unauthorized = NextResponse.json(
+  const token = req.nextUrl.searchParams.get('token');
+
+  if (!token) {
+    return NextResponse.json(
     { message: 'UNAUTHORIZED' },
     {
       status: 401,
       statusText: 'UNAUTHORIZED',
     }
   );
-
-  const token = req.nextUrl.searchParams.get('token');
-
-  if (!token) {
-    return unauthorized;
   }
 
   /**
@@ -51,7 +49,13 @@ export async function GET(req: NextRequest): Promise<Response> {
   const timeAhead = now - nbf;
 
   if (timeAhead < -10000) {
-    return unauthorized;
+    return NextResponse.json(
+    { message: 'UNAUTHORIZED' },
+    {
+      status: 401,
+      statusText: 'UNAUTHORIZED',
+    }
+  );
   } else if (timeAhead < 0) {
     await setTimeout(Math.abs(timeAhead));
   }
@@ -62,7 +66,13 @@ export async function GET(req: NextRequest): Promise<Response> {
     });
   } catch (err) {
     console.error(err);
-    return unauthorized;
+    return NextResponse.json(
+    { message: 'UNAUTHORIZED' },
+    {
+      status: 401,
+      statusText: 'UNAUTHORIZED',
+    }
+  );
   }
 
   const cookieStore = cookies();
