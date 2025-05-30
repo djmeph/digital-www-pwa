@@ -49,7 +49,7 @@ export const ShiftsProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     async function fetchShifts() {
-      const res = await fetch('/api/shifts');
+      const res = await fetch('/api/shifts',{ cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         processShifts(data || []);
