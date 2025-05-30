@@ -1,12 +1,12 @@
 'use client';
 import { ThemeProvider } from '@mui/material';
-import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Roboto } from 'next/font/google';
 import { useEffect } from 'react';
 
 import { AppShell, HeadComponent } from '@digital-www-pwa/components';
+import { AuthProvider } from '@digital-www-pwa/providers';
 import {
   FavoritesProvider,
   FeedProvider,
@@ -46,17 +46,19 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <FeedProvider>
-              <FavoritesProvider>
-                <ProcessedDataProvider>
-                  <SearchIndexProvider>
-                    <GeolocationProvider>
-                      <AppShell>{children}</AppShell>
-                    </GeolocationProvider>
-                  </SearchIndexProvider>
-                </ProcessedDataProvider>
-              </FavoritesProvider>
-            </FeedProvider>
+            <AuthProvider>
+              <FeedProvider>
+                <FavoritesProvider>
+                  <ProcessedDataProvider>
+                    <SearchIndexProvider>
+                      <GeolocationProvider>
+                        <AppShell>{children}</AppShell>
+                      </GeolocationProvider>
+                    </SearchIndexProvider>
+                  </ProcessedDataProvider>
+                </FavoritesProvider>
+              </FeedProvider>
+            </AuthProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
