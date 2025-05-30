@@ -1,6 +1,7 @@
 import { Dayjs } from 'dayjs';
 
 export type ShiftsFeed = {
+  id: string;
   department_title: string;
   shift_title: string;
   shift_description: string;
