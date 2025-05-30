@@ -8,7 +8,7 @@ COPY .devcontainer/.bashrc .devcontainer/.profile .devcontainer/.git-completion 
 RUN apt-get update && apt-get install -y apt-transport-https build-essential curl vim nano git git-lfs unzip zip ca-certificates gnupg2 software-properties-common python3
 
 # node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
   && apt-get install -y nodejs \
   && npm i -g yarn node-gyp
 
