@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 const { VPATE_JWT_SECRET, VPATE_BASE_URL } = process.env;
 
 export async function GET(): Promise<Response> {
   if (!VPATE_JWT_SECRET || !VPATE_BASE_URL) {
     console.error('VPATE_BASE_URL or VPATE_BASE_URL missing');
-    return Response.error();
+    return NextResponse.error();
   }
 
   const unauthorized = Response.json(
@@ -41,11 +42,11 @@ export async function GET(): Promise<Response> {
     });
 
     if (!response.ok) {
-      return Response.error();
+      return NextResponse.error();
     }
 
     const data = await response.json();
-    return Response.json(data, {
+    return NextResponse.json(data, {
       status: 200,
       statusText: 'OK',
     });

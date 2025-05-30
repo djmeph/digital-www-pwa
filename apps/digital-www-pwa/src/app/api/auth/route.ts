@@ -1,15 +1,16 @@
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 const { VPATE_JWT_SECRET } = process.env;
 
 export async function GET(): Promise<Response> {
   if (!VPATE_JWT_SECRET) {
     console.error('VPATE_BASE_URL missing');
-    return Response.error();
+    return NextResponse.error();
   }
 
-  const unauthorized = Response.json(
+  const unauthorized = NextResponse.json(
     { message: 'UNAUTHORIZED' },
     {
       status: 401,
@@ -29,7 +30,7 @@ export async function GET(): Promise<Response> {
     const decoded = jwt.verify(token, VPATE_JWT_SECRET, {
       algorithms: ['HS256'],
     });
-    return Response.json(
+    return NextResponse.json(
       typeof decoded === 'string' ? { message: decoded } : decoded,
       {
         status: 200,

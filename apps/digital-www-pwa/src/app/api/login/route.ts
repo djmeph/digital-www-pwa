@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const { VPATE_BASE_URL, BASE_URL, VPATE_JWT_SECRET } = process.env;
 
 export async function GET(req: NextRequest): Promise<Response> {
   if (!VPATE_BASE_URL || !BASE_URL || !VPATE_JWT_SECRET) {
     console.error('VPATE_BASE_URL, BASE_URL or VPATE_JWT_SECRET missing');
-    return Response.error();
+    return NextResponse.error();
   }
 
   const cookieStore = cookies();
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest): Promise<Response> {
       jwt.verify(token, VPATE_JWT_SECRET, {
         algorithms: ['HS256'],
       });
-      return Response.redirect(BASE_URL, 302);
+      return NextResponse.redirect(BASE_URL, 302);
     } catch (_err) {
       cookieStore.delete('token');
     }
@@ -40,5 +40,5 @@ export async function GET(req: NextRequest): Promise<Response> {
 
   const redirectUrl = `${VPATE_BASE_URL}/?${queryParams.toString()}`;
 
-  return Response.redirect(redirectUrl, 302);
+  return NextResponse.redirect(redirectUrl, 302);
 }

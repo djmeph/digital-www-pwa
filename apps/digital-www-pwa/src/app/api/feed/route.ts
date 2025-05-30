@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 async function fetchData(dataType: string) {
   const response = await fetch(
     `https://whatwherewhen.lakesoffire.org/${dataType}.json`,
@@ -14,7 +16,7 @@ export async function GET(): Promise<Response> {
     fetchData('departments'),
   ]);
 
-  return Response.json({
+  return NextResponse.json({
     events,
     art: [],
     camps,

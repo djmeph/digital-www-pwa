@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { setTimeout } from 'timers/promises';
 
 const { BASE_URL, VPATE_JWT_SECRET } = process.env;
@@ -18,10 +18,10 @@ type JwtPayload = {
 export async function GET(req: NextRequest): Promise<Response> {
   if (!BASE_URL || !VPATE_JWT_SECRET) {
     console.error('BASE_URL or VPATE_JWT_SECRET missing');
-    return Response.error();
+    return NextResponse.error();
   }
 
-  const unauthorized = Response.json(
+  const unauthorized = NextResponse.json(
     { message: 'UNAUTHORIZED' },
     {
       status: 401,
@@ -77,5 +77,5 @@ export async function GET(req: NextRequest): Promise<Response> {
   }
   cookieStore.delete('redirect_target');
 
-  return Response.redirect(`${BASE_URL}${path}`, 302);
+  return NextResponse.redirect(`${BASE_URL}${path}`, 302);
 }
