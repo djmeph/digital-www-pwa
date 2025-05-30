@@ -187,6 +187,16 @@ export function EventsView({
     localStorage.setItem('lastFilters', JSON.stringify(filters));
   }, [filters]);
 
+  useEffect(() => {
+    if (
+      availableEventDays &&
+      availableEventDays?.length > 0 &&
+      !availableEventDays.includes(selectedDay)
+    ) {
+      setSelectedDay(availableEventDays[0]);
+    }
+  }, [availableEventDays, selectedDay]);
+
   function handleFilterToggle(slug: Slugs) {
     setFilters((oldFilters) => ({
       ...oldFilters,

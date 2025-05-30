@@ -147,6 +147,14 @@ export const theme = responsiveFontSizes(
           },
         },
       },
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            color: 'inherit',
+            textDecoration: 'none',
+          },
+        },
+      },
       MuiAppBar: {
         defaultProps: {
           position: 'sticky',
@@ -241,5 +249,5 @@ export const theme = responsiveFontSizes(
         },
       },
     },
-  }),
+  })
 );

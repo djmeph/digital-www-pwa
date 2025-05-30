@@ -11,6 +11,7 @@ import Drawer from '@mui/material/Drawer';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -18,7 +19,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
@@ -83,15 +84,13 @@ export function AppBar() {
           <Toolbar sx={{ paddingLeft: 0, alignItems: 'center' }}>
             {renderButton()}
             <Link
+              component={NextLink}
               href="/"
               style={{
                 display: 'flex',
                 flexGrow: 1,
                 flexDirection: 'row',
                 alignItems: 'center',
-                color: 'inherit',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
               }}
             >
               <img
@@ -99,22 +98,6 @@ export function AppBar() {
                 alt="Lakes of Fire 2025 - Doorways in Time"
                 style={{ height: 48 }}
               />
-              <Stack
-                direction="row"
-                sx={{
-                  flexGrow: 1,
-                  justifyContent: 'space-around',
-
-                  [theme.breakpoints.up('xs')]: {
-                    paddingLeft: '10%',
-                    paddingRight: '10%',
-                  },
-                }}
-              >
-                <Box>What</Box>
-                <Box>Where</Box>
-                <Box>When</Box>
-              </Stack>
             </Link>
             <SearchButton />
           </Toolbar>
@@ -124,7 +107,7 @@ export function AppBar() {
         <List>
           <ListItem>
             <ListItemButton
-              component={Link}
+              component={NextLink}
               href="/"
               onClick={() => setOpen(false)}
             >
@@ -140,7 +123,7 @@ export function AppBar() {
             return (
               <ListItem key={link.path}>
                 <ListItemButton
-                  component={Link}
+                  component={NextLink}
                   href={link.path}
                   onClick={() => setOpen(false)}
                 >

@@ -7,7 +7,9 @@ import {
   POSITION_STALE_TIME,
 } from '@digital-www-pwa/utils';
 import ClearIcon from '@mui/icons-material/Clear';
-import MyLocationIcon from '@mui/icons-material/MyLocation';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import NorthIcon from '@mui/icons-material/North';
+import GpsNotFixedIcon from '@mui/icons-material/GpsNotFixed';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import { alpha } from '@mui/material';
@@ -90,42 +92,46 @@ export function MapPage() {
     };
   }, [currentPosition]);
 
+  const isCloseToEvent = (() => {
+    if (!currentPositionStyle) {
+      return false;
+    }
+    const { left: leftStyle, top: topStyle } = currentPositionStyle;
+    const left = Number.parseFloat(leftStyle);
+    const top = Number.parseFloat(topStyle);
+
+    return left >= -10 && left <= 110 && top >= -10 && top <= 110;
+  })();
+
   const handleClickFindMyLocation = (
     instance: ReactZoomPanPinchContext,
-    setTransform: ReactZoomPanPinchHandlers['setTransform']
+    zoomToElement: ReactZoomPanPinchHandlers['zoomToElement']
   ) => {
     watchPosition();
-    const offsetParent = currentPositionMarkerRef?.current
-      ?.offsetParent as HTMLElement | null;
-    const offsetParentParent = offsetParent?.offsetParent as HTMLElement | null;
-    if (
-      currentPositionMarkerRef.current &&
-      offsetParent &&
-      offsetParentParent &&
-      currentPositionMarkerRef.current.offsetLeft >=
-        -currentPositionMarkerRef.current.offsetWidth &&
-      currentPositionMarkerRef.current.offsetTop >=
-        -currentPositionMarkerRef.current.offsetHeight &&
-      currentPositionMarkerRef.current.offsetLeft <=
-        offsetParent.offsetWidth +
-          currentPositionMarkerRef.current.offsetWidth &&
-      currentPositionMarkerRef.current.offsetTop <=
-        offsetParent.offsetHeight +
-          currentPositionMarkerRef.current.offsetHeight
-    ) {
-      const scale = Math.max(instance.transformState.scale, 3);
-      const left =
-        offsetParentParent.offsetWidth / 2 -
-        currentPositionMarkerRef.current.offsetLeft * scale;
-      const top =
-        offsetParentParent.offsetHeight / 2 -
-        currentPositionMarkerRef.current.offsetTop * scale;
-      setTransform(
-        Math.max(-offsetParentParent.offsetWidth * scale, Math.min(0, left)),
-        Math.max(-offsetParentParent.offsetHeight * scale, Math.min(0, top)),
-        scale
-      );
+
+    if (isCloseToEvent && currentPositionMarkerRef.current) {
+      // Zoom in at least a little bit
+      const newScale = Math.max(instance.transformState.scale, 3);
+
+      zoomToElement(currentPositionMarkerRef.current, newScale);
     }
+  };
+
+  const renderFindLocationButtonIcon = () => {
+    if (!currentPosition) {
+      return <GpsNotFixedIcon />;
+    }
+
+    const color = positionStale ? 'inherit' : 'currentPosition.main';
+
+    if (!isCloseToEvent) {
+      const angle = Math.atan2(
+        currentPosition.coords.longitude - MAP_LOCATION_ANCHORS[0].longitude,
+        currentPosition.coords.latitude - MAP_LOCATION_ANCHORS[0].latitude
+      );
+      return <NorthIcon sx={{ color, transform: `rotate(${angle}rad)` }} />;
+    }
+    return <GpsFixedIcon sx={{ color }} />;
   };
 
   function renderCurrentPosition() {
@@ -133,7 +139,6 @@ export function MapPage() {
 
     return (
       <Box
-        ref={currentPositionMarkerRef}
         sx={{
           ...currentPositionStyle,
           position: 'absolute',
@@ -151,6 +156,7 @@ export function MapPage() {
           }}
         >
           <Box
+            ref={currentPositionMarkerRef}
             sx={{
               top: '50%',
               left: '50%',
@@ -179,7 +185,7 @@ export function MapPage() {
       }}
     >
       <TransformWrapper initialPositionY={-1000}>
-        {({ zoomIn, zoomOut, resetTransform, setTransform, instance }) => (
+        {({ zoomIn, zoomOut, resetTransform, zoomToElement, instance }) => (
           <>
             <TransformComponent
               wrapperStyle={{ width: '100%', height: '100%' }}
@@ -223,7 +229,7 @@ export function MapPage() {
                 size="large"
                 aria-label="Locate Me"
                 onClick={() =>
-                  handleClickFindMyLocation(instance, setTransform)
+                  handleClickFindMyLocation(instance, zoomToElement)
                 }
                 sx={{
                   position: 'absolute',
@@ -231,7 +237,7 @@ export function MapPage() {
                   bottom: theme.spacing(1),
                 }}
               >
-                <MyLocationIcon sx={{ color: 'currentPosition.main' }} />
+                {renderFindLocationButtonIcon()}
               </Fab>
             )}
           </>
