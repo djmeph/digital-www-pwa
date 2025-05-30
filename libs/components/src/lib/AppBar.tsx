@@ -110,7 +110,7 @@ export function AppBar() {
             </ListItemButton>
           </ListItem>
           <Divider />
-          <AuthNav />
+          <AuthNav setOpen={setOpen} />
           {NAVIGATION_LINKS.map((link) => {
             const IconComponent = link.icon;
             return (

@@ -8,13 +8,18 @@ import {
   ListItemText,
 } from '@mui/material';
 
-export function AuthNav() {
+export function AuthNav({ setOpen }: { setOpen: (arg0: boolean) => void }) {
   const authContext = useAuthContext();
 
   if (authContext.isAuthenticated) {
     return (
       <ListItem>
-        <ListItemButton onClick={() => authContext.logout()}>
+        <ListItemButton
+          onClick={() => {
+            authContext.logout();
+            setOpen(false);
+          }}
+        >
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>
