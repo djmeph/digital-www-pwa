@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 async function fetchData(dataType: string) {
   const response = await fetch(
     `https://whatwherewhen.lakesoffire.org/${dataType}.json`,

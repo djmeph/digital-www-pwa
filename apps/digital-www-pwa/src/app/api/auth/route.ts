@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const { VPATE_JWT_SECRET } = process.env;
 
 export async function GET(): Promise<Response> {

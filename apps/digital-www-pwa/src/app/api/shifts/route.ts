@@ -4,6 +4,8 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { createHash } from 'node:crypto';
 
+export const dynamic = 'force-dynamic';
+
 const { VPATE_JWT_SECRET, VPATE_BASE_URL } = process.env;
 
 export async function GET(): Promise<Response> {

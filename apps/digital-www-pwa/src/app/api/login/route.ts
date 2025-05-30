@@ -2,7 +2,13 @@ import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
+ export const dynamic = 'force-dynamic';
+
 const { VPATE_BASE_URL, BASE_URL, VPATE_JWT_SECRET } = process.env;
+console.log('Environment variables:', {
+  VPATE_BASE_URL,
+  BASE_URL,
+});
 
 export async function GET(req: NextRequest): Promise<Response> {
   if (!VPATE_BASE_URL || !BASE_URL || !VPATE_JWT_SECRET) {

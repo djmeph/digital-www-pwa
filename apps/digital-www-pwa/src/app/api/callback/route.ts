@@ -3,6 +3,8 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { setTimeout } from 'timers/promises';
 
+export const dynamic = 'force-dynamic';
+
 const { BASE_URL, VPATE_JWT_SECRET } = process.env;
 
 type JwtPayload = {
