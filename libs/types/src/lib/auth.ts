@@ -9,6 +9,7 @@ export type JwtPayload = {
 };
 
 export interface AuthState {
+  checking: boolean;
   isAuthenticated: boolean;
   jwtPayload: JwtPayload | null;
   logout: () => void;

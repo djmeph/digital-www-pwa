@@ -15,3 +15,4 @@ export * from './lib/tags';
 export * from './lib/top-nav';
 export * from './lib/vehicle';
 export * from './lib/auth';
+export * from './lib/shifts';

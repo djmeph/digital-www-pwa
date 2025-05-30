@@ -13,6 +13,7 @@ import {
 } from 'react';
 
 const INITIAL_DATA: AuthState = {
+  checking: true,
   isAuthenticated: false,
   jwtPayload: null,
   checkAuth: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
@@ -24,12 +25,15 @@ export const AuthContext = createContext<AuthState>(INITIAL_DATA);
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [checking, setChecking] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [jwtPayload, setJwtPayload] = useState<JwtPayload | null>(null);
 
   const checkAuth = useCallback(() => {
     async function fetchAuth() {
+      setChecking(true);
       const res = await fetch('/api/auth');
+      setChecking(false);
       if (res.ok) {
         const data = await res.json();
         setIsAuthenticated(true);
@@ -50,12 +54,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const authState = useMemo(
     () => ({
+      checking,
       isAuthenticated,
       jwtPayload,
       checkAuth,
       logout,
     }),
-    [isAuthenticated, jwtPayload, checkAuth, logout]
+    [checking, isAuthenticated, jwtPayload, checkAuth, logout]
   );
 
   useEffect(() => {

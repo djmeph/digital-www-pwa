@@ -15,3 +15,5 @@ export * from './lib/radio-item';
 export * from './lib/vehicles';
 export * from './lib/vehicles-item';
 export * from './lib/week-view';
+export * from './lib/shifts';
+export * from './lib/shift';

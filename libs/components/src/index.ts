@@ -22,3 +22,6 @@ export * from './lib/SelectDayTabBar';
 export * from './lib/VehicleCard';
 export * from './lib/Head';
 export * from './lib/AuthNav';
+export * from './lib/ShiftsView';
+export * from './lib/ShiftView';
+export * from './lib/ShiftCard';
