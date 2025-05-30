@@ -1,5 +1,6 @@
 import type { TagItem } from '@digital-www-pwa/types';
 import BrushIcon from '@mui/icons-material/Brush';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import EventIcon from '@mui/icons-material/Event';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -54,6 +55,11 @@ export const NAVIGATION_LINKS = [
     title: 'Favorites',
     path: '/favorites',
     icon: FavoriteIcon,
+  },
+  {
+    title: 'Upcoming Shifts',
+    path: '/volunteer-shifts',
+    icon: CalendarTodayIcon,
   },
   /*
   {

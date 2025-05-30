@@ -43,7 +43,6 @@ export function HomePage() {
           variant="h1"
           sx={{
             textAlign: 'center',
-            fontFamily: 'Cinzel Decorative',
           }}
         >
           <Stack>
@@ -85,7 +84,6 @@ export function HomePage() {
               sx={{
                 textAlign: 'center',
                 color: 'highlight.main',
-                fontFamily: 'Cinzel',
               }}
             >
               <Box sx={{ fontSize: '2em' }}>{EVENT_START.format('MMMM')}</Box>

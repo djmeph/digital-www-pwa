@@ -40,8 +40,8 @@ export const ShiftsProvider = ({ children }: { children: ReactNode }) => {
         department_title: shift.department_title,
         shift_title: shift.shift_title,
         shift_description: shift.shift_description,
-        shift_start: dayjs.unix(shift.shift_start),
-        shift_end: dayjs.unix(shift.shift_end),
+        shift_start: dayjs.unix(shift.shift_start).tz(EVENT_TIMEZONE),
+        shift_end: dayjs.unix(shift.shift_end).tz(EVENT_TIMEZONE),
         shift_location: shift.shift_location,
       })),
     });
@@ -49,7 +49,7 @@ export const ShiftsProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     async function fetchShifts() {
-      const res = await fetch('/api/shifts',{ cache: 'no-store' });
+      const res = await fetch('/api/shifts', { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         processShifts(data || []);

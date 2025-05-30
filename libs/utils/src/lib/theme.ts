@@ -134,6 +134,9 @@ export const theme = responsiveFontSizes(
     },
     typography: {
       h1: {
+        fontFamily: 'Cinzel Decorative',
+      },
+      h2: {
         fontFamily: 'Cinzel',
       },
     },

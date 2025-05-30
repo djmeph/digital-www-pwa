@@ -21,10 +21,8 @@ export function ShiftCard({ shift }: { shift: ProcessedShift }) {
           />
           <CardContent>
             <Typography variant="subtitle2">{`${shift.shift_start.format(
-              'LL'
-            )} ${shift.shift_start.format('LT')} - ${shift.shift_end.format(
-              'LL'
-            )} ${shift.shift_end.format('LT')}`}</Typography>
+              'dddd LT'
+            )} - ${shift.shift_end.format('LT')}`}</Typography>
             <Divider variant="middle" />
             <Typography variant="subtitle1">
               {shift.shift_description.length > MAX_DESCRIPTION_LENGTH
