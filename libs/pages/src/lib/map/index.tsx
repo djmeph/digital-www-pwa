@@ -8,8 +8,8 @@ import {
 } from '@digital-www-pwa/utils';
 import ClearIcon from '@mui/icons-material/Clear';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
-import NorthIcon from '@mui/icons-material/North';
 import GpsNotFixedIcon from '@mui/icons-material/GpsNotFixed';
+import NorthIcon from '@mui/icons-material/North';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import { alpha } from '@mui/material';
@@ -36,7 +36,9 @@ function calculateDistance(a: GpsCoordinates, b: GpsCoordinates) {
 }
 
 function gpsToStyle(position: GeolocationPosition | null) {
-  if (!position) return null;
+  if (!position) {
+    return null;
+  }
 
   const closestAnchors = MAP_LOCATION_ANCHORS.sort((a, b) => {
     return (
@@ -74,7 +76,9 @@ export function MapPage() {
   const [positionStale, setPositionStale] = useState(true);
 
   useLayoutEffect(() => {
-    if (!currentPosition) return;
+    if (!currentPosition) {
+      return;
+    }
 
     const positionAge = Date.now() - currentPosition.timestamp;
     if (positionAge >= POSITION_STALE_TIME) {
@@ -135,7 +139,9 @@ export function MapPage() {
   };
 
   function renderCurrentPosition() {
-    if (!currentPositionStyle) return null;
+    if (!currentPositionStyle) {
+      return null;
+    }
 
     return (
       <Box

@@ -1,4 +1,4 @@
-import lunr from 'lunr';
+import * as lunr from 'lunr';
 
 export interface SearchIndexContextProps {
   events: lunr.Index;

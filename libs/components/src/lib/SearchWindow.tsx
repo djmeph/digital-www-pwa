@@ -1,5 +1,5 @@
 'use client';
-import lunr from 'lunr';
+import { SearchBar, SearchResults } from '@digital-www-pwa/components';
 import {
   useEventsIndex,
   useArtIndex,
@@ -8,19 +8,14 @@ import {
   useVehiclesIndex,
 } from '@digital-www-pwa/providers';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import InputBase from '@mui/material/InputBase';
-import Popper from '@mui/material/Popper';
-import Grow from '@mui/material/Grow';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import IconButton from '@mui/material/IconButton';
-import { alpha, useTheme } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
+import Grow from '@mui/material/Grow';
+import Popper from '@mui/material/Popper';
+import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
+import lunr from 'lunr';
 import { useState, useEffect, useRef } from 'react';
-
-import { SearchBar, SearchResults } from '@digital-www-pwa/components';
 
 export function SearchWindow({
   open,

@@ -1,6 +1,5 @@
 'use client';
 import type { CampItem } from '@digital-www-pwa/types';
-import { MAX_DESCRIPTION_LENGTH } from '@digital-www-pwa/utils';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
@@ -14,10 +13,7 @@ export function CampCard({ camp }: { camp: CampItem }) {
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
         <CardActionArea component={Link} href={`/camps/${camp.id}`}>
-          <CardHeader
-            title={camp.name}
-            subheader={camp.location_name}
-          />
+          <CardHeader title={camp.name} subheader={camp.location_name} />
           <CardContent>
             <Typography variant="subtitle1">
               {camp.event_count} {camp.event_count === 1 ? 'event' : 'events'}

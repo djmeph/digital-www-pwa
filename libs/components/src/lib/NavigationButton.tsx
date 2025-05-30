@@ -1,10 +1,9 @@
-import RouterLink from 'next/link';
-import Button from '@mui/material/Button';
+'use client';
 import type { NavigationLink } from '@digital-www-pwa/types';
+import Button from '@mui/material/Button';
+import RouterLink from 'next/link';
 
 export function NavigationButton({ linkData }: { linkData: NavigationLink }) {
-  const IconComponent = linkData.icon;
-
   const getAnimation = () => {
     if (linkData.path === '/now') {
       return 'breathing 1800ms alternate infinite';

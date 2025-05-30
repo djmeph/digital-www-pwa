@@ -1,24 +1,11 @@
 'use client';
-import lunr from 'lunr';
-import {
-  useEventsIndex,
-  useArtIndex,
-  useCampsIndex,
-  useRadioIndex,
-  useVehiclesIndex,
-} from '@digital-www-pwa/providers';
-import Box from '@mui/material/Box';
-import InputBase from '@mui/material/InputBase';
-import Popper from '@mui/material/Popper';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import { alpha, useTheme } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import { useState, useEffect, useRef } from 'react';
-
-import { SearchResults } from '@digital-www-pwa/components';
+import SearchIcon from '@mui/icons-material/Search';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import { alpha, useTheme } from '@mui/material/styles';
+import { useRef } from 'react';
 
 export function SearchBar({
   inputRef,
@@ -30,12 +17,6 @@ export function SearchBar({
   onChange: (value: string) => void;
 }) {
   const searchBarRef = useRef(null);
-  const [searchText, setSearchText] = useState<string>('');
-  const eventsIndex = useEventsIndex();
-  const artIndex = useArtIndex();
-  const campsIndex = useCampsIndex();
-  const radioIndex = useRadioIndex();
-  const vehiclesIndex = useVehiclesIndex();
   const theme = useTheme();
 
   const handleClear = () => {

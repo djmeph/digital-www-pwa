@@ -1,14 +1,13 @@
 'use client';
 import { EVENT_START, EVENT_TIMEZONE } from '@digital-www-pwa/utils';
-import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useState, useEffect } from 'react';
 import { FlapDisplay } from 'react-split-flap-effect';
 
 dayjs.extend(utc);

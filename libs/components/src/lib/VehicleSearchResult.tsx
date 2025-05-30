@@ -1,15 +1,14 @@
 'use client';
-import lunr from 'lunr';
 import type {
   VehicleItem,
   Highlight,
   LunrPosition,
 } from '@digital-www-pwa/types';
-import { useMemo } from 'react';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import lunr from 'lunr';
+import { useMemo } from 'react';
 
 import { HighlightedText } from './HighlightedText';
 
@@ -34,9 +33,9 @@ export function VehicleSearchResult({
           }
           return highlights;
         },
-        [],
+        []
       ),
-    [result],
+    [result]
   );
 
   return (

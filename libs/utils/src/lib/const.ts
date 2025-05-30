@@ -10,10 +10,10 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import NoDrinksIcon from '@mui/icons-material/NoDrinks';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
-import * as dayjs from 'dayjs';
-import * as isBetween from 'dayjs/plugin/isBetween';
-import * as timezone from 'dayjs/plugin/timezone';
-import * as utc from 'dayjs/plugin/utc';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

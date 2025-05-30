@@ -1,22 +1,18 @@
 'use client';
+import { EventCountdown, NavigationButton } from '@digital-www-pwa/components';
 import {
   NAVIGATION_LINKS,
   EVENT_START,
   EVENT_END,
 } from '@digital-www-pwa/utils';
-import dayjs from 'dayjs';
-import { EventCountdown, NavigationButton } from '@digital-www-pwa/components';
-import LaunchIcon from '@mui/icons-material/Launch';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid2';
 import MuiLink from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import RouterLink from 'next/link';
+import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import dayjs from 'dayjs';
 
 const EXTERNAL_LINKS = [
   {
@@ -39,7 +35,6 @@ const EXTERNAL_LINKS = [
 
 export function HomePage() {
   const theme = useTheme();
-  const tinyScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Grid container spacing={2} sx={{ paddingBottom: theme.spacing(16) }}>

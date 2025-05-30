@@ -1,4 +1,5 @@
-import { ProcessedShift } from '@digital-www-pwa/types';
+'use client';
+import type { ProcessedShift } from '@digital-www-pwa/types';
 import { MAX_DESCRIPTION_LENGTH } from '@digital-www-pwa/utils';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';

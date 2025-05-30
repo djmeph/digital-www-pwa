@@ -3,12 +3,10 @@ import { useAuthContext } from '@digital-www-pwa/providers';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 

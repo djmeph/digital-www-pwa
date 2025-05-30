@@ -1,9 +1,8 @@
 'use client';
-import IconButton from '@mui/material/IconButton';
+import { SearchWindow } from '@digital-www-pwa/components';
 import SearchIcon from '@mui/icons-material/Search';
+import IconButton from '@mui/material/IconButton';
 import { useState, useRef } from 'react';
-
-import { SearchResults, SearchWindow } from '@digital-www-pwa/components';
 
 export function SearchButton() {
   const [searchOpen, setSearchOpen] = useState(false);

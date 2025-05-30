@@ -1,8 +1,4 @@
 'use client';
-import lunr from 'lunr';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import Skeleton from '@mui/material/Skeleton';
 import {
   useEvents,
   useArts,
@@ -10,12 +6,15 @@ import {
   useRadios,
   useVehicles,
 } from '@digital-www-pwa/providers';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import lunr from 'lunr';
 import Link from 'next/link';
 import { useMemo } from 'react';
 
-import { EventSearchResult } from './EventSearchResult';
 import { ArtSearchResult } from './ArtSearchResult';
 import { CampSearchResult } from './CampSearchResult';
+import { EventSearchResult } from './EventSearchResult';
 import { RadioSearchResult } from './RadioSearchResult';
 import { VehicleSearchResult } from './VehicleSearchResult';
 

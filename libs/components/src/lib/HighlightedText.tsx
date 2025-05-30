@@ -1,8 +1,7 @@
 'use client';
 import type { Highlight } from '@digital-www-pwa/types';
-import { useMemo } from 'react';
-import Typography from '@mui/material/Typography';
 import { useTheme, alpha } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 export function HighlightedText({
   text,
@@ -27,20 +26,20 @@ export function HighlightedText({
           sx={{ backgroundColor: alpha(theme.palette.highlight.main, 0.8) }}
         >
           {text.substring(highlight.start, highlight.end)}
-        </Typography>,
+        </Typography>
       );
       const nextHighlight = sortedHighlights[index + 1];
       if (nextHighlight) {
         elements.push(
           <Typography component="span">
             {text.substring(highlight.end, nextHighlight.start)}
-          </Typography>,
+          </Typography>
         );
       } else {
         elements.push(
           <Typography component="span">
             {text.substring(highlight.end, text.length)}
-          </Typography>,
+          </Typography>
         );
       }
       return elements;
@@ -49,6 +48,6 @@ export function HighlightedText({
       <Typography component="span">
         {text.substring(0, sortedHighlights[0].start)}
       </Typography>,
-    ], // The unmatched bit before any highlights
+    ] // The unmatched bit before any highlights
   );
 }

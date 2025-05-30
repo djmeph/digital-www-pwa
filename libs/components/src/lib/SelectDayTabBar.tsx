@@ -20,13 +20,15 @@ export function SelectDayTabBar({
   ...props
 }: SelectDayTabBarProps) {
   return (
-    <Box sx={{
-      borderBottom: 1,
-      borderColor: 'divider',
-      "@media print": {
-        border: 'none',
-      }
-    }}>
+    <Box
+      sx={{
+        borderBottom: 1,
+        borderColor: 'divider',
+        '@media print': {
+          border: 'none',
+        },
+      }}
+    >
       <Tabs
         value={selectedDay}
         onChange={(e, newValue) => setSelectedDay(newValue)}

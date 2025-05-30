@@ -1,6 +1,5 @@
 'use client';
-import { AuthState } from '@digital-www-pwa/types';
-import { JwtPayload } from '@digital-www-pwa/types';
+import type { AuthState, JwtPayload } from '@digital-www-pwa/types';
 import cookies from 'js-cookie';
 import {
   createContext,

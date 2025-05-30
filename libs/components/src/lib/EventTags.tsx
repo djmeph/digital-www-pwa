@@ -23,9 +23,9 @@ export function EventTags({ event }: { event?: ProcessedEventItem }) {
               label={tag.name}
               color={tag.slug}
               sx={{
-                "@media print": {
+                '@media print': {
                   background: 'none',
-                }
+                },
               }}
             />
           </Grid>

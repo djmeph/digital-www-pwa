@@ -17,7 +17,7 @@ export function getMergedEventTimes(feedEvent: EventItem) {
       // the new event time we're looking at. If so, modify the new event to include
       // both times
       const existingIndex = collectedTimes.findIndex(
-        (collectedTime: EventTime, index: number) => {
+        (collectedTime: EventTime) => {
           if (collectedTime.ending === eventTime.starting) {
             eventTime.starting = collectedTime.starting;
             return true;

@@ -1,11 +1,10 @@
 'use client';
-import lunr from 'lunr';
 import type { ArtItem, Highlight, LunrPosition } from '@digital-www-pwa/types';
-import { useMemo } from 'react';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-
 import PaletteIcon from '@mui/icons-material/Palette';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import lunr from 'lunr';
+import { useMemo } from 'react';
 
 import { HighlightedText } from './HighlightedText';
 
@@ -30,9 +29,9 @@ export function ArtSearchResult({
           }
           return highlights;
         },
-        [],
+        []
       ),
-    [result],
+    [result]
   );
 
   return (

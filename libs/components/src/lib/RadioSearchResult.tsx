@@ -1,15 +1,14 @@
 'use client';
-import lunr from 'lunr';
 import type {
   ProcessedRadioItem,
   Highlight,
   LunrPosition,
 } from '@digital-www-pwa/types';
-import { useMemo } from 'react';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-
 import RadioIcon from '@mui/icons-material/Radio';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import lunr from 'lunr';
+import { useMemo } from 'react';
 
 import { HighlightedText } from './HighlightedText';
 
@@ -34,9 +33,9 @@ export function RadioSearchResult({
           }
           return highlights;
         },
-        [],
+        []
       ),
-    [result],
+    [result]
   );
 
   return (

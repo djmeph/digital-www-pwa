@@ -1,4 +1,5 @@
-import { Shifts, ShiftsFeed } from '@digital-www-pwa/types';
+'use client';
+import type { Shifts, ShiftsFeed } from '@digital-www-pwa/types';
 import { EVENT_TIMEZONE } from '@digital-www-pwa/utils';
 import { createHash } from 'crypto';
 import dayjs from 'dayjs';

@@ -141,15 +141,15 @@ export function ProcessedDataProvider({
           })),
         ];
       },
-      [] as ParsedEventTime[],
+      [] as ParsedEventTime[]
     );
 
     // Generate an object that maps from ID to object for quick lookups later
     const eventMap = Object.fromEntries(
-      parsedEvents.map((event) => [event.event_id, event]),
+      parsedEvents.map((event) => [event.event_id, event])
     );
     const eventTimesMap = Object.fromEntries(
-      eventTimes.map((eventTime) => [eventTime.event_time_id, eventTime]),
+      eventTimes.map((eventTime) => [eventTime.event_time_id, eventTime])
     );
 
     setProcessedData((previousState) => ({
@@ -165,10 +165,10 @@ export function ProcessedDataProvider({
             ...radio,
             radio_time: dayjs(radio.radio_time).tz(EVENT_TIMEZONE, true),
           },
-        ]),
+        ])
       ),
       vehicles: Object.fromEntries(
-        vehicles.map((vehicle) => [vehicle.id, vehicle]),
+        vehicles.map((vehicle) => [vehicle.id, vehicle])
       ),
       locations,
     }));
