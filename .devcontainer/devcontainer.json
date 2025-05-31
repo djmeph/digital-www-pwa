@@ -1,6 +1,6 @@
 {
   "dockerComposeFile": ["../docker-compose.yml"],
-  "postStartCommand": "yarn",
+  "postStartCommand": "yarn install && yarn db:migrate:local",
   "service": "dev",
   "workspaceFolder": "/src",
   "customizations": {

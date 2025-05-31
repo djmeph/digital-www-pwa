@@ -2542,6 +2542,7 @@ __metadata:
     autoprefixer: "npm:10.4.13"
     babel-jest: "npm:^29.7.0"
     dayjs: "npm:^1.11.13"
+    dotenv: "npm:^16.5.0"
     eslint: "npm:^9.8.0"
     eslint-config-next: "npm:14.2.16"
     eslint-config-prettier: "npm:^9.0.0"
@@ -8588,7 +8589,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.4.7":
+"dotenv@npm:^16.4.7, dotenv@npm:^16.5.0":
   version: 16.5.0
   resolution: "dotenv@npm:16.5.0"
   checksum: 10c0/5bc94c919fbd955bf0ba44d33922a1e93d1078e64a1db5c30faeded1d996e7a83c55332cb8ea4fae5a9ca4d0be44cbceb95c5811e70f9f095298df09d1997dd9
