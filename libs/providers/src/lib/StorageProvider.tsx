@@ -28,8 +28,8 @@ const INITIAL_DATA: StorageState = {
   favorites: {
     checkingFavoritesStorage: true,
     favoritesStorage: null,
-    upsertFavorites: () => {},
-    deleteFavorites: () => {},
+    upsertFavorites: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
+    deleteFavorites: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
   },
 };
 
