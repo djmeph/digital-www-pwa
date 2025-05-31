@@ -20,7 +20,29 @@ Lakes of Fire Digital What Where When Guide
 3. Install the Dev Containers plugin for VSCode `ms-vscode-remote.remote-containers`
 4. In VSCode open **Dev Containers: Reopen in Container**
 
-VSCode will load a dev container with the correct version of Node.js, the standard plugins, and run `yarn install` on startup.
+VSCode will load a dev container with the correct version of Node.js, Postgres, the standard plugins, and run `yarn install` on startup.
+
+## Run Postgres in your local environment
+
+If you are not using the VSCode dev container, you will need to bootstrap Postgres with docker-compose
+
+First, override the hostname in `.env.local`
+
+```sh
+echo "TYPEORM_HOST=localhost" >> .env.local
+```
+
+Now you can bootstrap Postgres. See the Docker Desktop link above if you neeed to install it.
+
+```sh
+docker compose up -d postgres
+```
+
+To stop the postgres container:
+
+```sh
+docker compose stop
+```
 
 ## Run the development server
 
