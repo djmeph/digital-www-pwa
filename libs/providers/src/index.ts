@@ -8,3 +8,4 @@ export * from './lib/SearchIndexProvider';
 export * from './lib/TopNavProvider';
 export * from './lib/AuthProvider';
 export * from './lib/ShiftsProvider';
+export * from './lib/StorageProvider';

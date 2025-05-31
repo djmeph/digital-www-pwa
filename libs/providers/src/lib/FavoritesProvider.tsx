@@ -1,6 +1,15 @@
 'use client';
 import type { FavoritesContextProps } from '@digital-www-pwa/types';
-import { useState, useEffect, createContext, useContext } from 'react';
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useMemo,
+  useCallback,
+} from 'react';
+import { useStorageContext } from './StorageProvider';
+import { useAuthContext } from './AuthProvider';
 
 const INITIAL_DATA: FavoritesContextProps = {
   eventTimeIds: new Set(),
@@ -21,6 +30,9 @@ export function useToggleFavoriteEventTime(): (eventTimeId: number) => void {
 }
 
 export function FavoritesProvider({ children }: { children: React.ReactNode }) {
+  const authContext = useAuthContext();
+  const storageContext = useStorageContext();
+
   const [eventTimeIds, setEventTimeIds] = useState<Set<number>>(() => {
     try {
       if (typeof localStorage === 'undefined') {
@@ -31,14 +43,11 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
       ) as Set<number>;
       return new Set(storedIds);
     } catch (err) {
-      console.error(err);
       return new Set();
     }
   });
-  const [dataState, setDataState] =
-    useState<FavoritesContextProps>(INITIAL_DATA);
 
-  function toggleEventTime(eventTimeId: number) {
+  const toggleEventTime = useCallback((eventTimeId: number) => {
     setEventTimeIds((oldIds) => {
       const newIds = new Set([...oldIds]);
       if (oldIds.has(eventTimeId)) {
@@ -48,18 +57,36 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
       newIds.add(eventTimeId);
       return newIds;
     });
-  }
+  }, []);
 
-  useEffect(() => {
-    setDataState({
+  const dataState = useMemo(
+    () => ({
       eventTimeIds,
       toggleEventTime,
-    });
-    localStorage.setItem(
-      'favoriteEventTimeIds',
-      JSON.stringify([...eventTimeIds])
-    );
+    }),
+    [eventTimeIds, toggleEventTime]
+  );
+
+  useEffect(() => {
+    const jsonStr = JSON.stringify([...eventTimeIds]);
+    localStorage.setItem('favoriteEventTimeIds', jsonStr);
   }, [eventTimeIds]);
+
+  useEffect(() => {
+    if (storageContext.favorites.favoritesStorage?.favorites) {
+      const eventTimeIds = JSON.parse(
+        storageContext.favorites.favoritesStorage.favorites
+      ) as Set<number>;
+      setEventTimeIds(eventTimeIds);
+    }
+  }, [storageContext.favorites.favoritesStorage]);
+
+  useEffect(() => {
+    const jsonStr = JSON.stringify([...eventTimeIds]);
+    if (storageContext.favorites.favoritesStorage?.favorites !== jsonStr) {
+      storageContext.favorites.upsertFavorites(jsonStr);
+    }
+  }, [eventTimeIds, authContext.isAuthenticated]);
 
   return (
     <FavoritesContext.Provider value={dataState}>

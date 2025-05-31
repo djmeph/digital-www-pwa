@@ -6,13 +6,14 @@ import { Roboto } from 'next/font/google';
 import { useEffect } from 'react';
 
 import { AppShell, HeadComponent } from '@digital-www-pwa/components';
-import { AuthProvider } from '@digital-www-pwa/providers';
 import {
   FavoritesProvider,
   FeedProvider,
   GeolocationProvider,
   ProcessedDataProvider,
   SearchIndexProvider,
+  AuthProvider,
+  StorageProvider,
 } from '@digital-www-pwa/providers';
 import { theme } from '@digital-www-pwa/utils';
 
@@ -48,15 +49,17 @@ export default function RootLayout({
             <CssBaseline />
             <AuthProvider>
               <FeedProvider>
-                <FavoritesProvider>
-                  <ProcessedDataProvider>
-                    <SearchIndexProvider>
-                      <GeolocationProvider>
-                        <AppShell>{children}</AppShell>
-                      </GeolocationProvider>
-                    </SearchIndexProvider>
-                  </ProcessedDataProvider>
-                </FavoritesProvider>
+                <StorageProvider>
+                  <FavoritesProvider>
+                    <ProcessedDataProvider>
+                      <SearchIndexProvider>
+                        <GeolocationProvider>
+                          <AppShell>{children}</AppShell>
+                        </GeolocationProvider>
+                      </SearchIndexProvider>
+                    </ProcessedDataProvider>
+                  </FavoritesProvider>
+                </StorageProvider>
               </FeedProvider>
             </AuthProvider>
           </ThemeProvider>
