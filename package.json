@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "psql": "psql -h postgres -U www_user -d digital_www_pwa",
-    "db:migrate:local": "yarn typeorm:local -d libs/orm/src/lib/orm.ts migration:run",
-    "g:migration": "yarn typeorm:local -d libs/orm/src/lib/orm.ts migration:generate",
-    "g:entity": "yarn typeorm:local entity:create",
-    "typeorm:local": "yarn local ./node_modules/typeorm/cli.js",
-    "local": "DOTENV_CONFIG_PATH=./.env ts-node -P ./libs/orm/tsconfig.json -r dotenv/config"
+    "db:migrate:dev": "yarn typeorm:dev -d libs/orm/src/lib/orm.ts migration:run",
+    "db:migrate:local": "TYPEORM_HOST=localhost yarn typeorm:dev -d libs/orm/src/lib/orm.ts migration:run",
+    "g:migration": "yarn typeorm:dev -d libs/orm/src/lib/orm.ts migration:generate",
+    "g:entity": "yarn typeorm:dev entity:create",
+    "typeorm:dev": "yarn dev ./node_modules/typeorm/cli.js",
+    "dev": "DOTENV_CONFIG_PATH=./.env ts-node -P ./libs/orm/tsconfig.json -r dotenv/config"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

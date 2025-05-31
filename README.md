@@ -38,6 +38,12 @@ Now you can bootstrap Postgres. See the Docker Desktop link above if you neeed t
 docker compose up -d postgres
 ```
 
+Run the TypeORM migrations to configure entities:
+
+```sh
+yarn db:migrate:local
+```
+
 To stop the postgres container:
 
 ```sh
