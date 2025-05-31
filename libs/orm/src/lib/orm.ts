@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
   password: process.env['TYPEORM_PASSWORD'],
   database: process.env['TYPEORM_DATABASE'],
   synchronize: process.env['TYPEORM_SYNCHRONIZE'] === 'true',
-  logging: true,
+  logging: process.env['TYPEORM_LOGGING'] === 'true',
   entities: [Favorites],
   subscribers: [],
   migrations: [AddFavoritesEntity1748652419144],

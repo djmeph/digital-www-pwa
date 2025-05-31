@@ -53,6 +53,7 @@ yarn-error.log
 
 # Secrets ENV
 .env.local
+.env.remote
 
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md

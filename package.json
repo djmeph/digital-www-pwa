@@ -7,13 +7,13 @@
     "psql": "psql -h postgres -U www_user -d digital_www_pwa",
     "db:migrate:dev": "yarn typeorm:dev -d libs/orm/src/lib/orm.ts migration:run",
     "db:migrate:local": "TYPEORM_HOST=localhost yarn typeorm:dev -d libs/orm/src/lib/orm.ts migration:run",
-    "db:migrate:actions": "yarn typeorm:actions -d libs/orm/src/lib/orm.ts migration:run",
+    "db:migrate:remote": "yarn typeorm:remote -d libs/orm/src/lib/orm.ts migration:run",
     "g:migration": "yarn typeorm:dev -d libs/orm/src/lib/orm.ts migration:generate",
     "g:entity": "yarn typeorm:dev entity:create",
     "typeorm:dev": "yarn dev ./node_modules/typeorm/cli.js",
-    "typeorm:actions": "yarn actions ./node_modules/typeorm/cli.js",
+    "typeorm:remote": "yarn remote ./node_modules/typeorm/cli.js",
     "dev": "DOTENV_CONFIG_PATH=./.env ts-node -P ./libs/orm/tsconfig.json -r dotenv/config",
-    "actions": "ts-node -P ./libs/orm/tsconfig.json"
+    "remote": "DOTENV_CONFIG_PATH=./.env.remote ts-node -P ./libs/orm/tsconfig.json -r dotenv/config"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

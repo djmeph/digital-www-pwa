@@ -20,7 +20,7 @@ Lakes of Fire Digital What Where When Guide
 3. Install the Dev Containers plugin for VSCode `ms-vscode-remote.remote-containers`
 4. In VSCode open **Dev Containers: Reopen in Container**
 
-VSCode will load a dev container with the correct version of Node.js, Postgres, the standard plugins, and run `yarn install` on startup.
+VSCode will load a dev container with the correct version of Node.js, Postgres, the standard plugins, and run `yarn install` and TypeORM migrations on startup.
 
 ## Run Postgres in your local environment
 
