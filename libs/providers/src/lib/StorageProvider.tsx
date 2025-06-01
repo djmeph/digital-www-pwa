@@ -105,14 +105,17 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
     fetchFavoritesUpdate();
   }
 
-  const upsertFavorites = useCallback((favorites: string) => {
-    if (authContext.isAuthenticated) {
-      if (favoritesStorage === null) {
-        return createFavorites(favorites);
+  const upsertFavorites = useCallback(
+    (favorites: string) => {
+      if (authContext.isAuthenticated) {
+        if (favoritesStorage === null) {
+          return createFavorites(favorites);
+        }
+        updateFavorites(favorites);
       }
-      updateFavorites(favorites);
-    }
-  }, []);
+    },
+    [authContext.isAuthenticated]
+  );
 
   const deleteFavorites = useCallback(() => {
     async function fetchFavoritesDelete() {
@@ -127,7 +130,7 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
     if (authContext.isAuthenticated) {
       fetchFavoritesDelete();
     }
-  }, []);
+  }, [authContext.isAuthenticated]);
 
   const favoritesStorageState = useMemo(
     () => ({
