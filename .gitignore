@@ -57,3 +57,4 @@ yarn-error.log
 
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
+apps/digital-www-pwa/public/sw.js
