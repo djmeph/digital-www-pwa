@@ -3,7 +3,7 @@ spec:
     spec:
       containers:
         - name: digital-www-pwa
-          image: DOCKER_IMAGE_DIGEST
+          image: ghcr.io/djmeph/digital-www-pwa:latest@DOCKER_IMAGE_DIGEST
           env:
             - name: SERVICE_WORKER_CACHE_ID
               value: GITHUB_SHA
