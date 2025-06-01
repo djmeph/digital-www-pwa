@@ -90,12 +90,15 @@ jobs:
         shell: bash
         run: cat hash.txt >> $GITHUB_OUTPUT
 
+      - name: Generate Patch Values
+        shell: bash
+        run: |
+          sed -i 's/GITHUB_SHA/${{ github.sha }}/g' .github/patch-files/deployment-patch.yaml
+          sed -i 's/DOCKER_IMAGE_DIGEST/${{ steps.build-hash.outputs.digest }}/g' .github/patch-files/deployment-patch.yaml
+
       - name: Deploy to Kubernetes
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBECONFIG }}
         with:
-          args: |
-            sed -i 's/GITHUB_SHA/${{ github.sha }}/g' .github/patch-files/deployment-patch.yaml
-            sed -i 's/DOCKER_IMAGE_DIGEST/${{ steps.build-hash.outputs.digest }}/g' .github/patch-files/deployment-patch.yaml
-            patch deployment staging-digital-www-2025 -n lakes-of-fire --patch-file .github/patch-files/deployment-patch.yaml
+          args: patch deployment staging-digital-www-2025 -n lakes-of-fire --patch-file .github/patch-files/deployment-patch.yaml
