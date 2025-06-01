@@ -47,7 +47,9 @@ jobs:
 
       - name: Build app
         shell: bash
-        run: yarn nx run digital-www-pwa:build:production
+        run: yarn nx run digital-www-pwa:build
+        env:
+          SERVICE_WORKER_CACHE_ID: ${{ github.sha }}
 
       - name: Build and push
         id: build
@@ -95,9 +97,7 @@ jobs:
 
       - name: Generate Patch Values
         shell: bash
-        run: |
-          sed -i 's/GITHUB_SHA/${{ github.sha }}/g' .github/patch-files/deployment-patch.yaml
-          sed -i 's/DOCKER_IMAGE_DIGEST/${{ steps.build-hash.outputs.digest }}/g' .github/patch-files/deployment-patch.yaml
+        run: sed -i 's/DOCKER_IMAGE_DIGEST/${{ steps.build-hash.outputs.digest }}/g' .github/patch-files/deployment-patch.yaml
 
       - name: Deploy to Kubernetes
         uses: actions-hub/kubectl@master
