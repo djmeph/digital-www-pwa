@@ -13,7 +13,9 @@
     "typeorm:dev": "yarn dev ./node_modules/typeorm/cli.js",
     "typeorm:remote": "yarn remote ./node_modules/typeorm/cli.js",
     "dev": "DOTENV_CONFIG_PATH=./.env ts-node -P ./libs/orm/tsconfig.json -r dotenv/config",
-    "remote": "DOTENV_CONFIG_PATH=./.env.remote ts-node -P ./libs/orm/tsconfig.json -r dotenv/config"
+    "remote": "DOTENV_CONFIG_PATH=./.env.remote ts-node -P ./libs/orm/tsconfig.json -r dotenv/config",
+    "serve": "SERVICE_WORKERS_DISABLED=true nx dev digital-www-pwa",
+    "serve:sw": "nx dev digital-www-pwa"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -65,6 +67,7 @@
     "@types/jest": "^29.5.12",
     "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "9.0.2",
+    "@types/next-pwa": "^5.6.9",
     "@types/node": "22.15.29",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",

@@ -47,9 +47,7 @@ jobs:
 
       - name: Build app
         shell: bash
-        run: |
-          yarn nx run digital-www-pwa:build
-          sed -i 's/SERVICE_WORKER_CACHE_ID/${{ github.sha }}/g' dist/apps/digital-www-pwa/public/sw.js
+        run: yarn nx run digital-www-pwa:build:production
 
       - name: Build and push
         id: build
@@ -97,4 +95,7 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.KUBECONFIG }}
         with:
-          args: patch deployment staging-digital-www-2025 -n lakes-of-fire -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"digital-www-pwa\",\"image\":\"ghcr.io/djmeph/digital-www-pwa:latest@${{ steps.build-hash.outputs.digest }}\"}]}}}}"
+          args: |
+            sed -i 's/GITHUB_SHA/${{ github.sha }}/g' .github/patch-files/deployment-patch.yaml
+            sed -i 's/DOCKER_IMAGE_DIGEST/${{ steps.build-hash.outputs.digest }}/g' .github/patch-files/deployment-patch.yaml
+            patch deployment staging-digital-www-2025 -n lakes-of-fire --patch-file .github/patch-files/deployment-patch.yaml

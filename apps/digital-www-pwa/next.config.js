@@ -1,6 +1,12 @@
 //@ts-check
 
 const { composePlugins, withNx } = require('@nx/next');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  cacheId: process.env['SERVICE_WORKER_CACHE_ID'],
+  cleanupOutdatedCaches: true,
+  disable: process.env['SERVICE_WORKERS_DISABLED'] === 'true',
+});
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -30,4 +36,4 @@ const plugins = [
   withNx,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
+module.exports = withPWA(composePlugins(...plugins)(nextConfig));

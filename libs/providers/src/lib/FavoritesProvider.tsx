@@ -8,8 +8,9 @@ import {
   useMemo,
   useCallback,
 } from 'react';
-import { useStorageContext } from './StorageProvider';
+
 import { useAuthContext } from './AuthProvider';
+import { useStorageContext } from './StorageProvider';
 
 const INITIAL_DATA: FavoritesContextProps = {
   eventTimeIds: new Set(),
@@ -43,6 +44,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
       ) as Set<number>;
       return new Set(storedIds);
     } catch (err) {
+      console.error(err);
       return new Set();
     }
   });
@@ -67,20 +69,13 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     [eventTimeIds, toggleEventTime]
   );
 
+  // Saves favorites to local storage
   useEffect(() => {
     const jsonStr = JSON.stringify([...eventTimeIds]);
     localStorage.setItem('favoriteEventTimeIds', jsonStr);
   }, [eventTimeIds]);
 
-  useEffect(() => {
-    if (storageContext.favorites.favoritesStorage?.favorites) {
-      const eventTimeIds = JSON.parse(
-        storageContext.favorites.favoritesStorage.favorites
-      ) as Set<number>;
-      setEventTimeIds(eventTimeIds);
-    }
-  }, [storageContext.favorites.favoritesStorage]);
-
+  // Saves favorites to remote storage
   useEffect(() => {
     const jsonStr = JSON.stringify([...eventTimeIds]);
     if (storageContext.favorites.favoritesStorage?.favorites !== jsonStr) {
