@@ -2515,7 +2515,7 @@ __metadata:
     "@eslint/js": "npm:^9.8.0"
     "@fontsource/cinzel": "npm:^5.2.5"
     "@fontsource/cinzel-decorative": "npm:^5.2.5"
-    "@fontsource/roboto": "npm:^5.1.1"
+    "@fontsource/quattrocento": "npm:^5.2.5"
     "@mui/icons-material": "npm:^6.4.5"
     "@mui/material": "npm:^6.4.5"
     "@mui/material-nextjs": "npm:^6.4.3"
@@ -2858,10 +2858,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "@fontsource/roboto@npm:5.1.1"
-  checksum: 10c0/913b254f3c64f6ede01c832051819e15d3bc3e6c9f0c778e92f63805d7a66179183ba036aaee994af22b4d3c21340a246c136a6bc6c569fd0e718e5e10e02789
+"@fontsource/quattrocento@npm:^5.2.5":
+  version: 5.2.5
+  resolution: "@fontsource/quattrocento@npm:5.2.5"
+  checksum: 10c0/487b7e719783b3556002c958235d73fc45f07c7288f78548544b4680a6f1bd31904366c80caaa2bb8a89202014c22b1a3ac7dbfa7fcbbe5ff667fa405f61bc63
   languageName: node
   linkType: hard
 

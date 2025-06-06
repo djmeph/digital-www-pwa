@@ -2,7 +2,6 @@
 import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { Roboto } from 'next/font/google';
 import { useEffect } from 'react';
 
 import { AppShell, HeadComponent } from '@digital-www-pwa/components';
@@ -17,13 +16,7 @@ import {
 } from '@digital-www-pwa/providers';
 import { theme } from '@digital-www-pwa/utils';
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto',
-});
-
+import '@fontsource/quattrocento';
 import '@fontsource/cinzel';
 import '@fontsource/cinzel-decorative';
 
@@ -43,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <HeadComponent />
-      <body className={roboto.variable}>
+      <body style={{ fontFamily: 'Quattrocento' }}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />

@@ -57,7 +57,7 @@ const base = createTheme({
     },
   },
   typography: {
-    fontFamily: 'var(--font-roboto)',
+    fontFamily: 'Quattrocento',
   },
   palette: {
     mode: 'dark',
@@ -208,11 +208,32 @@ export const theme = responsiveFontSizes(
           },
         },
       },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: base.palette.background.default,
+          },
+        },
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            color: base.palette.text.primary,
+            fontSize: '1rem',
+          },
+        },
+      },
       MuiCard: {
         styleOverrides: {
           root: {
             opacity: 0.85,
+            padding: base.spacing(2),
+            border: 'solid 1px',
+            borderColor: base.palette.text.primary,
+            borderRadius: base.shape.borderRadius * 3,
+            color: base.palette.text.primary,
             '@media print': {
+              padding: 0,
               opacity: 1,
               boxShadow: 'none',
               breakInside: 'avoid',
@@ -223,21 +244,28 @@ export const theme = responsiveFontSizes(
       MuiCardHeader: {
         styleOverrides: {
           root: {
-            '@media print': {
-              padding: 0,
-            },
+            padding: 0,
           },
           title: {
             fontFamily: 'Cinzel',
+          },
+          subheader: {
+            color: base.palette.highlight.main,
+            fontWeight: 'bold',
           },
         },
       },
       MuiCardContent: {
         styleOverrides: {
           root: {
-            '@media print': {
-              padding: 0,
-            },
+            padding: 0,
+          },
+        },
+      },
+      MuiCardActions: {
+        styleOverrides: {
+          root: {
+            padding: 0,
           },
         },
       },

@@ -50,14 +50,14 @@ export const NAVIGATION_LINKS = [
       }
     : null,
   {
-    title: 'Events',
-    path: '/events',
-    icon: EventIcon,
-  },
-  {
     title: 'Favorites',
     path: '/favorites',
     icon: FavoriteIcon,
+  },
+  {
+    title: 'Events',
+    path: '/events',
+    icon: EventIcon,
   },
   {
     title: 'Upcoming Shifts',

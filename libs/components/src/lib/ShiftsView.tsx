@@ -8,8 +8,8 @@ import { ShiftCard } from './ShiftCard';
 
 export function ShiftsView() {
   const shiftsContext = useShiftsContext();
-  const upcomingShifts = shiftsContext.shifts.filter((shift) =>
-    shift.shift_end.isAfter(new Date())
+  const upcomingShifts = shiftsContext.shifts.filter(
+    (shift) => shift.shift_end.isAfter(new Date()) || true
   );
 
   if (shiftsContext.loading) {

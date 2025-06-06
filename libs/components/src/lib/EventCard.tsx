@@ -3,20 +3,21 @@ import type { ParsedEventTime } from '@digital-www-pwa/types';
 import { MAX_DESCRIPTION_LENGTH } from '@digital-www-pwa/utils';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import { useTheme } from '@mui/material/styles';
 
 import { EventTags } from './EventTags';
 import { FavoriteButton } from './FavoriteButton';
 
 export function EventCard({ eventTime }: { eventTime: ParsedEventTime }) {
+  const theme = useTheme();
   return (
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
-      <Card>
+      <Card sx={{ position: 'relative' }}>
         <CardActionArea
           component={Link}
           href={`/events/${eventTime.event_time_id}`}
@@ -30,6 +31,11 @@ export function EventCard({ eventTime }: { eventTime: ParsedEventTime }) {
                     'LT'
                   )} - ${eventTime.ending.format('LT')}`
             }
+            sx={{
+              '& .MuiCardHeader-title': {
+                marginRight: '1em',
+              },
+            }}
           />
           <CardContent>
             <Typography variant="subtitle1">
@@ -43,17 +49,14 @@ export function EventCard({ eventTime }: { eventTime: ParsedEventTime }) {
             <EventTags event={eventTime.event} />
           </CardContent>
         </CardActionArea>
-        <CardActions
+        <FavoriteButton
           sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            '@media print': {
-              display: 'none',
-            },
+            position: 'absolute',
+            right: theme.spacing(2),
+            top: theme.spacing(2),
           }}
-        >
-          <FavoriteButton eventTime={eventTime} />
-        </CardActions>
+          eventTime={eventTime}
+        />
       </Card>
     </Grid>
   );

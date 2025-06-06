@@ -52,13 +52,13 @@ export function HomePage() {
             <Box
               sx={{
                 color: 'primary.main',
-                fontSize: '4rem',
+                fontSize: '4.5rem',
                 filter: 'drop-shadow(4px 4px 4px black)',
               }}
             >
               Doorways in Time
             </Box>
-            <Box sx={{ fontSize: '1.5rem' }}>Lucky Lake Campground</Box>
+            <Box sx={{ fontSize: '1.8rem' }}>Lucky Lake Campground</Box>
           </Stack>
         </Typography>
       </Grid>
@@ -86,9 +86,13 @@ export function HomePage() {
                 color: 'highlight.main',
               }}
             >
-              <Box sx={{ fontSize: '2em' }}>{EVENT_START.format('MMMM')}</Box>
-              <Stack direction="column" alignItems="center">
-                <Box sx={{ display: 'flex' }}>
+              <Box sx={{ fontSize: '1.7em' }}>{EVENT_START.format('MMMM')}</Box>
+              <Stack
+                direction="column"
+                alignItems="center"
+                sx={{ fontSize: '1.2em' }}
+              >
+                <Box sx={{ display: 'flex', marginBottom: '-1rem' }}>
                   {EVENT_START.format('D')}-{EVENT_END.format('D')}
                 </Box>
                 <Box

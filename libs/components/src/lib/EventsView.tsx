@@ -348,6 +348,7 @@ export function EventsView({
                       padding: 1,
                       position: 'sticky',
                       top: theme.spacing(9),
+                      maxWidth: '360px',
                       display: 'flex',
                       backgroundColor: theme.palette.background.default,
                       '@media print': {

@@ -13,7 +13,7 @@ export function Header({ children, button, ...props }: HeaderProps) {
   return (
     <Stack direction="row">
       <Typography
-        variant="h1"
+        variant="h2"
         sx={{
           flexGrow: 1,
           '@media print': {

@@ -1,5 +1,6 @@
 'use client';
 import { AuthNav, SearchButton } from '@digital-www-pwa/components';
+import { useAuthContext } from '@digital-www-pwa/providers';
 import { NAVIGATION_LINKS } from '@digital-www-pwa/utils';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
@@ -26,6 +27,7 @@ export function AppBar() {
   const router = useRouter();
   const pathname = usePathname();
   const theme = useTheme();
+  const authContext = useAuthContext();
 
   function renderMenuButton() {
     return (
@@ -42,6 +44,9 @@ export function AppBar() {
   }
 
   function renderBackButton() {
+    if (pathname.split('/').length <= 2) {
+      return null;
+    }
     return (
       <IconButton
         size="large"
@@ -53,13 +58,6 @@ export function AppBar() {
         <ArrowBackIcon />
       </IconButton>
     );
-  }
-
-  function renderButton() {
-    if (pathname.split('/').length > 2) {
-      return renderBackButton();
-    }
-    return renderMenuButton();
   }
 
   return (
@@ -74,7 +72,7 @@ export function AppBar() {
           }}
         >
           <Toolbar sx={{ paddingLeft: 0, alignItems: 'center' }}>
-            {renderButton()}
+            {renderBackButton()}
             <Link
               component={NextLink}
               href="/"
@@ -91,11 +89,12 @@ export function AppBar() {
                 style={{ height: 48 }}
               />
             </Link>
+            {renderMenuButton()}
             <SearchButton />
           </Toolbar>
         </Container>
       </MuiAppBar>
-      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <List>
           <ListItem>
             <ListItemButton
@@ -110,7 +109,7 @@ export function AppBar() {
             </ListItemButton>
           </ListItem>
           <Divider />
-          <AuthNav setOpen={setOpen} />
+          {!authContext.isAuthenticated && <AuthNav setOpen={setOpen} />}
           {NAVIGATION_LINKS.map((link) => {
             const IconComponent = link.icon;
             return (
@@ -128,6 +127,7 @@ export function AppBar() {
               </ListItem>
             );
           })}
+          {authContext.isAuthenticated && <AuthNav setOpen={setOpen} />}
         </List>
       </Drawer>
     </>
