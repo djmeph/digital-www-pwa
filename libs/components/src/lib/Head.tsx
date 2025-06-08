@@ -30,7 +30,6 @@ export function HeadComponent() {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="white" />
       <meta name="mobile-web-app-capable" content="yes" />
-      <style>{"body { font-family: 'Quattrocento'}"}</style>
     </head>
   );
 }

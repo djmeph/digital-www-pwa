@@ -41,7 +41,7 @@ export const useStorageContext = () => useContext(StorageContext);
 export const StorageProvider = ({ children }: { children: ReactNode }) => {
   const authContext = useAuthContext();
 
-  const [checkingFavoritesStorage, setCheckinFavoritesStorage] =
+  const [checkingFavoritesStorage, setCheckingFavoritesStorage] =
     useState<boolean>(true);
   const [favoritesStorage, setFavoritesStorage] =
     useState<ProcessedFavoritesStorage | null>(null);
@@ -73,15 +73,14 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
 
   function readFavorites() {
     async function fetchFavoritesRead() {
-      setCheckinFavoritesStorage(true);
       const res = await fetch('/api/entities/favorites', {
         method: 'GET',
         cache: 'no-store',
       });
-      setCheckinFavoritesStorage(false);
       if (res.ok) {
         const data = await res.json();
         processFavorites(data);
+        setCheckingFavoritesStorage(false);
         return;
       }
       setFavoritesStorage(null);
@@ -151,10 +150,10 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
   );
 
   useEffect(() => {
-    if (authContext.isAuthenticated) {
+    if (authContext.isAuthenticated && !checkingFavoritesStorage) {
       readFavorites();
     }
-  }, [authContext.isAuthenticated]);
+  }, [authContext.isAuthenticated, checkingFavoritesStorage]);
 
   return (
     <StorageContext.Provider value={favoritesStorageState}>

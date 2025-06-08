@@ -47,27 +47,25 @@ export async function GET(): Promise<Response> {
     }
 
     const data = await response.json();
-    return NextResponse.json(
-      data.map(
-        (n: {
-          department_title: string;
-          shift_title: string;
-          shift_description: string;
-          shift_start: number;
-          shift_end: number;
-          shift_location: string;
-          dust_id: null;
-        }) => {
-          const jsonStr = JSON.stringify(n);
-          const id = createHash('md5').update(jsonStr).digest('hex');
-          return { ...n, id };
-        }
-      ),
-      {
-        status: 200,
-        statusText: 'OK',
+    const resData = data.map(
+      (n: {
+        department_title: string;
+        shift_title: string;
+        shift_description: string;
+        shift_start: number;
+        shift_end: number;
+        shift_location: string;
+        dust_id: null;
+      }) => {
+        const jsonStr = JSON.stringify(n);
+        const id = createHash('md5').update(jsonStr).digest('hex');
+        return { ...n, id };
       }
     );
+    return NextResponse.json(resData, {
+      status: 200,
+      statusText: 'OK',
+    });
   } catch (_err) {
     return NextResponse.json(
       { message: 'UNAUTHORIZED' },
