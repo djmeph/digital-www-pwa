@@ -34,11 +34,11 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="en">
-      <HeadComponent />
-      <body style={{ fontFamily: 'Quattrocento' }}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <html lang="en">
+        <HeadComponent />
+        <body style={{ fontFamily: theme.typography.fontFamily }}>
+          <AppRouterCacheProvider>
             <CssBaseline />
             <AuthProvider>
               <FeedProvider>
@@ -55,9 +55,9 @@ export default function RootLayout({
                 </StorageProvider>
               </FeedProvider>
             </AuthProvider>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
-    </html>
+          </AppRouterCacheProvider>
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }
