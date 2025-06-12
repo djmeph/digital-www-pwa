@@ -116,11 +116,7 @@ export function HomePage() {
           </Grid>
         );
       })}
-      <Grid size={{ xxs: 12 }}>
-        <Button component={MuiLink} href={''} color="secondary">
-          Live Stream Radio SGC
-        </Button>
-      </Grid>
+      <Grid size={{ xxs: 12 }}></Grid>
       {EXTERNAL_LINKS.map((linkData) => (
         <Grid key={linkData.url} size={{ xxs: 12, sm: 6 }}>
           <Button
