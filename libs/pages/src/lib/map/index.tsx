@@ -5,6 +5,7 @@ import {
   MAP_LOCATION_ANCHORS,
   MAP_ACCURACY_SIZE_FACTOR,
   POSITION_STALE_TIME,
+  calculateDistance,
 } from '@digital-www-pwa/utils';
 import ClearIcon from '@mui/icons-material/Clear';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
@@ -17,6 +18,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import { useState, useLayoutEffect, useMemo, useRef } from 'react';
 import {
@@ -28,12 +30,6 @@ import type {
   ReactZoomPanPinchContext,
   ReactZoomPanPinchHandlers,
 } from 'react-zoom-pan-pinch';
-
-function calculateDistance(a: GpsCoordinates, b: GpsCoordinates) {
-  return Math.sqrt(
-    (a.latitude - b.latitude) ** 2 + (a.longitude - b.longitude) ** 2
-  );
-}
 
 function gpsToStyle(position: GeolocationPosition | null) {
   if (!position) {
@@ -231,20 +227,37 @@ export function MapPage() {
               </Fab>
             </Stack>
             {isGeolocationSupported && (
-              <Fab
-                size="large"
-                aria-label="Locate Me"
-                onClick={() =>
-                  handleClickFindMyLocation(instance, zoomToElement)
-                }
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={2}
                 sx={{
                   position: 'absolute',
                   right: theme.spacing(1),
                   bottom: theme.spacing(1),
                 }}
               >
-                {renderFindLocationButtonIcon()}
-              </Fab>
+                {currentPosition && !isCloseToEvent && (
+                  <Typography
+                    sx={{ padding: 1, background: 'rgba(0,0,0,0.5)' }}
+                  >
+                    {calculateDistance(
+                      currentPosition.coords,
+                      MAP_LOCATION_ANCHORS[0]
+                    ).toFixed(1)}{' '}
+                    miles
+                  </Typography>
+                )}
+                <Fab
+                  size="large"
+                  aria-label="Locate Me"
+                  onClick={() =>
+                    handleClickFindMyLocation(instance, zoomToElement)
+                  }
+                >
+                  {renderFindLocationButtonIcon()}
+                </Fab>
+              </Stack>
             )}
           </>
         )}
