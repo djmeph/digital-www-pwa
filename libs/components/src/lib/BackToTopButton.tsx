@@ -6,12 +6,12 @@ import Fade from '@mui/material/Fade';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { usePathname } from 'next/navigation';
+import { useLocation } from 'react-router';
 import { useState, useLayoutEffect } from 'react';
 
 export function BackToTopButton() {
+  const location = useLocation();
   const theme = useTheme();
-  const pathname = usePathname();
   const [lastScroll, setLastScroll] = useState<number | null>(null);
   const scrolledDown = useScrollTrigger({
     disableHysteresis: true,
@@ -25,7 +25,7 @@ export function BackToTopButton() {
 
   useLayoutEffect(() => {
     setLastScroll(null);
-  }, [pathname]);
+  }, [location.pathname]);
 
   const handleClick = () => {
     if (lastScroll) {

@@ -3,13 +3,13 @@ import { EventsView } from '@digital-www-pwa/components';
 import { EVENT_START, EVENT_END } from '@digital-www-pwa/utils';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 
 dayjs.extend(isBetween);
 
 export function HappeningNowPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [currentTime, setCurrentTime] = useState(dayjs());
 
   const updateTime = () => setCurrentTime(dayjs());
@@ -23,7 +23,7 @@ export function HappeningNowPage() {
 
   useEffect(() => {
     if (!currentTime.isBetween(EVENT_START, EVENT_END)) {
-      router.push('/');
+      navigate('/');
     }
   }, [currentTime]);
 

@@ -1,7 +1,7 @@
 'use client';
 import type { NavigationLink } from '@digital-www-pwa/types';
 import Button from '@mui/material/Button';
-import RouterLink from 'next/link';
+import { Link as RouterLink } from 'react-router';
 
 export function NavigationButton({ linkData }: { linkData: NavigationLink }) {
   const getAnimation = () => {
@@ -15,7 +15,7 @@ export function NavigationButton({ linkData }: { linkData: NavigationLink }) {
   return (
     <Button
       component={RouterLink}
-      href={linkData.path}
+      to={linkData.path}
       sx={{
         '@keyframes breathing': {
           '0%': {

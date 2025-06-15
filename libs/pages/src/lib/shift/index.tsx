@@ -4,15 +4,17 @@ import { ShiftsProvider, useAuthContext } from '@digital-www-pwa/providers';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useTheme } from '@mui/material/styles';
+import { useParams } from 'react-router';
 
-export function ShiftPage({ id }: { id: string }) {
+export function ShiftPage() {
+  const { id } = useParams();
   const theme = useTheme();
   const authContext = useAuthContext();
   const queryParams = new URLSearchParams({
     redirect_target: `/shift/${id}`,
   });
 
-  if (authContext.checking) {
+  if (authContext.checking || !id) {
     return (
       <>
         <Header>{'Volunteer Shifts'}</Header>
