@@ -42,13 +42,11 @@ export const NAVIGATION_LINKS = [
     icon: MapIcon,
   },
   */
-  dayjs().isBetween(EVENT_START, EVENT_END)
-    ? {
-        title: 'Happening Now',
-        path: '/now',
-        icon: CampaignIcon,
-      }
-    : null,
+  {
+    title: 'Happening Now',
+    path: '/now',
+    icon: CampaignIcon,
+  },
   {
     title: 'Favorites',
     path: '/favorites',
