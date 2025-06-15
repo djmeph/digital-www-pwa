@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import LinearProgress from '@mui/material/LinearProgress';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router';
 
 import { ShiftCard } from './ShiftCard';
 
@@ -24,10 +24,10 @@ export function ShiftView({ id }: { id: string }) {
       <>
         <Breadcrumbs aria-label="breadcrumb">
           <Link
-            component={NextLink}
+            component={RouterLink}
             underline="hover"
             color="inherit"
-            href={`/volunteer-shifts`}
+            to={`/volunteer-shifts`}
           >
             Upcoming Shifts
           </Link>

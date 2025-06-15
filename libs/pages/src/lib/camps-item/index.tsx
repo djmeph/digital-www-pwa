@@ -4,8 +4,10 @@ import { EventsView } from '@digital-www-pwa/components';
 import { useCamp } from '@digital-www-pwa/providers';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
+import { useParams } from 'react-router';
 
-export function CampsItemPage({ id }: { id: string }) {
+export function CampsItemPage() {
+  const { id } = useParams();
   const camp = useCamp(id);
 
   const renderCampEvents = () => {

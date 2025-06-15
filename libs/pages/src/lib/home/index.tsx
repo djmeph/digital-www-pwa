@@ -110,17 +110,19 @@ export function HomePage() {
         </Stack>
       </Grid>
       {NAVIGATION_LINKS.map((linkData) => {
+        if (
+          linkData.path === '/now' &&
+          !dayjs().isBetween(EVENT_START, EVENT_END)
+        ) {
+          return null;
+        }
         return (
           <Grid key={linkData.path} size={{ xxs: 12, sm: 6, md: 4 }}>
             <NavigationButton linkData={linkData} />
           </Grid>
         );
       })}
-      <Grid size={{ xxs: 12 }}>
-        <Button component={MuiLink} href={''} color="secondary">
-          Live Stream Radio SGC
-        </Button>
-      </Grid>
+      <Grid size={{ xxs: 12 }}></Grid>
       {EXTERNAL_LINKS.map((linkData) => (
         <Grid key={linkData.url} size={{ xxs: 12, sm: 6 }}>
           <Button

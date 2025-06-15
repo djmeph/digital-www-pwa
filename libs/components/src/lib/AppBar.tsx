@@ -1,7 +1,11 @@
 'use client';
 import { AuthNav, SearchButton } from '@digital-www-pwa/components';
 import { useAuthContext } from '@digital-www-pwa/providers';
-import { NAVIGATION_LINKS } from '@digital-www-pwa/utils';
+import {
+  NAVIGATION_LINKS,
+  EVENT_START,
+  EVENT_END,
+} from '@digital-www-pwa/utils';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -18,14 +22,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import NextLink from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import dayjs from 'dayjs';
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router';
+import { Link as RouterLink } from 'react-router';
 
 export function AppBar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
   const theme = useTheme();
   const authContext = useAuthContext();
 
@@ -44,7 +49,7 @@ export function AppBar() {
   }
 
   function renderBackButton() {
-    if (pathname.split('/').length <= 2) {
+    if (location.pathname.split('/').length <= 2) {
       return null;
     }
     return (
@@ -53,7 +58,7 @@ export function AppBar() {
         edge="start"
         color="inherit"
         aria-label="menu"
-        onClick={() => router.back()}
+        onClick={() => navigate(-1)}
       >
         <ArrowBackIcon />
       </IconButton>
@@ -74,8 +79,8 @@ export function AppBar() {
           <Toolbar sx={{ paddingLeft: 0, alignItems: 'center' }}>
             {renderBackButton()}
             <Link
-              component={NextLink}
-              href="/"
+              component={RouterLink}
+              to="/"
               style={{
                 display: 'flex',
                 flexGrow: 1,
@@ -98,8 +103,8 @@ export function AppBar() {
         <List>
           <ListItem>
             <ListItemButton
-              component={NextLink}
-              href="/"
+              component={RouterLink}
+              to="/"
               onClick={() => setOpen(false)}
             >
               <ListItemIcon>
@@ -111,12 +116,18 @@ export function AppBar() {
           <Divider />
           {!authContext.isAuthenticated && <AuthNav setOpen={setOpen} />}
           {NAVIGATION_LINKS.map((link) => {
+            if (
+              link.path === '/now' &&
+              !dayjs().isBetween(EVENT_START, EVENT_END)
+            ) {
+              return null;
+            }
             const IconComponent = link.icon;
             return (
               <ListItem key={link.path}>
                 <ListItemButton
-                  component={NextLink}
-                  href={link.path}
+                  component={RouterLink}
+                  to={link.path}
                   onClick={() => setOpen(false)}
                 >
                   <ListItemIcon>

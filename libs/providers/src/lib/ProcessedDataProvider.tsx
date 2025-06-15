@@ -31,54 +31,54 @@ export function useEvents() {
   return useContext(ProcessedDataContext).events;
 }
 
-export function useEvent(id: string) {
+export function useEvent(id?: string) {
   const events = useEvents();
-  return events && events[id];
+  return (events && id && events[id]) || null;
 }
 
 export function useEventTimes() {
   return useContext(ProcessedDataContext).eventTimes;
 }
 
-export function useEventTime(id: string) {
+export function useEventTime(id?: string) {
   const eventTimes = useEventTimes();
-  return eventTimes && eventTimes[id];
+  return (eventTimes && id && eventTimes[id]) || null;
 }
 
 export function useArts() {
   return useContext(ProcessedDataContext).arts;
 }
 
-export function useArt(id: string) {
+export function useArt(id?: string) {
   const arts = useArts();
-  return arts && arts[id];
+  return (arts && id && arts[id]) || null;
 }
 
 export function useCamps() {
   return useContext(ProcessedDataContext).camps;
 }
 
-export function useCamp(id: string) {
+export function useCamp(id?: string) {
   const camps = useCamps();
-  return camps && camps[id];
+  return (camps && id && camps[id]) || null;
 }
 
 export function useRadios() {
   return useContext(ProcessedDataContext).radios;
 }
 
-export function useRadio(id: string) {
+export function useRadio(id?: string) {
   const radios = useRadios();
-  return radios && radios[id];
+  return (radios && id && radios[id]) || null;
 }
 
 export function useVehicles() {
   return useContext(ProcessedDataContext).vehicles;
 }
 
-export function useVehicle(id: string) {
+export function useVehicle(id?: string) {
   const vehicles = useVehicles();
-  return vehicles && vehicles[id];
+  return (vehicles && id && vehicles[id]) || null;
 }
 
 export function useLocations() {
@@ -87,7 +87,7 @@ export function useLocations() {
 
 export function useLocation(id?: string) {
   const locations = useLocations();
-  return locations && id && locations[id];
+  return (locations && id && locations[id]) || null;
 }
 
 dayjs.extend(utc);

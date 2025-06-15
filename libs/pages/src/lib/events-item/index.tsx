@@ -14,8 +14,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import NextLink from 'next/link';
 import { ElementType, useMemo } from 'react';
+import { Link as RouterLink, useParams } from 'react-router';
 
 function formatEventTime(eventTime: ProcessedEventTime) {
   return eventTime.all_day
@@ -25,7 +25,8 @@ function formatEventTime(eventTime: ProcessedEventTime) {
       )}`;
 }
 
-export function EventsItemPage({ id }: { id: string }) {
+export function EventsItemPage() {
+  const { id } = useParams();
   const eventTime = useEventTime(id);
   const camps = useCamps();
 
@@ -62,7 +63,7 @@ export function EventsItemPage({ id }: { id: string }) {
         {otherTimes.map((otherTime) => (
           <ListItem key={otherTime.event_time_id}>
             <ListItemButton
-              component={NextLink as ElementType}
+              component={RouterLink as ElementType}
               to={`/events/${otherTime.event_time_id}`}
             >
               <ListItemIcon>
@@ -82,7 +83,7 @@ export function EventsItemPage({ id }: { id: string }) {
     }
     if (camp) {
       return (
-        <Link component={NextLink} href={`/camps/${camp.id}`}>
+        <Link component={RouterLink} to={`/camps/${camp.id}`}>
           {eventTime.event.where_name}
         </Link>
       );

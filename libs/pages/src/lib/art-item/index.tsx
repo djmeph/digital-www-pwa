@@ -3,8 +3,10 @@ import { Header } from '@digital-www-pwa/components';
 import { useArt, useLocation } from '@digital-www-pwa/providers';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
+import { useParams } from 'react-router';
 
-export function ArtItemPage({ id }: { id: string }) {
+export function ArtItemPage() {
+  const { id } = useParams();
   const art = useArt(id);
   const location = useLocation(art?.location);
 

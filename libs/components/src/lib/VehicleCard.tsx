@@ -5,12 +5,12 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
+import { Link } from 'react-router';
 
 export function VehicleCard({ vehicle }: { vehicle: VehicleItem }) {
   return (
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
-      <ButtonBase component={Link} href={`/vehicles/${vehicle.id}`}>
+      <ButtonBase component={Link} to={`/vehicles/${vehicle.id}`}>
         <Paper sx={{ padding: 2 }}>
           <Typography variant="h5">{vehicle.title}</Typography>
           <Typography variant="subtitle1">
