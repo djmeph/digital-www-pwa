@@ -27,7 +27,7 @@ export function ShiftView({ id }: { id: string }) {
             component={RouterLink}
             underline="hover"
             color="inherit"
-            href={`/volunteer-shifts`}
+            to={`/volunteer-shifts`}
           >
             Upcoming Shifts
           </Link>
