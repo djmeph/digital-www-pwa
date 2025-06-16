@@ -2,7 +2,7 @@
 import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { MemoryRouter, BrowserRouter, Routes, Route } from 'react-router';
 
 import { AppShell, HeadComponent } from '@digital-www-pwa/components';
 import {
@@ -47,19 +47,15 @@ export default function RootLayout() {
     }
   }, []);
 
-  if (typeof document === 'undefined')
-    return (
-      <html>
-        <body />
-      </html>
-    );
+  const RouterComponent =
+    typeof document === 'undefined' ? MemoryRouter : BrowserRouter;
 
   return (
     <ThemeProvider theme={theme}>
       <html lang="en">
         <HeadComponent />
         <body style={{ fontFamily: theme.typography.fontFamily }}>
-          <BrowserRouter>
+          <RouterComponent>
             <CssBaseline />
             <AuthProvider>
               <FeedProvider>
@@ -125,7 +121,7 @@ export default function RootLayout() {
                 </StorageProvider>
               </FeedProvider>
             </AuthProvider>
-          </BrowserRouter>
+          </RouterComponent>
         </body>
       </html>
     </ThemeProvider>
