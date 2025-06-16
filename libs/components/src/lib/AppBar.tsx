@@ -43,7 +43,7 @@ export function AppBar() {
         aria-label="menu"
         onClick={() => setOpen(!open)}
       >
-        <MenuIcon />
+        <MenuIcon sx={{ width: '1.5em', height: '1.5em' }} />
       </IconButton>
     );
   }
@@ -59,8 +59,9 @@ export function AppBar() {
         color="inherit"
         aria-label="menu"
         onClick={() => navigate(-1)}
+        sx={{ marginRight: (theme) => theme.spacing(2) }}
       >
-        <ArrowBackIcon />
+        <ArrowBackIcon sx={{ width: '1.5em', height: '1.5em' }} />
       </IconButton>
     );
   }

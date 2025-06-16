@@ -12,12 +12,14 @@ export function SearchButton() {
     <>
       <IconButton
         ref={anchorRef}
+        size="large"
         edge="end"
         color="inherit"
         aria-label="clear"
         onClick={() => setSearchOpen(!searchOpen)}
+        sx={{ marginLeft: (theme) => theme.spacing(2) }}
       >
-        <SearchIcon />
+        <SearchIcon sx={{ width: '1.5em', height: '1.5em' }} />
       </IconButton>
       <SearchWindow
         open={searchOpen}
