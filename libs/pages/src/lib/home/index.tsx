@@ -27,6 +27,10 @@ const EXTERNAL_LINKS = [
     url: 'https://lakesoffire.org/departments/gate/',
   },
   {
+    title: 'Exodus',
+    url: 'https://lakesoffire.org/the-event/survival-guide/#:~:text=EXODUS,-All',
+  },
+  {
     title: 'Survival Guide',
     url: 'http://lakesoffire.org/the-event/survival-guide',
   },
