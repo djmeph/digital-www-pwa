@@ -14,7 +14,18 @@ import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 
+const DIRECTIONS_URL =
+  'https://maps.google.com/maps/dir//Lucky+Lake+Campground+%26+Outdoor+Center+MAIL+ADDRESS:+3977+W.+Wilke+Rd+GPS:+3280+Winston+Rd.+Rothbury+49432+GPS:+3474+W.+Winston+Rd,+Rothbury+49452+Montague,+MI+49437/';
+
 const EXTERNAL_LINKS = [
+  {
+    title: 'Directions',
+    url: DIRECTIONS_URL,
+  },
+  {
+    title: 'Gate Hours',
+    url: 'https://lakesoffire.org/departments/gate/',
+  },
   {
     title: 'Survival Guide',
     url: 'http://lakesoffire.org/the-event/survival-guide',
@@ -58,7 +69,9 @@ export function HomePage() {
             >
               Doorways in Time
             </Box>
-            <Box sx={{ fontSize: '1.8rem' }}>Lucky Lake Campground</Box>
+            <MuiLink sx={{ fontSize: '1.8rem' }} href={DIRECTIONS_URL}>
+              Lucky Lake Campground
+            </MuiLink>
           </Stack>
         </Typography>
       </Grid>
