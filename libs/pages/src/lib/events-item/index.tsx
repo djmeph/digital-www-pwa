@@ -88,7 +88,7 @@ export function EventsItemPage() {
         </Link>
       );
     }
-    return eventTime.event.where_name;
+    return eventTime.event.where_name || eventTime.event.who_name;
   }
 
   return (

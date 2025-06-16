@@ -22,6 +22,8 @@ export type EventItem = {
   site_id: null;
   where_type: string;
   where_name: string;
+  who_type: string;
+  who_name: string;
   event_recurrence: EventRecurrance;
   heart_count: number;
   alcohol: boolean;
