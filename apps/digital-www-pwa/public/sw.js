@@ -36,7 +36,12 @@ const cacheClone = async (e) => {
     e.respondWith(
       cacheClone(e)
         .catch(() => caches.match(e.request))
-        .then((res) => res)
+        .then((res) => {
+          if (!res && e.request.destination === 'document') {
+            return caches.match('/');
+          }
+          return res;
+        })
     );
   });
 })();
