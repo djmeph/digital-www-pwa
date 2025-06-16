@@ -45,7 +45,14 @@ export function BackToTopButton() {
     <Fade in={scrolledDown || lastScroll !== null}>
       <Fab
         size={fabSize}
-        sx={{ position: 'fixed', bottom: fabSpacing, right: fabSpacing }}
+        sx={{
+          position: 'fixed',
+          bottom: fabSpacing,
+          right: fabSpacing,
+          '@media print': {
+            display: 'none',
+          },
+        }}
         onClick={handleClick}
       >
         {lastScroll ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}

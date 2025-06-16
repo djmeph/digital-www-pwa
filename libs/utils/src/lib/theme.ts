@@ -237,6 +237,7 @@ export const theme = responsiveFontSizes(
               opacity: 1,
               boxShadow: 'none',
               breakInside: 'avoid',
+              border: 'none',
             },
           },
         },

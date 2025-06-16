@@ -25,6 +25,7 @@ export function EventTags({ event }: { event?: ProcessedEventItem }) {
               sx={{
                 '@media print': {
                   background: 'none',
+                  color: 'initial',
                 },
               }}
             />
