@@ -49,6 +49,7 @@ export default function RootLayout() {
 
   const RouterComponent =
     typeof document === 'undefined' ? MemoryRouter : BrowserRouter;
+  const RoutesComponent = typeof document === 'undefined' ? () => null : Routes;
 
   return (
     <ThemeProvider theme={theme}>
@@ -65,7 +66,7 @@ export default function RootLayout() {
                       <SearchIndexProvider>
                         <GeolocationProvider>
                           <AppShell>
-                            <Routes>
+                            <RoutesComponent>
                               <Route path="/events" element={<EventsPage />} />
                               <Route
                                 path="/events/:id"
@@ -112,7 +113,7 @@ export default function RootLayout() {
                                 element={<HappeningNowPage />}
                               />
                               <Route index element={<HomePage />} />
-                            </Routes>
+                            </RoutesComponent>
                           </AppShell>
                         </GeolocationProvider>
                       </SearchIndexProvider>
