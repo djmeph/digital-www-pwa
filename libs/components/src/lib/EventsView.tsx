@@ -175,6 +175,23 @@ export function EventsView({
   }, [eventTimesForPage]);
 
   useEffect(() => {
+    if (!availableTags) return;
+
+    setFilters((oldFilters) => {
+      let newFilters = oldFilters;
+      TAGS.forEach((tag) => {
+        if (oldFilters[tag.slug] && !availableTags.includes(tag)) {
+          if (newFilters === oldFilters) {
+            newFilters = { ...oldFilters };
+          }
+          delete newFilters[tag.slug];
+        }
+      });
+      return newFilters;
+    });
+  }, [availableTags]);
+
+  useEffect(() => {
     const weeklySelectionElement =
       document.getElementById('select-day-tab-bar');
     if (!showAllDayEvents && weeklySelectionElement) {

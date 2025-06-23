@@ -13,9 +13,8 @@ import CardContent from '@mui/material/CardContent';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material/styles';
 import lunr from 'lunr';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 export function SearchWindow({
   open,
@@ -38,47 +37,52 @@ export function SearchWindow({
   const campsIndex = useCampsIndex();
   const radioIndex = useRadioIndex();
   const vehiclesIndex = useVehiclesIndex();
-  const theme = useTheme();
+
+  const adjustedSearchText = useMemo(() => {
+    const terms = searchText.split(/\s+/);
+
+    return terms.map((term) => term && `${term}~1`).join(' ');
+  }, [searchText]);
 
   useEffect(() => {
-    if (eventsIndex && searchText !== '') {
-      setEventResults(eventsIndex.search(searchText));
+    if (eventsIndex && adjustedSearchText !== '') {
+      setEventResults(eventsIndex.search(adjustedSearchText));
     } else {
       setEventResults([]);
     }
-  }, [eventsIndex, searchText]);
+  }, [eventsIndex, adjustedSearchText]);
 
   useEffect(() => {
-    if (artIndex && searchText !== '') {
-      setArtResults(artIndex.search(searchText));
+    if (artIndex && adjustedSearchText !== '') {
+      setArtResults(artIndex.search(adjustedSearchText));
     } else {
       setArtResults([]);
     }
-  }, [artIndex, searchText]);
+  }, [artIndex, adjustedSearchText]);
 
   useEffect(() => {
-    if (campsIndex && searchText !== '') {
-      setCampResults(campsIndex.search(searchText));
+    if (campsIndex && adjustedSearchText !== '') {
+      setCampResults(campsIndex.search(adjustedSearchText));
     } else {
       setCampResults([]);
     }
-  }, [campsIndex, searchText]);
+  }, [campsIndex, adjustedSearchText]);
 
   useEffect(() => {
-    if (radioIndex && searchText !== '') {
-      setRadioResults(radioIndex.search(searchText));
+    if (radioIndex && adjustedSearchText !== '') {
+      setRadioResults(radioIndex.search(adjustedSearchText));
     } else {
       setRadioResults([]);
     }
-  }, [radioIndex, searchText]);
+  }, [radioIndex, adjustedSearchText]);
 
   useEffect(() => {
-    if (vehiclesIndex && searchText !== '') {
-      setVehicleResults(vehiclesIndex.search(searchText));
+    if (vehiclesIndex && adjustedSearchText !== '') {
+      setVehicleResults(vehiclesIndex.search(adjustedSearchText));
     } else {
       setVehicleResults([]);
     }
-  }, [vehiclesIndex, searchText]);
+  }, [vehiclesIndex, adjustedSearchText]);
 
   useEffect(() => {
     if (open && inputRef.current) {

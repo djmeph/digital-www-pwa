@@ -104,6 +104,7 @@ export function SearchIndexProvider({
       camps: lunr(function () {
         this.ref('id');
         this.field('name');
+        this.field('description');
 
         this.metadataWhitelist = ['position'];
 
