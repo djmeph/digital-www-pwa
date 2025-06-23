@@ -123,7 +123,11 @@ export function SearchWindow({
         {({ TransitionProps, placement }) => (
           <Box>
             <Grow {...TransitionProps} style={{ transformOrigin: '0 0 0' }}>
-              <Card>
+              <Card
+                sx={{
+                  maxWidth: '100svw',
+                }}
+              >
                 <CardContent>
                   <Stack>
                     <SearchBar
