@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-import { ART, RADIO, VEHICLES } from '@digital-www-pwa/utils';
+import { ART, RADIO, VEHICLES } from './www-data';
 
 async function fetchData(dataType: string) {
   const response = await fetch(

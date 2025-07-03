@@ -72,11 +72,11 @@ export const NAVIGATION_LINKS = [
     path: '/camps',
     icon: FestivalIcon,
   },
-  {
-    title: 'Radio SGC',
-    path: '/radio',
-    icon: RadioIcon,
-  },
+  // {
+  //   title: 'Radio SGC',
+  //   path: '/radio',
+  //   icon: RadioIcon,
+  // },
   {
     title: 'Art Cars',
     path: '/vehicles',
@@ -158,7 +158,3 @@ export const MAP_LOCATION_ANCHORS = [
 export const MAP_ACCURACY_SIZE_FACTOR = 0.3; // %/m
 
 export const POSITION_STALE_TIME = 90; // seconds
-
-export const ART = [];
-export const RADIO = [];
-export const VEHICLES = [];

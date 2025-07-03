@@ -8,32 +8,12 @@ import { useParams } from 'react-router';
 export function ArtItemPage() {
   const { id } = useParams();
   const art = useArt(id);
-  const location = useLocation(art?.location);
-
-  function renderFunding() {
-    if (!art) {
-      return null;
-    }
-
-    if (art.type === 'honoraria') {
-      return `Funded ${art.funded} - Honoraria`;
-    }
-
-    if (art.type === 'grant') {
-      return `Funded ${art.funded} - Grant`;
-    }
-
-    return null;
-  }
 
   return (
     <>
       <Header>{art === null ? <Skeleton /> : art.title}</Header>
       <Typography variant="h5">
-        {art === null ? <Skeleton /> : `By ${art.artist}`}
-      </Typography>
-      <Typography variant="h6">
-        {art === null ? <Skeleton /> : location ? `Site ${location.name}` : ''}
+        {art === null ? <Skeleton /> : art.artist}
       </Typography>
       <Typography variant="body1">
         {art === null
@@ -41,9 +21,6 @@ export function ArtItemPage() {
               .fill(null)
               .map((_, index) => <Skeleton key={index} />)
           : art.description}
-      </Typography>
-      <Typography variant="body2" padding={1}>
-        {renderFunding()}
       </Typography>
     </>
   );
