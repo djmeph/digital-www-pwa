@@ -71,11 +71,11 @@ export const NAVIGATION_LINKS = [
     path: '/camps',
     icon: FestivalIcon,
   },
-  // {
-  //   title: 'Radio SGC',
-  //   path: '/radio',
-  //   icon: RadioIcon,
-  // },
+  {
+    title: 'Radio SGC',
+    path: '/radio',
+    icon: RadioIcon,
+  },
   {
     title: 'Art Cars',
     path: '/vehicles',

@@ -381,13 +381,461 @@ export const ART = [
       'A spinning string and some blinky lights. String Theory 2 is an art installation that exhibits all 10+ principles simultaneously. Burners love a good challenge and the Principles provide plenty. Principles reveal a continuous stream of solutions.',
   },
 ];
-
-export const RADIO = [];
 export const VEHICLES = [
   {
     id: 1,
     title: 'Shroom shroom',
     description:
       "Shroom shroom loves you all so mush! You'll find this fungi slowly making its way around the lake offering gifts and using mycoremediation to clean up that MOOP",
+  },
+];
+export const RADIO = [
+  {
+    id: 1,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 12:00',
+    radio_dj_name: 'Radio Chaos!',
+    radio_description:
+      'Kicking off RadioSGC with Radio Chaos, where no sounds are out of bounds! All styles and genre of music will be represented in order to welcome campers to the lake.',
+  },
+  {
+    id: 2,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 15:00',
+    radio_dj_name: "Dr Kramer's Delights",
+    radio_description: 'The Doctor is in with music for your mind.',
+  },
+  {
+    id: 3,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 17:00',
+    radio_dj_name: 'Sounds from our Utopian Future with DJ Snax',
+    radio_description:
+      "Transporting you to an inspired vision of society's future with psychedelic jazz, ambient and techno tunez.",
+  },
+  {
+    id: 4,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 18:00',
+    radio_dj_name: "Ranger Hoopy's Funky Happy Hour",
+    radio_description:
+      'Funky Grooves from the Jazzy Past to soothe your over-EDMed nervous system.',
+  },
+  {
+    id: 5,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 19:00',
+    radio_dj_name: "Dr. Moonshine's Variety Hour",
+    radio_description:
+      "Music, conversation, and interviews with passing time travelers of the multiverse. How are you navigating existence? We're vibin to some psychadelic tunes while exploring the vastness of the human experience.",
+  },
+  {
+    id: 6,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 20:00',
+    radio_dj_name: 'Delighted to Be Here',
+    radio_description:
+      "The world's happient person welcomes you to the lake and inspires you.",
+  },
+  {
+    id: 7,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 21:00',
+    radio_dj_name: 'Bangers & Mashups',
+    radio_description:
+      'Will your earballs be pleased? Yes.  Will your dance tummy be full. Yes.  Who is your host? Yes!',
+  },
+  {
+    id: 8,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 22:00',
+    radio_dj_name: 'Through the Ages of House with Tabu',
+    radio_description:
+      'It will be all house songs that have influenced me over the years.',
+  },
+  {
+    id: 9,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 23:00',
+    radio_dj_name: 'Broken Brain Radio Mellow Madness',
+    radio_description:
+      'Part 1 of this set will open your mind with a chill drum and bass session.',
+  },
+  {
+    id: 10,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-16 23:00',
+    radio_dj_name: 'Liquid Lounge',
+    radio_description:
+      'Part 2 of this segment with Spectre melts your brain, in a good way.',
+  },
+  {
+    id: 11,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-17 1:00',
+    radio_dj_name: "Classical Psychedelia with DJ Won't Die",
+    radio_description:
+      'Think classical music is boring? Think again. Tune in for a journey into the psychedelic dimensions of carefully chosen classical selections before coming out the other side.',
+  },
+  {
+    id: 12,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-17 2:00',
+    radio_dj_name: 'DARKWAVE AFTER DARK w/ Captain Zesty',
+    radio_description:
+      'This sonic journey dives deep into the shadowy realms of darkwave, goth rock, and post-punk, showcasing the freshest releases from both rising and established artists.',
+  },
+  {
+    id: 13,
+    radio_day: 'Wednesday',
+    radio_time: '2025-07-17 6:00',
+    radio_dj_name: 'Time After Time with Jam',
+    radio_description:
+      'Get ready for some classic, maybe earwormy, morning music to greet the day!',
+  },
+  {
+    id: 14,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 9:00',
+    radio_dj_name: 'The Rise of the SoulQuarians w/ DJ DarkTwain',
+    radio_description:
+      'A chill hour vibe show playing SoulQuarian Hip-Hop artists and interviewing passersby on Soul Hip Hop music and it can be played censored.',
+  },
+  {
+    id: 15,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 10:00',
+    radio_dj_name: "It's About Time. with Very Kateri",
+    radio_description: 'Tunes on time from many times.',
+  },
+  {
+    id: 16,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 12:00',
+    radio_dj_name: 'Kilovolt Takes You Back',
+    radio_description:
+      "Time travel to the back seat of Mom's car in the mid 1970's as she tunes in to the easy listening radio station.",
+  },
+  {
+    id: 17,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 13:00',
+    radio_dj_name: 'The Raptor Radio Hour',
+    radio_description:
+      'Burning is a magic temporal space where all kinds of chaos, chicanery, and chance can occur. A few guests tell their finest burn stories. Hard hitting questions like: Why do you burn? What IYKYK story could have only happened at a burn - whether or not people believe you? Did you meet Daft Punk at the trash fence? What do these experiences mean in our default lives? Tune in to find out - or discover your next side quest.',
+  },
+  {
+    id: 18,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 14:00',
+    radio_dj_name: 'Queens Kalediscope',
+    radio_description:
+      'Enjoy popular songs from each decade of the past 100 years',
+  },
+  {
+    id: 19,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 16:00',
+    radio_dj_name: 'Punk Rock Girls on Fire',
+    radio_description:
+      'If you like a little mosh-pit action, come rock your face off with us as we salute the bands who have made RiotFest suck for over two decades.',
+  },
+  {
+    id: 20,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 18:00',
+    radio_dj_name: 'Kelly Bells & Familiar Face Off',
+    radio_description:
+      "It's a Gen X vs. Millennial musical face off, surpring each other with secret playlists based on a series of categories agreed upon in advance. Whose selections will cheer the most earballs??",
+  },
+  {
+    id: 21,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 20:00',
+    radio_dj_name: 'The Cicadoor to 2024 w/ Whirlwind',
+    radio_description:
+      'Travel back in time to the magical summer of 2024’s cicada double emergence!  Cicada themed music will delight your ears, and for those who stop by the radio station, you may be rewarded with a gift from the cicada fairy.',
+  },
+  {
+    id: 22,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 21:00',
+    radio_dj_name: 'BenmeR & Whirlwind\'s "Under the Covers" Game Show',
+    radio_description:
+      'This power duo returns to bring their default world radio game show to your earballs in a live performance/competition that will make your doors rattle!',
+  },
+  {
+    id: 23,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-17 23:00',
+    radio_dj_name: 'BenmeR & Whirlwind & Friends',
+    radio_description:
+      'A fun dance party after a riveting game show competition!',
+  },
+  {
+    id: 24,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-18 00:00',
+    radio_dj_name: "Dragon Daddy's Delightfully Delirious Dancey Dance",
+    radio_description:
+      'I select more than 150 songs each year to choose from during my Radio SGC set, which is mostly on the fly based on watching all the lovely hippies dancing by. The goal is make your booty wiggle & put a smile on your face.',
+  },
+  {
+    id: 25,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-18 2:00',
+    radio_dj_name: 'DARKWAVE AFTER DARK w/ Captain Zesty',
+    radio_description:
+      'Captain Zesty weaves haunting melodies, pulsating rhythms, and introspective lyrics into an provocative experience for night owls and nocturnal music aficionados.',
+  },
+  {
+    id: 26,
+    radio_day: 'Thursday',
+    radio_time: '2025-07-18 5:00',
+    radio_dj_name: 'Pirates Plethora',
+    radio_description:
+      'Random stream of consciousness commentary as I play whatever I feel like. No Playlist. DJ Anarchy. Come join my panel of judges as we play the iconic game show "Up all night or Freshly risen?"',
+  },
+  {
+    id: 27,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 8:00',
+    radio_dj_name: 'Do you choose door number 1?',
+    radio_description:
+      'Tune in or stop by to see what the mystery surprise is!',
+  },
+  {
+    id: 28,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 10:00',
+    radio_dj_name: 'Pawsitive Hits',
+    radio_description:
+      'While other Hit Music purveyors try to bring you down, we play only the best Hitz with upbeat music and positive lyrics, encouraging and positive messages.',
+  },
+  {
+    id: 29,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 12:00',
+    radio_dj_name: 'Kilovolt Takes You Back',
+    radio_description:
+      "Time travel to the back seat of Mom's car in the mid 1970's as she tunes in to the easy listening radio station.",
+  },
+  {
+    id: 30,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 13:00',
+    radio_dj_name: "Downtown Dave's Appetizers",
+    radio_description:
+      'Brazilian Vibes hosted by yours truly. Bring on the audience interaction cuz he wants to chat with you!',
+  },
+  {
+    id: 31,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 14:00',
+    radio_dj_name: 'Broken Brain Radio',
+    radio_description: 'Music collection falling out of a broken mind.',
+  },
+  {
+    id: 32,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 15:00',
+    radio_dj_name: "Sassy's Roller Disco Show",
+    radio_description:
+      "It's 70s roller disco.  If you can't enjoy this vibe on a lazy summer afternoon with 2300 of your closest friends,  you're probably dead.",
+  },
+  {
+    id: 33,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 16:00',
+    radio_dj_name: 'Put On Your Fez and Smoking Jacket',
+    radio_description:
+      'Slip into something comfortable and get down to the space age bachelor sound! Jazz vocals, samba, Italian film soundtracks and more! Buttery lounge to soothe and relax.',
+  },
+  {
+    id: 34,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 17:00',
+    radio_dj_name: "Dudebacca's dustbin",
+    radio_description: 'Time time time, what has become of me?',
+  },
+  {
+    id: 35,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 19:00',
+    radio_dj_name: 'Do you choose door number 2?',
+    radio_description:
+      'Another surprise adventure awaits beyond the threshhold.',
+  },
+  {
+    id: 36,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 20:00',
+    radio_dj_name: 'Let There Be House with Archangel',
+    radio_description: 'A trip through time.',
+  },
+  {
+    id: 37,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 22:00',
+    radio_dj_name: 'Daytime Dan Live Set',
+    radio_description:
+      'An hour dj set of original music, mostly bass and dubstep',
+  },
+  {
+    id: 38,
+    radio_day: 'Friday',
+    radio_time: '2025-07-18 22:00',
+    radio_dj_name: "MoraleBuddy's From Nowhere to Nowhere",
+    radio_description:
+      'Join me on a drive from nowhere to nowhere. Let’s go to the in-between places, the places where there is only the road, your thoughts, and my thoughts. Which are also your thoughts, of course.',
+  },
+  {
+    id: 39,
+    radio_day: 'Friday',
+    radio_time: '2025-07-19 00:00',
+    radio_dj_name: 'DJ Angel, The Reverie Hour',
+    radio_description:
+      'I picked my favorite house, drum and bass, and a mixture of other genres to form one ultimate playlist. Whether you are partying, relaxing, or do whatever The Reverie Hour is here to take your mind and body on a little journey.',
+  },
+  {
+    id: 40,
+    radio_day: 'Friday',
+    radio_time: '2025-07-19 2:00',
+    radio_dj_name: 'DARKWAVE AFTER DARK w/ Captain Zesty',
+    radio_description:
+      'Expect melancholic tracks, artist spotlights, and moody mystique, perfect for those who thrive in the after-hours gloom.',
+  },
+  {
+    id: 41,
+    radio_day: 'Friday',
+    radio_time: '2025-07-19 5:00',
+    radio_dj_name: 'First Music, Early Morning',
+    radio_description:
+      'Join Jam for an early morning playlist that features examples of popular firsts of different musical genres',
+  },
+  {
+    id: 42,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 8:00',
+    radio_dj_name: "MsPixy's Broadway for Burners",
+    radio_description:
+      'Pixy provides a power hour of Broadway’s most bizarre, subversive, and delightful tunes, plus a classic or two just for balance.',
+  },
+  {
+    id: 43,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 10:00',
+    radio_dj_name: "BearCat's Kids At Heart",
+    radio_description:
+      "A collection of earworms and theme songs from children's shows throughout time.",
+  },
+  {
+    id: 44,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 11:00',
+    radio_dj_name: '~Spread Your Music to the World~',
+    radio_description:
+      'Play some tunes and share some shamanic breathing techniques to help us on our Earth Journey to Calm the Nervous System and Help us Regulate from the fight or flight response.',
+  },
+  {
+    id: 45,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 12:00',
+    radio_dj_name: 'San Escobar Presents San Escobar',
+    radio_description: 'Chill Dj Set… All hitters, no shitters!',
+  },
+  {
+    id: 46,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 14:00',
+    radio_dj_name: "Sassy's Summer Shandy",
+    radio_description: 'Hot summer favorites for and afternoon in the sun.',
+  },
+  {
+    id: 47,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 15:00',
+    radio_dj_name: "Mondo Trasho's Divine Hullabaloo",
+    radio_description:
+      'DJ Rebar & Brock Lobster the Bong Boy presenta beach punk orgy for your ears inspired by the great John Waters. Stop by our pop up Redneck Riviera to shake that sand out of yer junk, visit our Be Divine Shrine and get some Ask First zines & goodies.',
+  },
+  {
+    id: 48,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 16:00',
+    radio_dj_name: 'Portal to Science with Plutomore',
+    radio_description:
+      'Delving into the science of doors, thresholds, and the spaces in between. From hinges & security systems to liminal spaces & boundary-breaking discoveries, we’ll crack open surprising facts that might just change how you see the everyday. To give your brain a breather, we’re mixing in science-themed songs between each segment—because no mind should be blown without a beat.',
+  },
+  {
+    id: 49,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 17:00',
+    radio_dj_name: "Kilobyte's Fab Flavored Breaks FM",
+    radio_description:
+      'I\'d plan to play some Funky, chill, yet fun and upbeat breakbeats and classics to lift spirits and psych people up for the big burn and use my "Radio Voice" to get some feel good vibes going.',
+  },
+  {
+    id: 50,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 18:00',
+    radio_dj_name: "Trailblazer's Pre-Burn Twist-Up",
+    radio_description:
+      'Before the burn, comes the Twist-Up.  A constantly evolving playlist of (what I believe to be) exceptional entries from my music library. Crank your radio as everybody in camp gets ready to walk down to the peninsula.',
+  },
+  {
+    id: 51,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 20:00',
+    radio_dj_name: 'Red Carpet Review',
+    radio_description:
+      'The RadioSGC crew will be highlighting all of your fancy outfits as you walk by the radio station!',
+  },
+  {
+    id: 52,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 21:00',
+    radio_dj_name: 'Conclave and Effigy Burn (Simulcast)',
+    radio_description:
+      "BenmeR transmits a live broadcast of all the sounds from this year's Conclave performance, fireworks and Effigy Burn! Tune in from anywhere around the lake and be a part of the experience.",
+  },
+  {
+    id: 53,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-19 23:00',
+    radio_dj_name: "Spectre's Banger Bar",
+    radio_description: 'Turn on your afterburners, lets celebrate!',
+  },
+  {
+    id: 54,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-20 0:00',
+    radio_dj_name: 'Faery Mama from the black hole',
+    radio_description:
+      'We cant find her at the lake, but her SOS transmission is coming through.',
+  },
+  {
+    id: 55,
+    radio_day: 'Saturday',
+    radio_time: '2025-07-20 2:00',
+    radio_dj_name: 'Bedtime Beats',
+    radio_description:
+      'Chill sounds to close the night out right. (FM & Livestream Only)',
+  },
+  {
+    id: 56,
+    radio_day: 'Sunday',
+    radio_time: '2025-07-20 8:00',
+    radio_dj_name: 'Temple Burn Quiet Time',
+    radio_description:
+      'Chill sounds that to calm your energy and allow you to reflect.',
+  },
+  {
+    id: 57,
+    radio_day: 'Sunday',
+    radio_time: '2025-07-20 9:00',
+    radio_dj_name: 'RadioSGC Sends You Packing',
+    radio_description:
+      'Good Morning, I hope that you had a good burn. Here are 3 hours of music from the RadioSGC crew to help you get your sh!t together and leave the magical garden.',
   },
 ];
