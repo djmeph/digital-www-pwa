@@ -154,9 +154,10 @@ export const ART = [
   {
     id: 20,
     type: 'grant',
-    title: 'Mondo Trasho Presents: Be Divine',
-    artist: 'by Rebecca Rakstad "Rebar"',
-    description: 'Mondo Trasho Present; Be Divine',
+    title: 'Mondo Trasho Be Divine',
+    artist: 'by Rebar A. Rakstad',
+    description:
+      'Mobile shrine to Divine spreading the good word of Ask First consent around the lake.',
   },
   {
     id: 21,
