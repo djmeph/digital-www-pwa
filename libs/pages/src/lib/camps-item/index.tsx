@@ -21,7 +21,7 @@ export function CampsItemPage() {
   return (
     <>
       <Header>{!camp ? <Skeleton /> : camp.name}</Header>
-      <Typography variant="h5">
+      <Typography variant="h5" color="highlight">
         {!camp ? <Skeleton /> : camp.location_name}
       </Typography>
       <Typography

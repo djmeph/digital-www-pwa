@@ -41,7 +41,9 @@ export function SearchWindow({
   const adjustedSearchText = useMemo(() => {
     const terms = searchText.split(/\s+/);
 
-    return terms.map((term) => term && `${term}~1`).join(' ');
+    return terms
+      .map((term) => (term && term.length > 3 ? `${term}~1` : term))
+      .join(' ');
   }, [searchText]);
 
   useEffect(() => {

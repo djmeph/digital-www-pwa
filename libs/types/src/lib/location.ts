@@ -1,4 +1,6 @@
 export interface LocationItem {
+  id: number;
   name: string;
-  description: string;
+  precision: 'broad' | 'specific';
+  camp_site_identifier: string;
 }

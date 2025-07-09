@@ -14,7 +14,7 @@ const INITIAL_DATA = {
   camps: [],
   radios: [],
   vehicles: [],
-  locations: {},
+  locations: [],
 };
 
 export const FeedContext = createContext<Feed>(INITIAL_DATA);

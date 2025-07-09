@@ -34,6 +34,25 @@ export function CampSearchResult({
     [result]
   );
 
+  const locationHighlights = useMemo(
+    () =>
+      Object.values(result.matchData.metadata).reduce(
+        (highlights: Highlight[], metadata) => {
+          if (metadata.location_name) {
+            metadata.location_name.position.forEach((pos: LunrPosition) => {
+              highlights.push({
+                start: pos[0],
+                end: pos[0] + pos[1],
+              });
+            });
+          }
+          return highlights;
+        },
+        []
+      ),
+    [result]
+  );
+
   return (
     <>
       <ListItemIcon>
@@ -41,7 +60,13 @@ export function CampSearchResult({
       </ListItemIcon>
       <ListItemText
         primary={
-          <HighlightedText text={camp.name} highlights={nameHighlights} />
+          <>
+            <HighlightedText text={camp.name} highlights={nameHighlights} /> -{' '}
+            <HighlightedText
+              text={camp.location_name}
+              highlights={locationHighlights}
+            />
+          </>
         }
       />
     </>

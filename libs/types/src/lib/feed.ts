@@ -11,5 +11,5 @@ export interface Feed {
   camps: CampItem[];
   radios: RadioItem[];
   vehicles: VehicleItem[];
-  locations: Record<string, LocationItem>;
+  locations: LocationItem[];
 }

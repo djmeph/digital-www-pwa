@@ -105,6 +105,7 @@ export function SearchIndexProvider({
         this.ref('id');
         this.field('name');
         this.field('description');
+        this.field('location_name');
 
         this.metadataWhitelist = ['position'];
 

@@ -1,3 +1,5 @@
+import type { LocationItem } from './location';
+
 export interface CampItem {
   id: number;
   name: string;

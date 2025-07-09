@@ -1,6 +1,6 @@
 'use client';
 import { Header } from '@digital-www-pwa/components';
-import { useArt, useLocation } from '@digital-www-pwa/providers';
+import { useArt } from '@digital-www-pwa/providers';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router';

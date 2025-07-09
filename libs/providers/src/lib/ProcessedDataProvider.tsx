@@ -1,6 +1,7 @@
 'use client';
 import type {
   ParsedEventTime,
+  CampItem,
   ProcessedDataContextProps,
   ProcessedEventItem,
 } from '@digital-www-pwa/types';
@@ -21,7 +22,6 @@ const INITIAL_DATA: ProcessedDataContextProps = {
   camps: null,
   radios: null,
   vehicles: null,
-  locations: null,
 };
 
 export const ProcessedDataContext =
@@ -81,15 +81,6 @@ export function useVehicle(id?: string) {
   return (vehicles && id && vehicles[id]) || null;
 }
 
-export function useLocations() {
-  return useContext(ProcessedDataContext).locations;
-}
-
-export function useLocation(id?: string) {
-  const locations = useLocations();
-  return (locations && id && locations[id]) || null;
-}
-
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(localizedFormat);
@@ -111,6 +102,10 @@ export function ProcessedDataProvider({
     if (events.length === 0) {
       return;
     }
+
+    const locationsMap = Object.fromEntries(
+      locations.map((location) => [location.id, location])
+    );
 
     const parsedEvents: ProcessedEventItem[] = events
       .filter((event) => isOver18 || !event.red_light)
@@ -136,6 +131,18 @@ export function ProcessedDataProvider({
       [] as ParsedEventTime[]
     );
 
+    const processedCamps: CampItem[] = camps
+      .filter((camp) => camp.description)
+      .map((camp) => {
+        const location = locationsMap[camp.location_id];
+        return {
+          ...camp,
+          location_name: location?.camp_site_identifier
+            ? `Site ${location.camp_site_identifier}`
+            : location?.name,
+        };
+      });
+
     // Generate an object that maps from ID to object for quick lookups later
     const eventMap = Object.fromEntries(
       parsedEvents.map((event) => [event.event_id, event])
@@ -149,7 +156,7 @@ export function ProcessedDataProvider({
       events: eventMap,
       eventTimes: eventTimesMap,
       arts: Object.fromEntries(art.map((art) => [art.id, art])),
-      camps: Object.fromEntries(camps.map((camp) => [camp.id, camp])),
+      camps: Object.fromEntries(processedCamps.map((camp) => [camp.id, camp])),
       radios: Object.fromEntries(
         radios.map((radio) => [
           radio.id,
@@ -162,7 +169,6 @@ export function ProcessedDataProvider({
       vehicles: Object.fromEntries(
         vehicles.map((vehicle) => [vehicle.id, vehicle])
       ),
-      locations,
     }));
   }, [feed, isOver18]);
 
