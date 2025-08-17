@@ -36,7 +36,7 @@ export function AuthNav({ setOpen }: { setOpen: (arg0: boolean) => void }) {
   return (
     <ListItem>
       <ListItemButton
-        href={`/api/login?${queryParams.toString()}`}
+        href={`http://localhost:3000/api/login?${queryParams.toString()}`}
         onClick={authContext.enableBackdrop}
       >
         <ListItemIcon>

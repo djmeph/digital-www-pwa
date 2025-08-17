@@ -14,6 +14,25 @@ export class AppController {
     @Res() res: Response,
     @Query('redirect_target') redirectTarget?: string
   ) {
-    return this.appService.login(req, res, redirectTarget);
+    return this.appService.login(res.cookie, req.cookies.token, redirectTarget);
+  }
+
+  @Get('/callback')
+  @Redirect('', 302)
+  callback(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Query('token') token?: string
+  ) {
+    return this.appService.callback(
+      res.cookie,
+      req.cookies.redirect_target,
+      token
+    );
+  }
+
+  @Get('/auth')
+  auth(@Req() req: Request) {
+    return this.appService.auth(req.cookies.token);
   }
 }

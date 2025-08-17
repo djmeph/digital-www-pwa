@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Request, Response } from 'express';
+import { CookieOptions, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 @Injectable()
@@ -18,25 +18,33 @@ export class AppService {
     }
   }
 
-  login(req: Request, res: Response, redirectTarget?: string): { url: string } {
+  public login(
+    cookie: (
+      name: string,
+      val: string,
+      options?: CookieOptions
+    ) => Response<any, Record<string, any>>,
+    token?: string,
+    redirectTarget?: string
+  ): { url: string } {
     if (redirectTarget) {
-      res.cookie('redirect_target', redirectTarget, {
+      cookie('redirect_target', redirectTarget, {
         path: '/',
         secure: true,
       });
     } else {
-      res.cookie('redirect_target', null);
+      cookie('redirect_target', null);
     }
 
-    if (req.cookies.token) {
+    if (token) {
       try {
-        jwt.verify(req.cookies.token, this.vpateJwtSecret, {
+        jwt.verify(token, this.vpateJwtSecret, {
           algorithms: ['HS256'],
         });
         return { url: this.apiBaseUrl };
-      } catch (err) {
-        console.error('Token verification failed, deleting token cookie');
-        res.cookie('token', null);
+      } catch (err: unknown) {
+        console.error('Token verification failed, deleting token cookie', err);
+        cookie('token', null);
       }
     }
 
@@ -46,5 +54,54 @@ export class AppService {
 
     const redirectUrl = `${this.vpateBaseUrl}/?${queryParams.toString()}`;
     return { url: redirectUrl };
+  }
+
+  public callback(
+    cookie: (
+      name: string,
+      val: string,
+      options?: CookieOptions
+    ) => Response<any, Record<string, any>>,
+    redirectTarget?: string,
+    token?: string
+  ) {
+    if (!token) {
+      return { url: '/unauthorized' };
+    }
+
+    try {
+      jwt.verify(token, this.vpateJwtSecret, {
+        algorithms: ['HS256'],
+      });
+    } catch (err) {
+      console.error(err);
+      return { url: '/unauthorized' };
+    }
+
+    cookie('token', token, {
+      path: '/',
+      secure: true,
+    });
+
+    const path = redirectTarget || '/';
+    cookie('redirect_target', null);
+
+    return { url: `${this.apiBaseUrl}${path}` };
+  }
+
+  public auth(token?: string) {
+    if (!token) {
+      throw new UnauthorizedException();
+    }
+
+    try {
+      const decoded = jwt.verify(token, this.vpateJwtSecret, {
+        algorithms: ['HS256'],
+      });
+      return typeof decoded === 'string' ? { message: decoded } : decoded;
+    } catch (err) {
+      console.error(err);
+      throw new UnauthorizedException();
+    }
   }
 }

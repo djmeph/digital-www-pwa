@@ -35,7 +35,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const checkAuth = useCallback(() => {
     async function fetchAuth() {
       setChecking(true);
-      const res = await fetch('/api/auth', { cache: 'no-store' });
+      const res = await fetch('http://localhost:3000/api/auth', {
+        cache: 'no-store',
+      });
       setChecking(false);
       if (res.ok) {
         const data = await res.json();

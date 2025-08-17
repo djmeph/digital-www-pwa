@@ -33,7 +33,7 @@ export function ShiftsPage() {
     <>
       <Header>{'Volunteer Shifts'}</Header>
       <Button
-        href={`/api/login?${queryParams.toString()}`}
+        href={`http://localhost:3000/api/login?${queryParams.toString()}`}
         onClick={authContext.enableBackdrop}
         sx={{
           margin: 2,
