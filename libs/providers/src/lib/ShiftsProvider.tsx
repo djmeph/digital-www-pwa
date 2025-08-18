@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import cookies from 'js-cookie';
 import {
   createContext,
   ReactNode,
@@ -49,7 +50,13 @@ export const ShiftsProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     async function fetchShifts() {
-      const res = await fetch('/api/shifts', { cache: 'no-store' });
+      const token = cookies.get('token');
+      const res = await fetch('http://localhost:3000/api/shifts', {
+        cache: 'no-store',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (res.ok) {
         const data = await res.json();
         processShifts(data || []);
