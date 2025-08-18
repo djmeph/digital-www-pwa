@@ -35,8 +35,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const checkAuth = useCallback(() => {
     async function fetchAuth() {
       setChecking(true);
+      const token = cookies.get('token');
+      if (!token) {
+        setIsAuthenticated(false);
+        setJwtPayload(null);
+        setChecking(false);
+        return;
+      }
+
       const res = await fetch('http://localhost:3000/api/auth', {
         cache: 'no-store',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       setChecking(false);
       if (res.ok) {
@@ -59,7 +70,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const logout = useCallback(() => {
-    cookies.remove('token');
+    cookies.remove('token', {
+      path: '/',
+      secure: true,
+    });
     setIsAuthenticated(false);
     setJwtPayload(null);
   }, []);
