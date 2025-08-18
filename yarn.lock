@@ -2592,6 +2592,7 @@ __metadata:
     "@nestjs/common": "npm:^10.0.2"
     "@nestjs/config": "npm:4.0.2"
     "@nestjs/core": "npm:^10.0.2"
+    "@nestjs/jwt": "npm:^11.0.0"
     "@nestjs/platform-express": "npm:^10.0.2"
     "@nestjs/schematics": "npm:^10.0.1"
     "@nestjs/testing": "npm:^10.0.2"
@@ -4092,6 +4093,18 @@ __metadata:
     "@nestjs/websockets":
       optional: true
   checksum: 10c0/cb9f68a35d0e45684989c2ac1402617d2159d45abd49bf986b7a76931d5452d15fdf99ae8ac0fbca3c0f329a07a7802223e9dcaa3f834dfa9e96f2e7514c9aee
+  languageName: node
+  linkType: hard
+
+"@nestjs/jwt@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@nestjs/jwt@npm:11.0.0"
+  dependencies:
+    "@types/jsonwebtoken": "npm:9.0.7"
+    jsonwebtoken: "npm:9.0.2"
+  peerDependencies:
+    "@nestjs/common": ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0
+  checksum: 10c0/e4c28d7feb02c022a0febb8c426785ba292f959cf9f7cd66d4d48a6fbcc76d90c6a0b44065c1e21d743fcb914b91113e354bbb3b96995e256aaa6c6469b5c439
   languageName: node
   linkType: hard
 
@@ -5872,6 +5885,15 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/5af586c291b3e3341be844f76ce0de53e15f3cbc8dbc147f79ab3af4f5e2a2bf3499f3dcbfb85752f1f265d9a9362bbe8104d0173e24c6d8d7b23e41821e0dbe
+  languageName: node
+  linkType: hard
+
+"@types/jsonwebtoken@npm:9.0.7":
+  version: 9.0.7
+  resolution: "@types/jsonwebtoken@npm:9.0.7"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/e1cd0e48fcae21b1d4378887a23453bd7212b480a131b11bcda2cdeb0687d03c9646ee5ba592e04cfaf76f7cc80f179950e627cdb3ebc90a5923bce49a35631a
   languageName: node
   linkType: hard
 

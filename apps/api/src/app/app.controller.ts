@@ -1,31 +1,34 @@
 import {
   Controller,
   Get,
-  Headers,
   Query,
   Redirect,
   Req,
   Res,
-  UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+
+import { JwtPayload } from './app.types';
+import { AuthGuard } from './auth.guard';
 
 @Controller()
 export class AppController {
   vpateBaseUrl: string;
   appBaseUrl: string;
   apiBaseUrl: string;
-  vpateJwtSecret: string;
 
-  constructor(private readonly configService: ConfigService) {
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly jwtService: JwtService
+  ) {
     this.vpateBaseUrl = this.configService.get('VPATE_BASE_URL');
-    this.vpateJwtSecret = this.configService.get('VPATE_JWT_SECRET');
     this.appBaseUrl = this.configService.get('BASE_URL');
     this.apiBaseUrl = this.configService.get('API_BASE_URL');
-    if (!this.vpateBaseUrl || !this.appBaseUrl || !this.vpateJwtSecret) {
-      throw Error('VPATE_BASE_URL, BASE_URL or VPATE_JWT_SECRET missing');
+    if (!this.vpateBaseUrl || !this.appBaseUrl || !this.apiBaseUrl) {
+      throw Error('VPATE_BASE_URL, BASE_URL or API_BASE_URL missing');
     }
   }
 
@@ -36,11 +39,11 @@ export class AppController {
 
   @Get('/login')
   @Redirect('', 302)
-  login(
+  async login(
     @Req() req: Request,
     @Res() res: Response,
     @Query('redirect_target') redirectTarget?: string
-  ): { url: string } {
+  ): Promise<{ url: string }> {
     if (redirectTarget) {
       res.cookie('redirect_target', redirectTarget, {
         path: `/`,
@@ -52,9 +55,7 @@ export class AppController {
 
     if (req.cookies.token) {
       try {
-        jwt.verify(req.cookies.token, this.vpateJwtSecret, {
-          algorithms: ['HS256'],
-        });
+        await this.jwtService.verifyAsync(req.cookies.token);
         res.clearCookie('redirect_target');
         return { url: `${this.appBaseUrl}${redirectTarget}` };
       } catch (err: unknown) {
@@ -73,20 +74,18 @@ export class AppController {
 
   @Get('/callback')
   @Redirect('', 302)
-  callback(
+  async callback(
     @Req() req: Request,
     @Res() res: Response,
     @Query('token') token?: string
-  ): { url: string } {
+  ): Promise<{ url: string }> {
     if (!token) {
       console.error('token missing in callback');
       return { url: `${this.appBaseUrl}/unauthorized` };
     }
 
     try {
-      jwt.verify(token, this.vpateJwtSecret, {
-        algorithms: ['HS256'],
-      });
+      await this.jwtService.verifyAsync(token);
     } catch (err) {
       console.error(err);
       return { url: `${this.appBaseUrl}/unauthorized` };
@@ -102,23 +101,9 @@ export class AppController {
     return { url: `${this.appBaseUrl}${path}` };
   }
 
+  @UseGuards(AuthGuard)
   @Get('/auth')
-  auth(@Headers() headers: Record<string, string>): jwt.JwtPayload {
-    const token = headers.authorization
-      ? headers.authorization.replace(/^Bearer (.*?)$/, '$1')
-      : undefined;
-    if (!token) {
-      throw new UnauthorizedException();
-    }
-
-    try {
-      const decoded = jwt.verify(token, this.vpateJwtSecret, {
-        algorithms: ['HS256'],
-      });
-      return typeof decoded === 'string' ? { message: decoded } : decoded;
-    } catch (err) {
-      console.error(err);
-      throw new UnauthorizedException();
-    }
+  async auth(@Req() req: Request & { user: JwtPayload }): Promise<JwtPayload> {
+    return req.user;
   }
 }
