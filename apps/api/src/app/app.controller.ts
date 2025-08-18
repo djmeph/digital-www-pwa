@@ -103,10 +103,7 @@ export class AppController {
   }
 
   @Get('/auth')
-  auth(
-    @Req() req: Request,
-    @Headers() headers: Record<string, string>
-  ): jwt.JwtPayload {
+  auth(@Headers() headers: Record<string, string>): jwt.JwtPayload {
     const token = headers.authorization
       ? headers.authorization.replace(/^Bearer (.*?)$/, '$1')
       : undefined;
