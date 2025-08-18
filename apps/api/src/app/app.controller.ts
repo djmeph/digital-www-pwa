@@ -47,10 +47,7 @@ export class AppController {
         secure: true,
       });
     } else {
-      res.cookie('redirect_target', null, {
-        path: `/`,
-        secure: true,
-      });
+      res.clearCookie('redirect_target');
     }
 
     if (req.cookies.token) {
@@ -58,18 +55,16 @@ export class AppController {
         jwt.verify(req.cookies.token, this.vpateJwtSecret, {
           algorithms: ['HS256'],
         });
-        return { url: this.vpateBaseUrl };
+        res.clearCookie('redirect_target');
+        return { url: `${this.appBaseUrl}${redirectTarget}` };
       } catch (err: unknown) {
         console.error('Token verification failed, deleting token cookie', err);
-        res.cookie('token', null, {
-          path: `/`,
-          secure: true,
-        });
+        res.clearCookie('redirect_target');
       }
     }
 
     const queryParams = new URLSearchParams({
-      dust_redirect: `${this.appBaseUrl}/api/callback`,
+      dust_redirect: `${this.apiBaseUrl}/api/callback`,
     });
 
     const redirectUrl = `${this.vpateBaseUrl}/?${queryParams.toString()}`;
@@ -102,12 +97,8 @@ export class AppController {
       secure: true,
     });
 
-    const path = req.cookies.redirectTarget || '/';
-    res.cookie('redirect_target', null, {
-      path: `/`,
-      secure: true,
-    });
-
+    const path = req.cookies.redirect_target || '/';
+    res.clearCookie('redirect_target');
     return { url: `${this.appBaseUrl}${path}` };
   }
 
