@@ -59,16 +59,19 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
     async function fetchFavoritesCreate() {
       const token = cookies.get('token');
       const body = JSON.stringify({ favorites });
-      const res = await fetch('http://localhost:3000/api/entities/favorites', {
-        method: 'POST',
-        body,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'Content-Length': `${body.length}`,
-        },
-        cache: 'no-store',
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/entities/favorites`,
+        {
+          method: 'POST',
+          body,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Content-Length': `${body.length}`,
+          },
+          cache: 'no-store',
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         processFavorites(data);
@@ -80,14 +83,17 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
   function readFavorites() {
     async function fetchFavoritesRead() {
       const token = cookies.get('token');
-      const res = await fetch('http://localhost:3000/api/entities/favorites', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        cache: 'no-store',
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/entities/favorites`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          cache: 'no-store',
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         processFavorites(data);
@@ -103,16 +109,19 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
     async function fetchFavoritesUpdate() {
       const token = cookies.get('token');
       const body = JSON.stringify({ favorites });
-      const res = await fetch('http://localhost:3000/api/entities/favorites', {
-        method: 'PUT',
-        body,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'Content-Length': `${body.length}`,
-        },
-        cache: 'no-store',
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/entities/favorites`,
+        {
+          method: 'PUT',
+          body,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Content-Length': `${body.length}`,
+          },
+          cache: 'no-store',
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         processFavorites(data);
@@ -136,14 +145,17 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
   const deleteFavorites = useCallback(() => {
     async function fetchFavoritesDelete() {
       const token = cookies.get('token');
-      const res = await fetch('http://localhost:3000/api/entities/favorites', {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        cache: 'no-store',
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/entities/favorites`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          cache: 'no-store',
+        }
+      );
       if (res.ok) {
         setFavoritesStorage(null);
       }

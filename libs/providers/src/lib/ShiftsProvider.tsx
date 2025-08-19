@@ -51,12 +51,15 @@ export const ShiftsProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     async function fetchShifts() {
       const token = cookies.get('token');
-      const res = await fetch('http://localhost:3000/api/shifts', {
-        cache: 'no-store',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/shifts`,
+        {
+          cache: 'no-store',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (res.ok) {
         const data = await res.json();
         processShifts(data || []);

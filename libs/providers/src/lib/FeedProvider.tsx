@@ -26,7 +26,9 @@ export const FeedProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     async function fetchFeed() {
-      const res = await fetch('http://localhost:3000/api/feed');
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/feed`
+      );
       const data = await res.json();
       setFeed(data);
     }

@@ -26,9 +26,11 @@ export class AppController {
   ) {
     this.vpateBaseUrl = this.configService.get('VPATE_BASE_URL');
     this.appBaseUrl = this.configService.get('BASE_URL');
-    this.apiBaseUrl = this.configService.get('API_BASE_URL');
+    this.apiBaseUrl = this.configService.get('NEXT_PUBLIC_API_BASE_URL');
     if (!this.vpateBaseUrl || !this.appBaseUrl || !this.apiBaseUrl) {
-      throw Error('VPATE_BASE_URL, BASE_URL or API_BASE_URL missing');
+      throw Error(
+        'VPATE_BASE_URL, BASE_URL or NEXT_PUBLIC_API_BASE_URL missing'
+      );
     }
   }
 

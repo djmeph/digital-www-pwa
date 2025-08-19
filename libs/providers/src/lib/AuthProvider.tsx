@@ -43,12 +43,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return;
       }
 
-      const res = await fetch('http://localhost:3000/api/auth', {
-        cache: 'no-store',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth`,
+        {
+          cache: 'no-store',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setChecking(false);
       if (res.ok) {
         const data = await res.json();
