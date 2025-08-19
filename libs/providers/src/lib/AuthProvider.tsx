@@ -73,10 +73,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const logout = useCallback(() => {
-    cookies.remove('token', {
-      path: '/',
-      secure: true,
-    });
+    cookies.remove('token');
     setIsAuthenticated(false);
     setJwtPayload(null);
   }, []);
