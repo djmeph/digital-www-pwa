@@ -47,11 +47,10 @@ jobs:
 
       - name: Build app
         shell: bash
-        run: |
-          yarn nx run digital-www-pwa:build
-          sed -i 's/SERVICE_WORKER_CACHE_ID/${{ github.sha }}/g' dist/apps/digital-www-pwa/public/sw.js
+        run: yarn nx run digital-www-pwa:build:production
         env:
           NEXT_PUBLIC_API_BASE_URL: https://api.lakesoffire.breakfreeproductions.com
+          SERVICE_WORKER_CACHE_ID: ${{ github.sha }}
 
       - name: Build and push
         id: build
@@ -142,7 +141,7 @@ jobs:
           retention-days: 90
 
   deploy-nextjs:
-    name: Deploy
+    name: Deploy next.js app
     runs-on: ubuntu-latest
     environment: production
     needs: [build-nextjs]
@@ -166,7 +165,7 @@ jobs:
           args: patch deployment prod-digital-www-2025 -n lakes-of-fire -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"digital-www-pwa\",\"image\":\"ghcr.io/djmeph/digital-www-pwa:latest@${{ steps.build-hash.outputs.digest }}\"}]}}}}"
 
   deploy-nestjs:
-    name: Deploy
+    name: Deploy nestjs app
     runs-on: ubuntu-latest
     environment: production
     needs: [build-nestjs]
