@@ -12,4 +12,5 @@ USER node
 WORKDIR /app
 COPY --from=builder --chown=node:node /app/node_modules node_modules
 COPY --chown=node:node dist/apps/digital-www-pwa .
+COPY --chown=node:node apps/digital-www-pwa/.next ./.next
 CMD ["npm", "start"]
