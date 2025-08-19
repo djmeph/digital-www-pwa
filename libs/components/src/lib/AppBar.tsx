@@ -23,14 +23,14 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import dayjs from 'dayjs';
+import NextLink from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router';
-import { Link as RouterLink } from 'react-router';
 
 export function AppBar() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
   const theme = useTheme();
   const authContext = useAuthContext();
 
@@ -49,7 +49,7 @@ export function AppBar() {
   }
 
   function renderBackButton() {
-    if (location.pathname.split('/').length <= 2) {
+    if (pathname.split('/').length <= 2) {
       return null;
     }
     return (
@@ -58,7 +58,7 @@ export function AppBar() {
         edge="start"
         color="inherit"
         aria-label="menu"
-        onClick={() => navigate(-1)}
+        onClick={() => router.back()}
         sx={{ marginRight: (theme) => theme.spacing(2) }}
       >
         <ArrowBackIcon sx={{ width: '1.5em', height: '1.5em' }} />
@@ -80,8 +80,8 @@ export function AppBar() {
           <Toolbar sx={{ paddingLeft: 0, alignItems: 'center' }}>
             {renderBackButton()}
             <Link
-              component={RouterLink}
-              to="/"
+              component={NextLink}
+              href="/"
               style={{
                 display: 'flex',
                 flexGrow: 1,
@@ -104,8 +104,8 @@ export function AppBar() {
         <List>
           <ListItem>
             <ListItemButton
-              component={RouterLink}
-              to="/"
+              component={NextLink}
+              href="/"
               onClick={() => setOpen(false)}
             >
               <ListItemIcon>
@@ -127,8 +127,8 @@ export function AppBar() {
             return (
               <ListItem key={link.path}>
                 <ListItemButton
-                  component={RouterLink}
-                  to={link.path}
+                  component={NextLink}
+                  href={link.path}
                   onClick={() => setOpen(false)}
                 >
                   <ListItemIcon>

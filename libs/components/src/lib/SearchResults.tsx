@@ -9,7 +9,7 @@ import {
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import lunr from 'lunr';
-import { Link } from 'react-router';
+import Link from 'next/link';
 import { useMemo } from 'react';
 
 import { ArtSearchResult } from './ArtSearchResult';
@@ -104,7 +104,7 @@ export function SearchResults({
           <MenuItem
             key={result.href}
             component={Link}
-            to={result.href}
+            href={result.href}
             onClick={onClick}
           >
             {result.node}

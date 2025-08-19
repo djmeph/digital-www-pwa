@@ -1,6 +1,5 @@
 'use client';
 import { useGeolocationContext } from '@digital-www-pwa/providers';
-import type { GpsCoordinates } from '@digital-www-pwa/types';
 import {
   MAP_LOCATION_ANCHORS,
   MAP_ACCURACY_SIZE_FACTOR,
@@ -18,8 +17,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import { useState, useLayoutEffect, useMemo, useRef } from 'react';
 import {
   TransformWrapper,

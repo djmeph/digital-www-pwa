@@ -7,13 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router';
+import NextLink from 'next/link';
 
 export function ArtCard({ art }: { art: ArtItem }) {
   return (
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
-        <CardActionArea component={Link} to={`/art/${art.id}`}>
+        <CardActionArea component={NextLink} href={`/art/${art.id}`}>
           <CardHeader title={art.title} subheader={art.artist} />
           <CardContent>
             <Typography variant="subtitle1">

@@ -1,6 +1,6 @@
 'use client';
 import { useTopNavContext } from '@digital-www-pwa/providers';
-import { useNavigate } from 'react-router';
+import { useRouter } from 'next/navigation';
 
 interface LinkProps {
   to: string;
@@ -9,7 +9,7 @@ interface LinkProps {
 }
 
 export function Link({ to, className, children }: LinkProps) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { setExpanded } = useTopNavContext();
   return (
     <a
@@ -18,7 +18,7 @@ export function Link({ to, className, children }: LinkProps) {
       onClick={(e) => {
         e.preventDefault();
         setExpanded(false);
-        return navigate(to);
+        return router.push(to);
       }}
     >
       {children}

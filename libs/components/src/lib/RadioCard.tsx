@@ -7,13 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function RadioCard({ radio }: { radio: ProcessedRadioItem }) {
   return (
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
-        <CardActionArea component={Link} to={`/radio/${radio.id}`}>
+        <CardActionArea component={Link} href={`/radio/${radio.id}`}>
           <CardHeader
             title={radio.radio_dj_name}
             subheader={radio.radio_time.format('LT')}

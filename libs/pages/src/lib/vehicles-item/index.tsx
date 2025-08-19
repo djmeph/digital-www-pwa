@@ -3,10 +3,8 @@ import { Header } from '@digital-www-pwa/components';
 import { useVehicle } from '@digital-www-pwa/providers';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import { useParams } from 'react-router';
 
-export function VehiclesItemPage() {
-  const { id } = useParams();
+export function VehiclesItemPage({ id }: { id: string }) {
   const vehicle = useVehicle(id);
   return (
     <>

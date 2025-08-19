@@ -4,10 +4,8 @@ import { ShiftsProvider, useAuthContext } from '@digital-www-pwa/providers';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useTheme } from '@mui/material/styles';
-import { useParams } from 'react-router';
 
-export function ShiftPage() {
-  const { id } = useParams();
+export function ShiftPage({ id }: { id: string }) {
   const theme = useTheme();
   const authContext = useAuthContext();
   const queryParams = new URLSearchParams({

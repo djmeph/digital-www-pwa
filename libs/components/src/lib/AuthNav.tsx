@@ -6,13 +6,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useLocation } from 'react-router';
+import { usePathname } from 'next/navigation';
 
 export function AuthNav({ setOpen }: { setOpen: (arg0: boolean) => void }) {
-  const location = useLocation();
+  const pathname = usePathname();
   const authContext = useAuthContext();
   const queryParams = new URLSearchParams({
-    redirect_target: location.pathname,
+    redirect_target: pathname,
   });
 
   if (authContext.isAuthenticated) {

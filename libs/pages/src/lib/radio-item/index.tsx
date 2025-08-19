@@ -3,10 +3,8 @@ import { Header } from '@digital-www-pwa/components';
 import { useRadio } from '@digital-www-pwa/providers';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import { useParams } from 'react-router';
 
-export function RadioItemPage() {
-  const { id } = useParams();
+export function RadioItemPage({ id }: { id: string }) {
   const radio = useRadio(id);
   return (
     <>

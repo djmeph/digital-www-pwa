@@ -6,9 +6,9 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid2';
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router';
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 
 import { EventTags } from './EventTags';
 import { FavoriteButton } from './FavoriteButton';
@@ -20,7 +20,7 @@ export function EventCard({ eventTime }: { eventTime: ParsedEventTime }) {
       <Card sx={{ position: 'relative' }}>
         <CardActionArea
           component={Link}
-          to={`/events/${eventTime.event_time_id}`}
+          href={`/events/${eventTime.event_time_id}`}
         >
           <CardHeader
             title={eventTime.event.title}

@@ -8,13 +8,13 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function ShiftCard({ shift }: { shift: ProcessedShift }) {
   return (
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
-        <CardActionArea component={Link} to={`/shift/${shift.id}`}>
+        <CardActionArea component={Link} href={`/shift/${shift.id}`}>
           <CardHeader
             title={shift.shift_title}
             subheader={`${shift.shift_start.format(

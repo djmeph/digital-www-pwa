@@ -7,13 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router';
+import Link from 'next/link';
 
 export function CampCard({ camp }: { camp: CampItem }) {
   return (
     <Grid size={{ xxs: 12, md: 6, lg: 4 }}>
       <Card>
-        <CardActionArea component={Link} to={`/camps/${camp.id}`}>
+        <CardActionArea component={Link} href={`/camps/${camp.id}`}>
           <CardHeader title={camp.name} subheader={camp.location_name} />
           <CardContent>
             <Typography variant="subtitle1">
