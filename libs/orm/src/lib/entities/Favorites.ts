@@ -6,7 +6,7 @@ export class Favorites {
   public id: number;
 
   @Column({ type: 'varchar' })
-  public jsonStr: number;
+  public jsonStr: string;
 
   @UpdateDateColumn({ type: 'timestamp' })
   public version: Date;

@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import cookies from 'js-cookie';
 import {
   createContext,
   useContext,
@@ -56,11 +57,16 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
 
   function createFavorites(favorites: string) {
     async function fetchFavoritesCreate() {
-      const res = await fetch('/api/entities/favorites', {
+      const token = cookies.get('token');
+      const body = JSON.stringify({ favorites });
+      const res = await fetch('http://localhost:3000/api/entities/favorites', {
         method: 'POST',
-        body: JSON.stringify({
-          favorites,
-        }),
+        body,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Content-Length': `${body.length}`,
+        },
         cache: 'no-store',
       });
       if (res.ok) {
@@ -73,8 +79,13 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
 
   function readFavorites() {
     async function fetchFavoritesRead() {
-      const res = await fetch('/api/entities/favorites', {
+      const token = cookies.get('token');
+      const res = await fetch('http://localhost:3000/api/entities/favorites', {
         method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
         cache: 'no-store',
       });
       if (res.ok) {
@@ -90,11 +101,16 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
 
   function updateFavorites(favorites: string) {
     async function fetchFavoritesUpdate() {
-      const res = await fetch('/api/entities/favorites', {
+      const token = cookies.get('token');
+      const body = JSON.stringify({ favorites });
+      const res = await fetch('http://localhost:3000/api/entities/favorites', {
         method: 'PUT',
-        body: JSON.stringify({
-          favorites,
-        }),
+        body,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Content-Length': `${body.length}`,
+        },
         cache: 'no-store',
       });
       if (res.ok) {
@@ -119,8 +135,13 @@ export const StorageProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteFavorites = useCallback(() => {
     async function fetchFavoritesDelete() {
-      const res = await fetch('/api/entities/favorites', {
+      const token = cookies.get('token');
+      const res = await fetch('http://localhost:3000/api/entities/favorites', {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
         cache: 'no-store',
       });
       if (res.ok) {

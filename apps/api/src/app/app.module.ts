@@ -1,8 +1,10 @@
+import { FavoritesModule } from '@digital-www-pwa/orm';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 
 import { AppController } from './app.controller';
+import { EntitiesFavoritesController } from './entities.favorites.controller';
 import { FeedController } from './feed.controller';
 import { ShiftsController } from './shifts.controller';
 
@@ -22,8 +24,14 @@ import { ShiftsController } from './shifts.controller';
       }),
       inject: [ConfigService],
     }),
+    FavoritesModule,
   ],
-  controllers: [AppController, FeedController, ShiftsController],
+  controllers: [
+    AppController,
+    FeedController,
+    ShiftsController,
+    EntitiesFavoritesController,
+  ],
   providers: [],
 })
 export class AppModule {}
