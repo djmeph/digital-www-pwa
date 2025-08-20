@@ -14,7 +14,7 @@
     "typeorm:remote": "yarn remote ./node_modules/typeorm/cli.js",
     "dev": "DOTENV_CONFIG_PATH=./.env ts-node -P ./libs/orm/tsconfig.json -r dotenv/config",
     "remote": "DOTENV_CONFIG_PATH=./.env.remote ts-node -P ./libs/orm/tsconfig.json -r dotenv/config",
-    "serve": "SERVICE_WORKERS_DISABLED=true nx dev digital-www-pwa",
+    "serve": "NEXT_PUBLIC_SERVICE_WORKERS_DISABLED=true nx dev digital-www-pwa",
     "serve:sw": "nx dev digital-www-pwa"
   },
   "dependencies": {

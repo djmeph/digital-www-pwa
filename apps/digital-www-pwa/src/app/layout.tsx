@@ -25,6 +25,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    if (process.env['NEXT_PUBLIC_SERVICE_WORKERS_DISABLED'] === 'true') {
+      return;
+    }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => console.log('scope is: ', registration.scope));
+    }
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <html lang="en">
