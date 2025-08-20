@@ -52,10 +52,25 @@ docker compose stop
 
 ## Run the development server
 
-To run the dev server for your app, run:
+To run the UI server for your app, with service workers disabled, run:
 
 ```sh
-yarn run nx dev digital-www-pwa
+yarn serve
+```
+
+To run both the UI and API server, with service workers disabled, run:
+
+> [!WARNING]
+> The API will throw an error if VPATE_JWT_SECRET env variable is not set.
+
+```sh
+yarn serve:uiapi
+```
+
+To run the UI with service workers enabled, run:
+
+```sh
+yarn serve:sw
 ```
 
 If everything runs correctly, you should be able to view the development app at [http://localhost:4200](http://localhost:4200).
