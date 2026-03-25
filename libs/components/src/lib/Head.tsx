@@ -1,11 +1,14 @@
 'use client';
+import { EVENT_START, EVENT_THEME } from '@digital-www-pwa/utils';
 import { useTheme } from '@mui/material/styles';
 
 export function HeadComponent() {
   const theme = useTheme();
   return (
     <head>
-      <title>Lakes of Fire 2025 - Doorways in Time</title>
+      <title>{`Lakes of Fire ${EVENT_START.format(
+        'YYYY'
+      )} - ${EVENT_THEME}`}</title>
       <link rel="icon" type="image/x-icon" href="favicon.ico" />
       <link rel="shortcut icon" href="favicon.ico" />
       <link

@@ -5,6 +5,7 @@ import {
   NAVIGATION_LINKS,
   EVENT_START,
   EVENT_END,
+  EVENT_THEME,
 } from '@digital-www-pwa/utils';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
@@ -91,7 +92,9 @@ export function AppBar() {
             >
               <img
                 src="/logo.png"
-                alt="Lakes of Fire 2025 - Doorways in Time"
+                alt={`Lakes of Fire ${EVENT_START.format(
+                  'YYYY'
+                )} - ${EVENT_THEME}`}
                 style={{ height: 48 }}
               />
             </Link>
