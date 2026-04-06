@@ -27,13 +27,14 @@ dayjs.extend(isBetween);
 export const EVENT_TIMEZONE = 'America/Detroit';
 dayjs.tz.setDefault(EVENT_TIMEZONE);
 
-export const EVENT_START = dayjs('2025-07-16 10:00:00').tz(
+export const EVENT_START = dayjs('2026-07-15 10:00:00').tz(
   EVENT_TIMEZONE,
   true
 );
-export const EVENT_END = dayjs('2025-07-20 15:00:00').tz(EVENT_TIMEZONE, true);
+export const EVENT_END = dayjs('2026-07-19 15:00:00').tz(EVENT_TIMEZONE, true);
 
 export const MAX_DESCRIPTION_LENGTH = 200;
+export const EVENT_THEME = 'Grand Masquerade';
 
 export const NAVIGATION_LINKS = [
   {
@@ -141,28 +142,16 @@ export const TAGS: TagItem[] = [
 
 export const MAP_LOCATION_ANCHORS = [
   {
-    latitude: 43.515061171038205,
-    longitude: -86.37413487956199,
-    top: 7.3,
-    left: 33.8,
+    latitude: 44.07494731468901,
+    longitude: -85.72300670119047,
+    top: 0,
+    left: 0,
   },
   {
-    latitude: 43.511668744771534,
-    longitude: -86.36454573371167,
-    top: 48.1,
-    left: 97.5,
-  },
-  {
-    latitude: 43.51016474989722,
-    longitude: -86.37131958549168,
-    top: 62.7,
-    left: 50.9,
-  },
-  {
-    latitude: 43.51445245675199,
-    longitude: -86.36982846092604,
-    top: 13.8,
-    left: 61.5,
+    latitude: 44.07068383660502,
+    longitude: -85.71272873581458,
+    top: 100,
+    left: 100,
   },
 ];
 

@@ -99,7 +99,7 @@ export function ProcessedDataProvider({
   useEffect(() => {
     const { events, art, camps, radios, vehicles, locations } = feed;
 
-    if (events.length === 0) {
+    if (!events || events.length === 0) {
       return;
     }
 

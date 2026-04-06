@@ -4,6 +4,7 @@ import {
   NAVIGATION_LINKS,
   EVENT_START,
   EVENT_END,
+  EVENT_THEME,
 } from '@digital-www-pwa/utils';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -71,7 +72,7 @@ export function HomePage() {
                 filter: 'drop-shadow(4px 4px 4px black)',
               }}
             >
-              Doorways in Time
+              {EVENT_THEME}
             </Box>
             <MuiLink sx={{ fontSize: '1.8rem' }} href={DIRECTIONS_URL}>
               Lucky Lake Campground
