@@ -22,8 +22,6 @@
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@fontsource/cinzel": "^5.2.5",
-    "@fontsource/cinzel-decorative": "^5.2.5",
     "@fontsource/quattrocento": "^5.2.5",
     "@mui/icons-material": "^6.4.5",
     "@mui/material": "^6.4.5",

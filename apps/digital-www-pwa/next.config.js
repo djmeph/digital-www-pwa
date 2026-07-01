@@ -21,7 +21,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '2025.lakesoffire.org',
+        hostname: '2026.lakesoffire.org',
       },
       {
         protocol: 'https',

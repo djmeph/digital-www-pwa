@@ -4,7 +4,7 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 declare module '@mui/material/styles' {
   interface Palette {
     highlight: Palette['primary'];
-    sky: Palette['primary'];
+    tertiary: Palette['primary'];
     currentPosition: Palette['primary'];
     alcohol: Palette['primary'];
     crafting: Palette['primary'];
@@ -13,11 +13,12 @@ declare module '@mui/material/styles' {
     red_light: Palette['primary'];
     sober: Palette['primary'];
     spectacle: Palette['primary'];
+    kid_friendly: Palette['primary'];
   }
 
   interface PaletteOptions {
     highlight?: PaletteOptions['primary'];
-    sky?: PaletteOptions['primary'];
+    tertiary?: PaletteOptions['primary'];
     currentPosition?: PaletteOptions['primary'];
     alcohol?: PaletteOptions['primary'];
     crafting?: PaletteOptions['primary'];
@@ -26,6 +27,7 @@ declare module '@mui/material/styles' {
     red_light?: PaletteOptions['primary'];
     sober?: PaletteOptions['primary'];
     spectacle?: PaletteOptions['primary'];
+    kid_friendly?: PaletteOptions['primary'];
   }
 
   interface BreakpointOverrides {
@@ -42,6 +44,7 @@ declare module '@mui/material/Chip' {
     red_light: true;
     sober: true;
     spectacle: true;
+    kid_friendly: true;
   }
 }
 
@@ -60,24 +63,24 @@ const base = createTheme({
     fontFamily: 'Quattrocento',
   },
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#e32a36',
+      main: '#cd2a22',
     },
     secondary: {
-      main: '#1c1c4d',
+      main: '#f23228',
+    },
+    tertiary: {
+      main: '#f23228',
     },
     highlight: {
-      main: '#FF9219',
+      main: '#cd2a22',
     },
     text: {
-      primary: '#f5c991',
-    },
-    sky: {
-      main: '#193058',
+      primary: '#000000',
     },
     background: {
-      default: '#191031',
+      default: '#FBCA8E',
     },
   },
 });
@@ -86,11 +89,11 @@ export const theme = responsiveFontSizes(
   createTheme(base, {
     cssVariables: true,
     palette: {
-      mode: 'dark',
+      mode: 'light',
       primary: base.palette.augmentColor({ color: base.palette.primary }),
       secondary: base.palette.augmentColor({ color: base.palette.secondary }),
       highlight: base.palette.augmentColor({ color: base.palette.highlight }),
-      sky: base.palette.augmentColor({ color: base.palette.sky }),
+      tertiary: base.palette.augmentColor({ color: base.palette.tertiary }),
       currentPosition: base.palette.augmentColor({
         color: {
           main: '#0288d1',
@@ -98,7 +101,7 @@ export const theme = responsiveFontSizes(
       }),
       alcohol: base.palette.augmentColor({
         color: {
-          main: '#95A5A6',
+          main: '#003F91',
         },
       }),
       crafting: base.palette.augmentColor({
@@ -123,21 +126,26 @@ export const theme = responsiveFontSizes(
       }),
       sober: base.palette.augmentColor({
         color: {
-          main: '#8BC34A',
+          main: '#297045',
         },
       }),
       spectacle: base.palette.augmentColor({
         color: {
-          main: '#F1C40F',
+          main: '#564787',
+        },
+      }),
+      kid_friendly: base.palette.augmentColor({
+        color: {
+          main: '#101935',
         },
       }),
     },
     typography: {
       h1: {
-        fontFamily: 'Cinzel Decorative',
+        fontFamily: 'Optimus Princeps',
       },
       h2: {
-        fontFamily: 'Cinzel',
+        fontFamily: 'Optimus Princeps',
       },
     },
     components: {
@@ -165,7 +173,7 @@ export const theme = responsiveFontSizes(
         },
         styleOverrides: {
           root: {
-            background: `linear-gradient(0deg, ${base.palette.sky.main}00, ${base.palette.sky.main}FF 60%)`,
+            background: `linear-gradient(0deg, ${base.palette.highlight.main}00, ${base.palette.highlight.main}FF 60%)`,
             '@media print': {
               display: 'none',
             },
@@ -175,6 +183,7 @@ export const theme = responsiveFontSizes(
       MuiToolbar: {
         styleOverrides: {
           root: {
+            color: base.palette.text.primary,
             paddingLeft: '24px',
             paddingRight: '24px',
             [base.breakpoints.down('md')]: {
@@ -197,7 +206,7 @@ export const theme = responsiveFontSizes(
             padding: base.spacing(2),
             opacity: 0.85,
             color: base.palette.text.primary,
-            fontFamily: 'Cinzel',
+            fontFamily: 'Optimus Princeps Semi Bold',
             fontSize: '1.5rem',
             textWrap: 'nowrap',
             '@media print': {
@@ -248,7 +257,7 @@ export const theme = responsiveFontSizes(
             padding: 0,
           },
           title: {
-            fontFamily: 'Cinzel',
+            fontFamily: 'Optimus Princeps Semi Bold',
           },
           subheader: {
             color: base.palette.highlight.main,

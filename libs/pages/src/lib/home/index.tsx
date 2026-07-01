@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 
 const DIRECTIONS_URL =
-  'https://maps.google.com/maps/dir//Lucky+Lake+Campground+%26+Outdoor+Center+MAIL+ADDRESS:+3977+W.+Wilke+Rd+GPS:+3280+Winston+Rd.+Rothbury+49432+GPS:+3474+W.+Winston+Rd,+Rothbury+49452+Montague,+MI+49437/';
+  'https://www.google.com/maps/place/5900+N+Kings+Hwy,+Luther,+MI+49656';
 
 const EXTERNAL_LINKS = [
   {
@@ -62,21 +62,18 @@ export function HomePage() {
           }}
         >
           <Stack>
-            <Box sx={{ color: 'highlight.main', fontSize: '1.8rem' }}>
+            <Box sx={{ color: 'primary.main', fontSize: '1.8rem' }}>
               Lakes of Fire Presents
             </Box>
             <Box
               sx={{
-                color: 'primary.main',
+                color: 'secondary.main',
                 fontSize: '4.5rem',
                 filter: 'drop-shadow(4px 4px 4px black)',
               }}
             >
               {EVENT_THEME}
             </Box>
-            <MuiLink sx={{ fontSize: '1.8rem' }} href={DIRECTIONS_URL}>
-              Lucky Lake Campground
-            </MuiLink>
           </Stack>
         </Typography>
       </Grid>
@@ -101,7 +98,7 @@ export function HomePage() {
               spacing={1}
               sx={{
                 textAlign: 'center',
-                color: 'highlight.main',
+                color: 'primary.main',
               }}
             >
               <Box sx={{ fontSize: '1.7em' }}>{EVENT_START.format('MMMM')}</Box>

@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { ART, RADIO, VEHICLES } from './www-data';
+// import { ART, RADIO, VEHICLES } from './www-data';
 
 @Controller()
 export class FeedController {
@@ -15,10 +15,13 @@ export class FeedController {
 
     return {
       events,
-      art: ART,
+      art: [],
+      // art: ART,
       camps,
-      radios: RADIO,
-      vehicles: VEHICLES,
+      radios: [],
+      // radios: RADIO,
+      // vehicles: VEHICLES,
+      vehicles: [],
       locations,
       departments,
     };

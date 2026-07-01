@@ -17,7 +17,8 @@ export type AllowedSlugs =
   | Slugs.FOOD
   | Slugs.RED_LIGHT
   | Slugs.SOBER
-  | Slugs.SPECTACLE;
+  | Slugs.SPECTACLE
+  | Slugs.KID_FRIENDLY;
 
 export type SlugFilters = {
   [key in AllowedSlugs]: boolean;
