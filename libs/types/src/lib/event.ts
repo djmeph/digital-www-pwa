@@ -33,6 +33,7 @@ export type EventItem = {
   crafting: boolean;
   food: boolean;
   sober: boolean;
+  kid_friendly: boolean;
   event_times: EventTime[];
 };
 

@@ -2,6 +2,7 @@ import type { TagItem } from '@digital-www-pwa/types';
 import BrushIcon from '@mui/icons-material/Brush';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CampaignIcon from '@mui/icons-material/Campaign';
+import ChildCareIcon from '@mui/icons-material/ChildCare';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import EventIcon from '@mui/icons-material/Event';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -37,11 +38,13 @@ export const MAX_DESCRIPTION_LENGTH = 200;
 export const EVENT_THEME = 'Grand Masquerade';
 
 export const NAVIGATION_LINKS = [
+  /*
   {
     title: 'Map',
     path: '/map',
     icon: MapIcon,
   },
+  */
   {
     title: 'Happening Now',
     path: '/now',
@@ -62,16 +65,19 @@ export const NAVIGATION_LINKS = [
     path: '/volunteer-shifts',
     icon: CalendarTodayIcon,
   },
+  /*
   {
     title: 'Art',
     path: '/art',
     icon: PaletteIcon,
   },
+  */
   {
     title: 'Camps',
     path: '/camps',
     icon: FestivalIcon,
   },
+  /*
   {
     title: 'Radio SGC',
     path: '/radio',
@@ -82,6 +88,7 @@ export const NAVIGATION_LINKS = [
     path: '/vehicles',
     icon: DriveEtaIcon,
   },
+  */
 ].filter((link) => link !== null);
 
 export const EVENT_DAYS = [
@@ -100,6 +107,7 @@ export enum Slugs {
   RED_LIGHT = 'red_light',
   SOBER = 'sober',
   SPECTACLE = 'spectacle',
+  KID_FRIENDLY = 'kid_friendly',
 }
 
 export const TAGS: TagItem[] = [
@@ -137,6 +145,11 @@ export const TAGS: TagItem[] = [
     slug: Slugs.SPECTACLE,
     name: 'Spectacle',
     icon: TheaterComedyIcon,
+  },
+  {
+    slug: Slugs.KID_FRIENDLY,
+    name: 'Kid Friendly',
+    icon: ChildCareIcon,
   },
 ];
 

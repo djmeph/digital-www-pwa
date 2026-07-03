@@ -1,6 +1,6 @@
 {
-  "name": "Lakes of Fire 2025 Digital WWW",
-  "short_name": "LoF 2025 WWW",
+  "name": "Lakes of Fire Digital WWW",
+  "short_name": "LoF WWW",
   "start_url": "/",
   "icons": [
     {
@@ -14,8 +14,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#193058",
-  "background_color": "#191031",
+  "theme_color": "#FBCA8E",
+  "background_color": "#FBCA8E",
   "display": "standalone",
   "orientation": "portrait"
 }

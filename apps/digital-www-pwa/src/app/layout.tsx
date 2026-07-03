@@ -17,8 +17,6 @@ import {
 import { theme } from '@digital-www-pwa/utils';
 
 import '@fontsource/quattrocento';
-import '@fontsource/cinzel';
-import '@fontsource/cinzel-decorative';
 
 export default function RootLayout({
   children,
@@ -39,7 +37,12 @@ export default function RootLayout({
     <ThemeProvider theme={theme}>
       <html lang="en">
         <HeadComponent />
-        <body style={{ fontFamily: theme.typography.fontFamily }}>
+        <body
+          style={{
+            fontFamily: theme.typography.fontFamily,
+            color: theme.palette.text.primary,
+          }}
+        >
           <AppRouterCacheProvider>
             <CssBaseline />
             <AuthProvider>

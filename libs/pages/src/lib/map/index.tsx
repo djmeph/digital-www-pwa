@@ -4,6 +4,7 @@ import {
   MAP_LOCATION_ANCHORS,
   MAP_ACCURACY_SIZE_FACTOR,
   POSITION_STALE_TIME,
+  EVENT_START,
   calculateDistance,
 } from '@digital-www-pwa/utils';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -90,6 +91,7 @@ export function MapPage() {
       clearTimeout(timeout);
     };
   }, [currentPosition]);
+  const year = EVENT_START.format('YYYY');
 
   const isCloseToEvent = (() => {
     if (!currentPositionStyle) {
@@ -195,7 +197,7 @@ export function MapPage() {
                 <Box sx={{ position: 'relative' }}>
                   <img
                     src="/map.jpg"
-                    alt="2025 Lakes of Fire Map"
+                    alt={`${year} Lakes of Fire Map`}
                     style={{ maxWidth: '100%', maxHeight: '100%' }}
                   />
                   {renderCurrentPosition()}
