@@ -65,24 +65,22 @@ export const NAVIGATION_LINKS = [
     path: '/volunteer-shifts',
     icon: CalendarTodayIcon,
   },
-  /*
   {
     title: 'Art',
     path: '/art',
     icon: PaletteIcon,
   },
-  */
   {
     title: 'Camps',
     path: '/camps',
     icon: FestivalIcon,
   },
-  /*
   {
     title: 'Radio SGC',
     path: '/radio',
     icon: RadioIcon,
   },
+  /*
   {
     title: 'Art Cars',
     path: '/vehicles',
